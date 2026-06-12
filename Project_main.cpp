@@ -98,6 +98,14 @@ string inputPassword()
   return pass;
 }
 
+string getCurrentTimestamp()
+{
+  time_t now = time(nullptr);
+  char buffer[20];
+  strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M", localtime(&now));
+  return string(buffer);
+}
+
 // ─── Auth Logic ──────────────────────────────────────────────
 
 bool namaAkunAda(const string &nama)
@@ -235,7 +243,7 @@ int main()
 {
   // Data dummy akun
   daftarAkun[0] = {"hirsya", "123", nullptr, nullptr, 0, 0};
-  daftarAkun[1] = {"ridho",  "321", nullptr, nullptr, 0, 0};
+  daftarAkun[1] = {"ridho", "321", nullptr, nullptr, 0, 0};
   jumlahAkun = 2;
 
   int pilihan;
