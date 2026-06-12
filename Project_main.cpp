@@ -25,17 +25,28 @@ struct Cerpen
   Cerpen *next;
 };
 
+struct Komentar
+{
+  int rating;
+  string nama;
+  string isi;
+  string waktu;
+  Komentar *next;
+};
+
 struct history
 {
   string judul;
   string waktu;
   history *next;
+  int idHistory;
 };
 
 struct Bookmark
 {
   string judul;
   Bookmark *next;
+  int idBookmark;
 };
 
 struct akun
