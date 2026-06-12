@@ -262,7 +262,7 @@ int main()
   while (true)
   {
     clearScreen();
-    tampilHeader("RUMAH BACA CERPEN");
+    tampilHeader("CERPENKITA");
 
     cout << COLOR_YELLOW
          << "\n  [1] Login\n"
