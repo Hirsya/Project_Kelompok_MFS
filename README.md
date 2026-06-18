@@ -5,7 +5,7 @@
 
   <br>
 
-  <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHBuYXp2ZWZxMHJ5amc0dDhpYWNhaXlpMXBjcjdiZjZhcW9xMTlkdiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/b6IgVgIedd5vBe3rVV/giphy.gif" alt="Yay" width="250"/>
+  <img src="https://media.tenor.com/WyttCDFchNkAAAAM/sparxie-hoyoverse.gif" alt="Yay" width="250"/>
 
   <br><br>
 
