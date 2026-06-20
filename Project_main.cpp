@@ -14,17 +14,6 @@ using namespace std;
 #define COLOR_MAGENTA "\033[1;35m"
 
 // ─── Structs ─────────────────────────────────────────────────
-
-struct Cerpen
-{
-  int id;
-  string judul;
-  string penulis;
-  string genre;
-  string isi;
-  Cerpen *next;
-};
-
 struct Komentar
 {
   int rating;
@@ -33,6 +22,19 @@ struct Komentar
   string waktu;
   Komentar *next;
 };
+
+struct Cerpen
+{
+  int id;
+  string judul;
+  string penulis;
+  string genre;
+  string isi;
+  string waktu;
+  Cerpen *next;
+  Komentar *komentarHead;
+};
+
 
 struct history
 {
@@ -58,6 +60,13 @@ struct akun
   int jumlahRiwayat;
   int jumlahBookmark;
 };
+
+// ─── Function Prototypes ─────────────────────────────────────
+void menuLogin();
+void bacaCerpen(int indexAkun);
+void tambahCerpen(int id, string judul, string penulis, string genre, string isi);
+void bookmarkCerpen(int indexAkun);
+void lihatRiwayat(int indexAkun);
 
 // ─── Global ──────────────────────────────────────────────────
 
@@ -117,6 +126,253 @@ string getCurrentTimestamp()
   return string(buffer);
 }
 
+
+void seedCerpen()
+{
+  tambahCerpen(1, "Senja di Ujung Jalan", "Hirsya", "Drama",
+               "Senja itu, Rian berdiri sendirian di ujung jalan yang sepi. Ia menatap langit yang perlahan berubah jingga, mengingat kembali semua kenangan yang pernah ia lalui di kota ini. Sebentar lagi ia akan pergi, meninggalkan semuanya untuk memulai hidup baru di kota lain.");
+
+  tambahCerpen(2, "Surat Untuk Ayah", "Ridho", "Keluarga",
+               "Sudah lima tahun sejak ayah meninggal, namun surat itu baru kutemukan hari ini, terselip di antara buku-buku tua di gudang. Tanganku gemetar saat membuka lipatan kertas yang sudah menguning itu. Di dalamnya, ayah menuliskan harapan-harapan yang tak pernah ia ucapkan secara langsung.");
+
+  tambahCerpen(3, "Misteri Rumah Tua", "Maya", "Horor",
+               "Rumah tua di ujung desa itu sudah lama ditinggalkan penghuninya. Konon, setiap malam Jumat Kliwon, terdengar suara tangisan dari dalam rumah tersebut. Malam itu, empat orang remaja memutuskan untuk membuktikan kebenarannya, tanpa tahu apa yang menanti mereka di dalam.");
+
+  tambahCerpen(4, "Nala dan Mimpi Buruk", "Lala", "Fantasi", R"(Nala adalah seorang gadis berusia 12 tahun, berparas cantik dan memiliki lesung pipit 
+di kedua pipinya ketika ia tersenyum. Namun sayang, Nala memiliki sifat yang tidak 
+cocok dengan parasnya itu, Nala sangatlah keras kepala, ia tidak suka dan tidak mau 
+mendengarkan orang lain, parahnya ia suka sekali melakukan hal yang bisa merusak 
+lingkungan, seperti membuang sampah sembarangan dan merusak tanaman apapun 
+yang ia rasa mengganggu penglihatannya. 
+Suatu hari tepat saat bel pulang sekolah berbunyi, seperti biasa Nala dan sahabatnya 
+Vanessa akan pulang bersama menggunakan sepedanya. Namun saat dipertengahan 
+jalan ban sepeda Nala bocor sehingga ia tidak bisa menggunakan sepedanya itu. 
+“Aduuh, kenapa pakai bocor segala siiih bannya? Mana panas banget lagi! Huh” keluh 
+Nala. 
+“Gak boleh ngeluh gitu atuh Naa, lagian situ udah dibilangin jangan lewat sana, banyak 
+kerikil tajamnnya. Masiih aja dilewatin” tegur Vanessa. 
+Nala tidak menghiraukan perkataan sahabat kecilnya itu, ia masih kesal. Ia pun lanjut 
+berjalan dengan terpaksa mendorong sepedanya, Vanessa yang merasa kasihan dengan 
+Nala pun ikut mendorong sepedanya mengikuti Nala. Selang beberapa menit kemudian 
+mereka berhenti di tempat tambal ban didekat taman. 
+“Pakdee, tolong ini di tambal ya! Saya mau beli es dulu di warung depan” ucap Nala 
+seraya meletakan sepedanya di tempat yang sudah disediakan. 
+“siap neng” balas Pakde. 
+Nala dan Vanessa pun berjalan menuju warung dan membeli dua es jeruk untuk mereka 
+minum. Sambil menunggu sepeda Nala ditambal, mereka bermain di taman dekat sana. 
+Nala yang masih sedikit kesal mulai mencabuti tanaman-tanaman yang ada di taman 
+tersebut, mulai dari bunga-bunga, rerumputan, hingga pohon yang masih baru ditanam 
+oleh tukang pun ia rusak. 
+“NALA! Jangan dirusak gituu atuh tanaman-tanamannya. Kan itu udah ditanam sama 
+tukang-tukang biar tamannya sejuk dan asri” omel Vanessa. 
+“Ish, tapi aku masi kesel Van. Aku butuh melampiaskan rasa kekesalanku” . 
+“Tapi jangan gitu juga doong, gak boleh merusak lingkungan! Kamu lupa sama apa 
+kata bu guru di sekolah? Nanti-” perkataan Vanessa tepotong. 
+“udah deh Van, buktinya aku selalu melakukan hal ini, gak terjadi apa-apa tuh!. udahlah 
+ayo balik, aku makin kesel denger kamu ngomel terus” Nala beranjak dari tempatnya 
+menuju tambal ban untuk mengambil sepedanya, ia membuang plastik esnya 
+disembarang tempat. 
+“ NALAAA! JANGAN BUANG SAMPAH SEMBARANGAN, HEI!” teriak Vanessa 
+dari bangku taman, Nala tak menghiraukan, ia malah melambaikan tanggannya sambil 
+berjalan meninggalkan Vanessa. Akhirnya Vanessa lah yang mebuang sampah tersebut 
+ke tempat sampah, dan langsung berlari menyusul Nala. ------ 
+Sampai dirumah Nala segera mengganti seragamnya dengan pakaian rumah yang biasa 
+ia gunakan, mencuci tangan, dan makan siang. Setelah nya Nala kembali ke kamarnya 
+untuk tidur siang. 
+“NALA! BANGUN SAYANG, CEPAT” terdengar teriakan sang bunda 
+membangunkan Nala dari alam mimpinya. 
+“kenapa sih buun?? Nala masih ngantuk ini…hoaaam” ujar Nala namun matanya masih 
+terpejam. 
+“Ayo segera sayang, air sudah mulai tinggi. Kita harus segera evakuasi!” balas bunda 
+terdengar panik, menarik tangan Nala menuju pintu keluar. 
+Nala terkejut, ia melihat seluruh desanya sudah digenangi air yang cukup tinggi hingga 
+sebatas pahanya. Rasa kantuknya tiba-tiba menghilang, ia mulai panik. Segera ia 
+menaiki perahu yang sudah menunggu didepan rumahnya, ia melihat sang ayah 
+membawa beberapa barang penting keluar dari rumahnya. Nala tak bisa berkata apa
+apa, ia hanya terdiam melihat ke sekitar. Ia terheran, kenapa ia tidak bisa melihat pohon
+pohon tinggi yang ada didesanya saat itu, semua yang bisa ia lihat adalah langit yang 
+menggelap karena matahari sudah mulai menghilang bak ikut tenggelam kedalam air. 
+Seketika suasana terasa hening, hanya terdengar lantunan pelan sang Bunda yang 
+membaca doa agar mereka bisa sampai di tempat evakuasi dengan selamat sore itu. 
+Sekitar 40 menitan mereka diatas air, akhirnya mereka sampai di tempat evakuasi yang 
+berada dibukit yang cukup tinggi. Nala turun begitu pula dengan Ayah dan Bundanya.  
+Nala berkeliling di lokasi tenda-tenda, mencari sahabatnya. Ia melihat siluet tante Anita, 
+Bunda Vanessa, berlari menuju sebuah tenda berwarna orange menyala. Nala merasa 
+ada sesuatu yang mengganjal, membuatnya mengikuti Tante Anita dari belakang.  
+Kaget, sedih, panik. Itu yang ia rasakan, hatinya sesak melihat sahabat baiknya itu 
+tergeletak kaku di atas terpal. Ia mendekat secara perlahan, seperti sedang membawa 
+sesuatu yang rentan dan mudah hancur di dalam dirinya. Kakinya gemetar, air mata 
+mulai menutupi pandangannya. 
+“.… Van? Vanessa aurelia, kamu kenapa? Tan- hiks, Tante, Vanessa kenapa Tan? 
+Vanessa gak apa-apa kan Tan? Dia cuma tidur aja kan? Tapi- hiks, kenapa tubuh 
+Vanessa dingin? Padahal disini gak dingin”  Nala terisak, ia mulai meracau 
+mengeluarkan pertanyaan-pertanyaan yang timbul di benaknya. Bulir air matanya 
+sudah jatuh entah sejak kapan. 
+“... tenggelam… Vanessa tenggelam” tutur Tante Anita pelan. 
+“ ia ditemukan didekat taman, sudah tidak sadarkan diri, dan saat dibawa kesini, 
+dia..dia.. sudah pergi, jauh meninggalkan Tante” lanjutnya. 
+Nala tersentak, tidak percaya dengan apa yang barusan ia dengar. Ia berlari keluar dari 
+tenda dengan air matanya yang sudah deras mengalir. Terduduk di bagian bukit yang 
+sepi, menatap langit malam sambil menangis. Ia membatin, kenapa tuhan jahat sekali 
+kepadanya? Apa yang telah ia lakukan hingga berakibat seperti ini?. seketika terputar 
+ingatannya tentang kejadian tadi siang, ketika ia kesal, dan merusak tanaman- tanaman 
+di taman, dan ia yang membuang sampah sembarangan. Memori lain ikut terputar, 
+tentang perkataan gurunya disekolah. 
+“Anak-anak yang ibu cintai, kalian jangan pernah membuang sampah sembarangan 
+ya. Karena itu akan mengakibatkan saluran air tersumbat dan bisa terjadi banjir. Juga 
+jangan merusak tanaman-tanaman di sekeliling kalian, selain untuk memperindah 
+suasana, tanaman juga berfungsi untuk mencegah banjir”. 
+Tangisan Nala semakin kencang, ia menyesal tidak mendengarkan perkataan Vanessa, 
+ia menyesal telah merusak banyak tumbuhan di sekitarannya. Ia menyesal, berpikir 
+bahwa semua ini adalah salah nya, Vanessa pergi karena ketidak peduliannya terhadap 
+lingkungannya. Ia kemudian berdoa kepada tuhan agar memaafkan segala hal tidak baik 
+yang telah ia lakukan kepada lingkungannya. Kemudian pandangannya menggelap. ------ 
+tit..tiit..tiit.. 
+Nala terbangun dari tidurnya, ia membeku. Tak lama ia melihat ke sekeliling kamarnya, 
+beranjak turun dan melihat keluar, burung-burung berterbangan untuk kembali pulang 
+ke sangkarnya. Angin bertiup lembut, pohon bergerak tertiup hembusan angin, dan 
+langit berwarna jingga keemasan yang indah. 
+“tidak ada air” batinnya. 
+Ia segera kembali kekamarnya, mengambil smartphone miliknya dari atas meja 
+belajarnya. Menekan kontak yang tertulis ‘Vanessa cerewet’ dan benda itu mulai 
+berdering. Perasaan gelisah di hatinya, berharap sang sahabat mengangkat teleponnya. 
+‘tuk’ 
+“Halo Nala? Ada apa?” terdengar suara halus menyapa telinganya. 
+“Kamu.. kamu gak apa-apa kan?”  
+“huh? Iya aku gak apa-apa kok, kenapa emangnya?” 
+“tidak, tidak ada. Aku hanya ingin minta maaf ke kamu. Ya sudah aku matikan ya. 
+Daah” Nala mematikan sambungan teleponnya, ia lega, semua kejadian yang ia alami 
+hanyalah mimpi buruk tidur siangnya. Ia berjanji, mulai saat ini dan seterusnya ia tidak 
+akan pernah melakukan kesalahan yang sama lagi seperti dirinya yang dulu, Nala akan 
+menjaga lingkungan sekitarnya dengan baik agar mimpi buruk yang ia dapatkan tidak 
+menjadi kenyataan mengerikan yang menghancurkan segalanya.)");
+  
+  tambahCerpen(5,"A Letter Z","JabReal", "Romance, Slice of Life" ,R"(Bagi Irfan, malam hari adalah puncak kehidupan dengan deru mesin motor di jalanan, dan siang hari di kampus hanyalah formalitas melelahkan di depan layar monitor. Sebagai mahasiswa Sistem Informasi, otaknya mungkin dipenuhi logika kode pemrograman, tapi penampilannya sama sekali tidak mencerminkan anak IT pada umumnya. Dengan jaket denim pudar, rambut agak berantakan, dan langkah kaki yang santai, ia menyusuri koridor lantai dua gedung fakultas hari itu.
+Bruk!
+"Aduh! Omo, omo! Laptopku, buku fikihku!"
+Irfan menghentikan langkah. Di depannya, seorang cewek sudah terduduk di lantai koridor. Buku-buku tebal dan sebuah laptop berserakan di sekitarnya. Yang pertama kali menarik perhatian Irfan adalah kacamata bulat yang bertengger agak miring di hidung cewek itu, serta jilbab instan rapi yang kini sedikit bergeser.
+"Jalan pakai mata, dong," gumam Irfan refleks, ketus seperti biasa.
+Cewek itu mendongak, membetulkan letak kacamatanya dengan cepat. Bukannya takut melihat tampang Irfan yang urakan, ia justru menatap Irfan dengan mata berbinar sesaat sebelum mengembungkan pipinya kesal.
+"Di mana-mana jalan itu pakai kaki, Kak. Mata itu untuk melihat. Kalau jalan pakai mata, nanti pusing!" sahut cewek itu dengan nada polos tapi penuh penekanan. "Lagian, tabrakan tadi tuh enggak ada romantis-romantisnya kayak di drakor Crash Landing on You. Sakit tahu! Untung laptopku enggak error, kalau datanya hilang emang Kakak mau tanggung jawab?" gumamnya pelan sambil mengusap lutut.
+Irfan tertegun. Belum pernah ada cewek di kampus ini yang berani mendebatnya dengan argumen se-aneh itu, ditambah membawa-bawa istilah drama Korea dan mengkhawatirkan data laptop di depan seorang anak Sistem Informasi.
+Cewek itu segera bangkit, dengan gesit mengumpulkan barang-barangnya. "Maaf ya, Kak. Saya buru-buru mau ke lab. Takut dihukum dosen, nanti nasib saya tragis kayak drakor makjang!" ucapnya cepat. Tanpa menunggu balasan Irfan, ia langsung berlari kecil meninggalkan koridor.
+Irfan menggelengkan kepala, heran dengan tingkah cewek aneh tersebut. Namun, pandangannya tiba-tiba terikat pada selembar kertas pembatas buku yang terjatuh di dekat kakinya. Kertas itu berbahan tebal dengan kaligrafi huruf "*Z" yang digambar sangat indah di tengahnya. Di balik kertas itu, ada tulisan tangan yang rapi: *“Mulailah segala sesuatu dengan basmalah, agar berkah. Jangan lupa lanjut nonton episode 10 malam ini!”
+Irfan memandangi huruf *Z* tersebut, lalu menatap koridor kosong tempat cewek berkacamata tadi menghilang. Sudut bibirnya tiba-tiba terangkat, membentuk senyuman tipis. Karakter cewek ini seolah menjadi bug baru yang siap mengacaukan sistem hidupnya yang lurus dan dingin.
+"Z...?" gumam Irfan pelan, lalu memasukkan kertas itu ke dalam saku jaketnya.
+Dua minggu berlalu, dan pembatas buku itu masih setia berada di saku jaket denim Irfan. Berkat instingnya sebagai anak Sistem Informasi, tidak sulit bagi Irfan untuk melacak identitas cewek itu. Nama lengkapnya Zoya, mahasiswi tingkat satu yang terkenal aktif di kegiatan kerohanian kampus, tapi sekaligus terkenal di kalangan temannya sebagai "kamus drakor berjalan".
+Sore itu, hujan deras mengguyur kampus. Irfan melihat Zoya sedang berdiri di teras gedung fakultas, menatap rintik hujan dengan cemas. Tangannya memeluk tas laptop erat-erat.
+Irfan berjalan mendekat, sengaja menghentikan langkah tepat di samping Zoya. "Kenapa? Nungguin aktor drakor jemput pakai payung?" sindir Irfan pelan.
+Zoya menoleh kaget, mengenali cowok urakan yang ditabraknya dua minggu lalu. "Ih, Kakak yang waktu itu!" serunya, lalu cemberut. "Bukan gitu. Ini laptop saya isinya tugas semua. Saya takut kehujanan meskipun di dalam tas. Mana saya lupa bawa payung lagi. Kalau di drakor Goblin, biasanya kalau mendung gini ada yang datang payungin..."
+Irfan mendengkus geli. Tanpa banyak bicara, ia membuka jaket denimnya, lalu menyampirkan jaket tebal itu di atas kepala Zoya, membungkus tubuh mungil cewek itu sekaligus tas laptopnya.
+"Kak-Kakak ngapain?" tanya Zoya gagap, wajahnya mendadak memerah di balik kacamata bulatnya.
+"Gak usah banyak drama. Pakai jaket gue buat ngelindungin laptop lo. Ayo, gue anter ke halte," kata Irfan datar.
+Sepanjang jalan menembus hujan gerimis menuju halte, Zoya tidak berhenti mengoceh pelan, "Ini mirip adegan rebel boy yang tolongin ceweknya, tapi versi lokal... Astagfirullah, Zoya, jaga pandangan, jangan baper!" gumamnya yang masih bisa didengar jelas oleh Irfan. Irfan hanya bisa menahan tawa, merasa sistem imun di hatinya mulai jebol menghadapi kepolosan cewek di sampingnya ini.
+Begitu sampai di halte yang cukup teduh, Zoya mengembalikan jaket tersebut. "Makasih banyak ya, Kak... eh, nama Kakak siapa?"
+Irfan menerima jaketnya yang sedikit basah. Sebelum menjawab, ia merogoh saku dalam jaketnya dan mengeluarkan selembar pembatas buku kaligrafi yang ia simpan rapi. "Gue Irfan. Dan ini... punya lo, kan? Huruf Z."
+Mata Zoya membelalak. "Wah! Pembatas buku saya yang hilang! Kok bisa di Kak Irfan?"
+"Karena lo jatuhin pas nabrak gue," Irfan mendekatkan wajahnya sedikit, membuat Zoya refleks mundur satu langkah dengan gugup. "Dan gara-gara huruf Z ini, algoritma hidup gue yang tadinya berantakan, sekarang cuma fokus ke satu user. Yaitu lo."
+Zoya mengerjipkan matanya beberapa kali, mencerna istilah anak IT yang dikombinasikan dengan gaya ala cowok-cowok drakor. Detik berikutnya, wajah Zoya benar-benar matang seperti tomat. Ia menutupi wajahnya dengan pembatas buku tersebut, membuat Irfan tidak bisa lagi menahan tawa lepasnya.
+"Kak Irfan ih! Belajar gombal dari drakor apa, sih?!" seru Zoya malu-malu dari balik kertas.
+Di bawah rintik hujan sore itu, Irfan tahu bahwa si anak motor yang liar kini telah menemukan rute pemberhentian terakhirnya. Bukan di jalanan balap yang gelap, melainkan di dunia penuh warna milik cewek agamis pencinta drakor berinisial Z.
+)");
+
+}
+
+//  ─── Cerpen Helper ──────────────────────────────────────────────
+
+Cerpen *cariCerpenByID (int id)
+{
+  Cerpen *cur = headCerpen;
+  while (cur != nullptr)
+  {
+    if (cur->id == id)
+      return cur;
+    cur = cur->next;
+  }
+  return nullptr;
+}
+
+Cerpen *cariCerpenByJudul (const string &judul)
+{
+  Cerpen *cur = headCerpen;
+  while (cur != nullptr)
+  {
+    if (cur->judul == judul)
+      return cur;
+    cur = cur->next;
+  }
+  return nullptr;
+}
+
+string Preview (const string &isi)
+{
+  if (isi.length() <= 100)
+    return isi;
+  return isi.substr(0, 100) + "...";
+}
+
+void tambahKomentar(int indexAkun, Cerpen *c) 
+{
+    int rating = 0;
+    string isiKomentar;
+
+    cout << "\n  " << COLOR_CYAN << "=== BERIKAN ULASAN ===" << COLOR_RESET << "\n";
+    cout << "  Berikan rating untuk cerpen ini (1-5): ";
+
+    while (true) {
+        if (!(cin >> rating)) {
+            cin.clear(); 
+            cin.ignore(1000, '\n'); 
+            cout << COLOR_RED << "  Input tidak valid! Harap masukkan angka (1-5): " << COLOR_RESET;
+            continue;
+        }
+        if (rating >= 1 && rating <= 5) {
+            break; 
+        } else {
+            cout << COLOR_RED << "  Rating harus antara 1 dan 5! Coba lagi: " << COLOR_RESET;
+        }
+    }
+
+    cin.ignore(); 
+    cout << "  Tuliskan komentar Anda: ";
+    getline(cin, isiKomentar);
+
+    Komentar *komentarBaru = new Komentar
+    {
+        rating, 
+        daftarAkun[indexAkun].nama, 
+        isiKomentar, 
+        getCurrentTimestamp(), 
+        nullptr
+    };
+
+    komentarBaru->next = c->komentarHead;
+    c->komentarHead = komentarBaru;
+
+    cout << COLOR_GREEN << "\n  Terima kasih! Rating dan komentar Anda berhasil disimpan.\n" << COLOR_RESET;
+    cout << "  Tekan Enter untuk melanjutkan...";
+    cin.get();
+}
+
+double hitungRatingRata(Cerpen *c) {
+    if (c == nullptr || c->komentarHead == nullptr) {
+        return 0.0;
+    }
+    
+    int totalRating = 0;
+    int jumlahKomentar = 0;
+    Komentar *curKomentar = c->komentarHead;
+    
+    while (curKomentar != nullptr) {
+        totalRating += curKomentar->rating;
+        jumlahKomentar++;
+        curKomentar = curKomentar->next;
+    }
+    
+    if (jumlahKomentar == 0) return 0.0;
+    return static_cast<double>(totalRating) / jumlahKomentar;
+}
+
 // ─── Auth Logic ──────────────────────────────────────────────
 
 bool namaAkunAda(const string &nama)
@@ -134,7 +390,6 @@ int cariAkun(const string &nama, const string &password)
       return i;
   return -1;
 }
-
 // ─── Menu Utama Setelah Login ─────────────────────────────────
 
 void menuUtama(int indexAkun)
@@ -142,17 +397,50 @@ void menuUtama(int indexAkun)
   clearScreen();
   tampilHeader("SELAMAT DATANG");
   cout << COLOR_GREEN << "\n  Halo, " << daftarAkun[indexAkun].nama << "!\n"
+       << "  Selamat datang di CerpenKita, Mau ngapain hari ini?\n"
+       << COLOR_YELLOW << "\n  [1] Baca Cerpen\n"
+       << "  [2] Buat Cerpen\n"
+       << "  [3] Bookmark Cerpen\n"
+       << "  [4] Lihat Riwayat\n"
+       << COLOR_RED  << "  [5] Logout\n"
        << COLOR_RESET;
-
-  // Fitur nanti disini untuk kita kerjain masing" setelah bagi tugas
-
-  cout << COLOR_GRAY << "  (fitur baca cerpen akan hadir di sini)\n"
-       << COLOR_RESET;
-  cout << "\n  Tekan Enter untuk kembali...";
-  cin.ignore();
-  cin.get();
+  cout << "\n  Pilih: ";
+  int pilihan;
+  cin >> pilihan;
+  switch (pilihan)
+  {
+  case 1:
+      // Fitur Baca Cerpen
+      //bacaCerpen(); ;
+      break;
+    case 2:
+      // Fitur Buat Cerpen
+      //tambahCerpen();
+      break;
+    case 3:
+      // Fitur Bookmark Cerpen
+      // bookmarkCerpen();
+      break;
+    case 4:
+      // Fitur Lihat Riwayat
+      // lihatRiwayat();
+      break;
+    case 5:
+      menuLogin();
+      return;
+    default:
+      cout << COLOR_RED << "\n  Pilihan tidak valid!\n"
+           << COLOR_RESET;
+      cout << "  Tekan Enter untuk kembali...";
+      cin.ignore();
+      cin.get();
+  }
 }
 
+// ─── Baca Cerpen ──────────────────────────────────────
+// ─── Tambah Cerpen ──────────────────────────────────────
+// ─── Bookmark Cerpen ──────────────────────────────────────
+// ─── Lihat Riwayat ──────────────────────────────────────
 // ─── Register ────────────────────────────────────────────────
 
 void menuRegister()
@@ -247,6 +535,8 @@ void menuLogin()
        << COLOR_RESET;
   menuUtama(idx);
 }
+
+
 
 // ─── Main ─────────────────────────────────────────────────────
 
