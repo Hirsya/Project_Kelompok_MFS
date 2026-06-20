@@ -2,6 +2,7 @@
 #include <string>
 #include <ctime>
 #include <conio.h>
+#include <vector>
 using namespace std;
 
 #define COLOR_RESET "\033[0m"
@@ -14,6 +15,14 @@ using namespace std;
 #define COLOR_MAGENTA "\033[1;35m"
 
 // ─── Structs ─────────────────────────────────────────────────
+struct Komentar
+{
+  int rating;
+  string nama;
+  string isi;
+  string waktu;
+  Komentar *next;
+};
 
 struct Cerpen
 {
@@ -27,14 +36,6 @@ struct Cerpen
   Komentar *komentarHead;
 };
 
-struct Komentar
-{
-  int rating;
-  string nama;
-  string isi;
-  string waktu;
-  Komentar *next;
-};
 
 struct history
 {
@@ -117,6 +118,98 @@ string getCurrentTimestamp()
   char buffer[20];
   strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M", localtime(&now));
   return string(buffer);
+}
+
+string normalkanKarakter(const string &teks)
+{
+  struct Ganti { string dari, ke; };
+  Ganti tabel[] = {
+    {"\xE2\x80\x9C", "\""},  // " kiri
+    {"\xE2\x80\x9D", "\""},  // " kanan
+    {"\xE2\x80\x98", "'"},   // ' kiri
+    {"\xE2\x80\x99", "'"},   // ' kanan
+    {"\xE2\x80\x93", "-"},   // en dash
+    {"\xE2\x80\x94", "--"},  // em dash
+    {"\xE2\x80\xA6", "..."}  // ellipsis
+  };
+  string hasil = teks;
+  int n = (int)(sizeof(tabel) / sizeof(tabel[0]));
+  for (int i = 0; i < n; i++) {
+    size_t pos = 0;
+    while ((pos = hasil.find(tabel[i].dari, pos)) != string::npos) {
+      hasil.replace(pos, tabel[i].dari.size(), tabel[i].ke);
+      pos += tabel[i].ke.size();
+    }
+  }
+  return hasil;
+}
+
+// ─── Auth Logic ──────────────────────────────────────────────
+
+bool namaAkunAda(const string &nama)
+{
+  for (int i = 0; i < jumlahAkun; i++)
+    if (daftarAkun[i].nama == nama)
+      return true;
+  return false;
+}
+
+int cariAkun(const string &nama, const string &password)
+{
+  for (int i = 0; i < jumlahAkun; i++)
+    if (daftarAkun[i].nama == nama && daftarAkun[i].password == password)
+      return i;
+  return -1;
+}
+
+// ─── Cerpen Helper ───────────────────────────────────────────
+
+Cerpen *cariCerpenById(int id)
+{
+  Cerpen *cur = headCerpen;
+  while (cur != nullptr)
+  {
+    if (cur->id == id)
+      return cur;
+    cur = cur->next;
+  }
+  return nullptr;
+}
+
+Cerpen *cariCerpenByJudul(const string &judul)
+{
+  Cerpen *cur = headCerpen;
+  while (cur != nullptr)
+  {
+    if (cur->judul == judul)
+      return cur;
+    cur = cur->next;
+  }
+  return nullptr;
+}
+
+string buatPreview(const string &isi, int maxLen = 100)
+{
+  string normal = normalkanKarakter(isi);
+  if ((int)normal.size() <= maxLen)
+    return normal;
+  return normal.substr(0, maxLen) + "...";
+}
+
+double hitungRatingRata(Cerpen *c)
+{
+  if (c->komentarHead == nullptr)
+    return 0;
+
+  int total = 0, jumlah = 0;
+  Komentar *cur = c->komentarHead;
+  while (cur != nullptr)
+  {
+    total += cur->rating;
+    jumlah++;
+    cur = cur->next;
+  }
+  return (double)total / jumlah;
 }
 
 void tambahCerpen(int id, string judul, string penulis, string genre, string isi)
@@ -288,32 +381,13 @@ Di bawah rintik hujan sore itu, Irfan tahu bahwa si anak motor yang liar kini te
 
 }
 
-
-// ─── Auth Logic ──────────────────────────────────────────────
-
-bool namaAkunAda(const string &nama)
-{
-  for (int i = 0; i < jumlahAkun; i++)
-    if (daftarAkun[i].nama == nama)
-      return true;
-  return false;
-}
-
-int cariAkun(const string &nama, const string &password)
-{
-  for (int i = 0; i < jumlahAkun; i++)
-    if (daftarAkun[i].nama == nama && daftarAkun[i].password == password)
-      return i;
-  return -1;
-}
-
 // ─── Menu Utama Setelah Login ─────────────────────────────────
 
 void menuUtama(int indexAkun)
 {
   clearScreen();
-  tampilHeader("SELAMAT DATANG");
-  cout << COLOR_GREEN << "\n  Halo, " << daftarAkun[indexAkun].nama << "!\n"
+  tampilHeader("MENU UTAMA");
+  cout << COLOR_GREEN << "\n  Halo, " << daftarAkun[indexAkun].nama << "! Selamat datang di CerpenKita. Hari ini mau ngapain?\n"
        << COLOR_RESET;
 
   // Fitur nanti disini untuk kita kerjain masing" setelah bagi tugas
