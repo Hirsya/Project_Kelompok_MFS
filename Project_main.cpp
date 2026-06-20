@@ -380,6 +380,97 @@ Di bawah rintik hujan sore itu, Irfan tahu bahwa si anak motor yang liar kini te
 )");
 
 }
+// Forward declaration: dipakai oleh menuHistory & menuFavorit,
+// definisi lengkapnya ada di section "Baca Cerpen".
+void cerpenInfo(int indexAkun, Cerpen *c);
+
+// ─── History ─────────────────────────────────────────────────
+
+void tambahHistory(int indexAkun, const string &judul)
+{
+  akun &user = daftarAkun[indexAkun];
+
+  // Hapus entry lama kalau judul yang sama sudah pernah dibuka,
+  // supaya cerpen yang dibuka lagi pindah ke paling atas (bukan duplikat).
+  history *cur = user.riwayat;
+  history *prev = nullptr;
+  while (cur != nullptr)
+  {
+    if (cur->judul == judul)
+    {
+      if (prev == nullptr)
+        user.riwayat = cur->next;
+      else
+        prev->next = cur->next;
+      delete cur;
+      user.jumlahRiwayat--;
+      break;
+    }
+    prev = cur;
+    cur = cur->next;
+  }
+
+  history *baru = new history{judul, getCurrentTimestamp(), user.riwayat, user.jumlahRiwayat + 1};
+  user.riwayat = baru;
+  user.jumlahRiwayat++;
+}
+
+void menuHistory(int indexAkun)
+{
+  while (true)
+  {
+    clearScreen();
+    tampilHeader("HISTORY");
+
+    akun &user = daftarAkun[indexAkun];
+    if (user.riwayat == nullptr)
+    {
+      cout << COLOR_GRAY << "\n  Belum ada riwayat cerpen yang dibuka.\n"
+           << COLOR_RESET;
+      cout << "\n  Tekan Enter untuk kembali...";
+      cin.ignore();
+      cin.get();
+      return;
+    }
+
+    int no = 1;
+    history *cur = user.riwayat;
+    while (cur != nullptr)
+    {
+      cout << COLOR_YELLOW << "  [" << no << "] " << COLOR_RESET
+           << cur->judul << COLOR_GRAY << "  (" << cur->waktu << ")\n"
+           << COLOR_RESET;
+      no++;
+      cur = cur->next;
+    }
+
+    cout << COLOR_RED << "\n  [0] Kembali\n"
+         << COLOR_RESET
+         << "\n  Buka cerpen no: ";
+
+    int pilihan;
+    if (!(cin >> pilihan))
+    {
+      cin.clear();
+      cin.ignore(1000, '\n');
+      continue;
+    }
+
+    if (pilihan == 0)
+      return;
+
+    if (pilihan < 1 || pilihan > user.jumlahRiwayat)
+      continue;
+
+    cur = user.riwayat;
+    for (int i = 1; i < pilihan; i++)
+      cur = cur->next;
+
+    Cerpen *c = cariCerpenByJudul(cur->judul);
+    if (c != nullptr)
+      cerpenInfo(indexAkun, c);
+  }
+}
 
 // ─── Menu Utama Setelah Login ─────────────────────────────────
 
