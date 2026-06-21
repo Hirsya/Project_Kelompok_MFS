@@ -7,7 +7,7 @@
  
 ![C++](https://img.shields.io/badge/BAHASA-C%2B%2B-blue%3F?style=for-the-badge&color=blue)
 ![Interface](https://img.shields.io/badge/INTERFACE-TERMINAL-black%3F?style=for-the-badge&color=orange)
-![Status](https://img.shields.io/badge/STATUS-ONGOING-black%3F?style=for-the-badge&color=red)
+![Status](https://img.shields.io/badge/STATUS-COMPLETE-black%3F?style=for-the-badge&color=green)
 
 
 <!-- SABAR YA MASIH DALAM PROSES INI -->
