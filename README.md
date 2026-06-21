@@ -7,7 +7,7 @@
  
 ![C++](https://img.shields.io/badge/BAHASA-C%2B%2B-blue%3F?style=for-the-badge&color=blue)
 ![Interface](https://img.shields.io/badge/INTERFACE-TERMINAL-black%3F?style=for-the-badge&color=orange)
-![Static Badge](https://img.shields.io/badge/STATUS-ONGOING-black%3F?style=for-the-badge&color=red)
+![Status](https://img.shields.io/badge/STATUS-ONGOING-black%3F?style=for-the-badge&color=red)
 
 
 <!-- SABAR YA MASIH DALAM PROSES INI -->
@@ -31,7 +31,7 @@
 * 📃 **Daftar & Baca Cerpen:** Menampilkan seluruh cerpen yang tersedia beserta judul, penulis, genre, dan isi cerita.
 * ✍️ **Tambah Cerpen:** Pengguna dapat menambahkan cerpen baru ke dalam daftar.
 * 🕒 **Riwayat Baca (History):** Mencatat cerpen apa saja yang pernah dibuka oleh pengguna, lengkap dengan waktu baca.
-* ⭐ **Bookmark / Favorit:** Menyimpan cerpen favorit agar mudah diakses kembali, dengan opsi tambah/hapus.
+* ⭐ **Favorit:** Menyimpan cerpen favorit agar mudah diakses kembali, dengan opsi tambah/hapus.
 * 💬 **Komentar & Rating:** Pengguna dapat memberi rating dan komentar pada cerpen yang sudah dibaca.
 * 🎨 **Tampilan Terminal Berwarna:** Menggunakan ANSI Color Code untuk mempercantik tampilan menu dan teks di terminal.
 
@@ -48,13 +48,13 @@ Struktur data yang digunakan:
 
 | Nama Kontributor | Tanggung Jawab Utama |
 | :--- | :--- |
-| **Hirsya** | Membuat variabel `struct` yang di butuhkan dan membuat struktur awal kode seperti `main()` |
-| **Ikang** | Membuat blok **Helper Cerpen** yang mengelola fondasi data utama cerpen agar bisa diakses oleh fitur lain. |
-| **Rara** | Sistem **History** yang fokus mengelola _Linked List_ riwayat bacaan yang menempel pada `struct` akun |
-| **Salsa** | Sistem **Bookmark** yang fokus mengelola _Linked List_ cerpen yang telah di bookmark pada `struct` akun |
-| **Intan** | Sistem **Komentar & Rating** yang mengelola _Linked List_ komentar yang bersarang **(_nested_)** di dalam `struct` Cerpen. |
-| **Ihlas** | Membuat **Logika String & UI** yang fokus pada manipulasi `string` dan pengalaman membaca agar teks cerpen tidak berantakan di konsol |
-| **Joshua** | Membuat **Memory Management** yang merajut semua fitur yang sudah dibuat dan memastikan tidak ada _memory leak_ saat program ditutup |
+| **Malikal Hirsya Alfatory** | Membuat variabel `struct` yang di butuhkan dan membuat struktur awal kode seperti `main()` |
+| **Ade Zulfikar Rajasa** | Membuat blok **Helper Cerpen** yang mengelola fondasi data utama cerpen agar bisa diakses oleh fitur lain. |
+| **Chandrawati Rachmad** | Sistem **History** yang fokus mengelola _Linked List_ riwayat bacaan yang menempel pada `struct` akun |
+| **Tri Salsabila** | Sistem **Favorit** yang fokus mengelola _Linked List_ cerpen yang telah di favorit pada `struct` akun |
+| **Anak Agung Ayu Intan PM** | Sistem **Komentar & Rating** yang mengelola _Linked List_ komentar yang bersarang **(_nested_)** di dalam `struct` Cerpen. |
+| **Maulidar Ihlas** | Membuat **Logika String & UI** yang fokus pada manipulasi `string` dan pengalaman membaca agar teks cerpen tidak berantakan di konsol |
+| **Jhosua Jasson Lada** | Membuat **Memory Management** yang merajut semua fitur yang sudah dibuat dan memastikan tidak ada _memory leak_ saat program ditutup |
 
 ---
 
