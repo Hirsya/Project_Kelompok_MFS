@@ -13,6 +13,8 @@ using namespace std;
 #define COLOR_GRAY "\033[0;90m"
 #define COLOR_WHITE "\033[1;37m"
 #define COLOR_MAGENTA "\033[1;35m"
+#define COLOR_BLUE "\033[1;34m"
+#define COLOR_PINK "\033[95m"
 
 // ─── Structs ─────────────────────────────────────────────────
 struct Komentar
@@ -36,13 +38,14 @@ struct Cerpen
   Komentar *komentarHead;
 };
 
-
 struct history
 {
   string judul;
   string waktu;
   history *next;
   int idHistory;
+  int idCerpen;
+  int halamanTerakhir;
 };
 
 struct Bookmark
@@ -74,6 +77,25 @@ int jumlahCerpen = 0;
 // ─── Helper ──────────────────────────────────────────────────
 
 void clearScreen() { system("cls"); }
+
+int menuSelector(const vector<string> &menu, int selected)
+{
+    int ch = _getch();
+
+    if (ch == 0 || ch == 224)
+    {
+        ch = _getch();
+        if (ch == 72) selected = (selected - 1 + menu.size()) % menu.size();
+        if (ch == 80) selected = (selected + 1) % menu.size();
+    }
+    else if (ch == 13)
+    {
+        return -selected - 1; 
+        // pakai trik: ENTER
+    }
+
+    return selected;
+}
 
 void tampilHeader(const string &judul)
 {
@@ -232,11 +254,52 @@ void tambahCerpen(int id, string judul, string penulis, string genre, string isi
 
 void seedCerpen()
 {
-  tambahCerpen(1, "Senja di Ujung Jalan", "Hirsya", "Drama",
-               "Senja itu, Rian berdiri sendirian di ujung jalan yang sepi. Ia menatap langit yang perlahan berubah jingga, mengingat kembali semua kenangan yang pernah ia lalui di kota ini. Sebentar lagi ia akan pergi, meninggalkan semuanya untuk memulai hidup baru di kota lain.", "26-08-2016");
+  tambahCerpen(1, "Tuan Hujan", "Intan", "Drama",
+               R"(Tuan Hujan
+Oleh:Anak Agung Ayu Intan PM
 
-  tambahCerpen(2, "Surat Untuk Ayah", "Ridho", "Keluarga",
-               "Sudah lima tahun sejak ayah meninggal, namun surat itu baru kutemukan hari ini, terselip di antara buku-buku tua di gudang. Tanganku gemetar saat membuka lipatan kertas yang sudah menguning itu. Di dalamnya, ayah menuliskan harapan-harapan yang tak pernah ia ucapkan secara langsung.", "30-11-2018");
+Detik demi detik meluruh, menyeret malam melampaui batas tengahnya yang paling sepi. Dalam kungkungan kamar yang dingin, Ana memilih abadi dalam terjaga. Ruangan itu hanya diterangi sisa pendar lampu kupu-kupu yang muram di dalam kaca, ditemani luruhnya warna dari sebuket mawar biru artifisial di atas meja kayu. Keduanya meluap menjadi monumen ingatan yang menolak runtuh dari benak Nara. Dingin rintik hujan di balik jendela malam ini rupanya gagal meredam suara gemuruh yang kian bising menghantam dinding hatinya. tangannya meraih sebuah buku menyapukan pena di atas bentangan kertas bergaris, mengalirkan sebait simfoni sunyi—sebuah rasa yang barangkali, tak akan pernah sampai pada telinga sang pemilik nama.
+Rintik hujan jatuh ke bumi
+Suara desir angin bagai sebuah simfoni
+Di langit kelabu terbentang sebuah janji
+ Ia aku masih tetap disini
+Ana meletakkan penanya sejenak, menatap ke luar jendela kaca tempat sisa-sisa air langit masih bergulir pelan. Baginya “Tuan Hujan”. Sebuah enigma yang kerap meninggalkan tanda tanya. Pertemuan-pertemuan mereka seumpama ketidaksengajaan yang ditulis dengan tinta takdir yang terlampau pekat.Setiap kali jemari awan meredupkan cakrawala dan ranjang langit merunduk kelabu, Ana tahu bahwa hujan akan kembali, iya kali ini kuharap ia benar-benar akan Kembali. Ana selalu luluh, terpaku menolak beranjak demi menjaga sebait janji tanpa aksara yang ia jahit sendiri di dalam dadanya. Namun, menyerahkan hati pada sosok yang bernapas dengan tabiat hujan berarti bertaruh pada ketidakpastian. Ana tahu, ada masanya di mana rintik paling karib paling hangat paling tenang itu mendadak menjelma badai, bergemuruh hebat memporak-porandakan hidup tanpa sempat memberi tanda peringatan.
+Rintik hujan mendatangkan banjir
+yang tak terbendung di ujung bibir
+seperti sebuah petir
+Begitu pula halnya hadir
+Benak Ana kembali memutar sebuah untaian ingatan tentang kali pertama sepasang matanya menangkap siluet hujan. Gerimis kala itu meluruh tipis, seolah menjelma jemari tak kasat mata yang menuntun langkah kakinya menemui takdir yang kini mengurungnya dalam sepi. Hujan itu unik, bisik batin Nara waktu itu. Ia adalah seniman yang teramat misterius. Terkadang hadirnya melukiskan lengkung pelangi—sebuah simbol harapan dan keceriaan yang memeluk langit. Namun di lain hari, ia bisa berubah menjadi amukan badai hebat yang meremukkan bumi. Sering kali pula, ia hanya bertamu sesaat, sekadar untuk menyapa dan mengisyaratkan bahwa hadirnya itu nyata, sebelum akhirnya lenyap tanpa pamit.Nara menyeka tetesan hangat yang meluncur di pipinya. Tepat saat jemarinya menyentuh kulit yang basah, sekelebat cahaya membelah malam, disusul suara gemuruh yang menggelegar dahsyat, menyentak Nara dari lamunan panjangnya. Hujan selalu saja menyembunyikan rahasia di balik jubahnya.Kehadirannya, tujuannya, alasannya, dan maknanya adalah labirin teka-teki yang memaksa Nara untuk selalu menerka-nerka arti di balik rintiknya setiap saat. Sebuah pertemuan yang awalnya terasa paling hangat, yang pernah memeluk jiwanya dengan ketenangan, perlahan-lahan menguap dan lenyap. Pertemuan itu persis seperti kilatan petir malam ini—datang menyentak sekejap, menerangi dunianya dalam satu kedipan mata, lalu menyisakan kegelapan yang jauh lebih pekat. Kehadiran Tuan Hujan yang meruntuhkan seluruh pertahanan egonya, kini benar-benar menjadi banjir air mata yang tak terbendung, mengalir sunyi hingga tertahan kelu di ujung bibirnya.
+Aku tak membenci hujan
+walau cahaya hanya bias
+ku harap genangnya membekas
+Hadirmu mengajarkanku ikhlas
+Nara menarik napasnya dalam-dalam, membiarkan aroma tanah basah dan dinginnya angin malam memenuhi rongga dadanya yang sesak. Ia sama sekali tidak pernah mengutuk takdir, pun ia tak pernah membenci kedatangan hujan. Meskipun Nara tahu, mencintai hujan berarti harus siap berjalan dalam keremangan, di mana cahaya kepastian tidak pernah bersinar terang, melainkan hanya berupa bias-bias redup yang memantul bak metafora dari sebuah harap. Hubungan ini adalah sebuah ketidakpastian yang nyata. Namun,ia memilih untuk berdamai dengan rasa itu. Nara kini mengerti bahwa manusia yang datang ke dalam hidup kita tidak selalu dikirim Tuhan untuk menetap hingga akhir. Ada jiwa-jiwa yang dihadirkan seumpama rintik hujan malam ini—mereka datang bukan untuk dimiliki, melainkan hanya singgah sesaat untuk meberi tahu dirimu sebuah makna, lalu menguap kembali ke langit kelabu. Ana tersenyum 
+"Bukan Begitu Tuan Hujan ?...."
+
+)", "26-08-2016");
+
+  tambahCerpen(2, "Aroma Manis dari Dapur Nara", "Mira", "slice of life",
+               R"(Pagi itu rumah Nara terasa sunyi, sunyi yang berbeda dari biasaya. Angin yang masuk lewat jendela
+ ruang tamu menggerakkan tirai perlahan, seperti seseorang yang menguap panjang karena bosan.  Ayah dan ibunya sudah berangkat sejak pagi untuk menghadiri sebuah acara. Mereka meninggalkan secarik pesan manis di meja makan: “Nara yang manis, jaga rumah baik-baik ya!” Nara tersenyum kecil meski tak ada yang melihat. Walaupun ia mencoba berani, hatinya tetap saja merasa sedikit takut dan kesepian. Jam dinding masih menunjukkan pukul sembilan pagi, dan waktu sekolah enggan berjalan lebih cepat. Tiba-tiba, “ting-tong!” suara bel memecah keheningan. Nara terlonjak kecil lalu berlari menuju pintu, berharap itu bukan tamu tak dikenal. Begitu pintu dibuka, terdengar suara ceria:
+“Naraaaa!! Aku dititip di sini!” Reno sepupunya yang seumuran berdiri dengan tas kecil, rambut acak-acakan, dan senyum selebar pintu. Ia melangkah masuk seperti badai kecil penuh energi, langsung menghapus seluruh sepi di rumah itu. “Yeayy! Aku nggak sendirian!” Nara menepuk tangan bahagia.Tak butuh waktu lama sampai ruang tamu berubah menjadi tempat bermain. Komik berserakan, pensil warna tumpah seperti pelangi, dan kertas gambar menumpuk di sofa. “Reno, coba gambar wajahku!” tantang Nara. Reno menggambar cepat, dan hasilnya adalah wajah bulat seperti bola dengan rambut seperti sapu ijuk. Nara menatap hasilnya. “Ini aku??” 
+“Hehehe… versi kartun spesial!” jawab Reno bangga. Mereka lalu membuat komik mini tentang dua anak pemberani. Reno menirukan suara monster, membuat Nara tertawa terbahak hingga terjatuh pelan ke bantal sofa. Rumah yang tadinya hening kini terasa hidup hangat, riuh, penuh cerita. Namun di tengah tawa mereka, “Krruuukkk…”
+Suara itu keras. Sangat keras. Reno memegang perutnya dengan wajah dramatis seperti tokoh film yang kehabisan dialog.
+“Nar aku lapar sekali” Nara langsung berdiri. “Eh! Kita cek dulu tudung saji! Siapa tahu ada makanan!”
+Mereka berjalan ke meja makan seperti dua detektif yang hendak memecahkan misteri besar. Nara memegang pinggir tudung saji, Reno menahan napas sampai pipinya menggembung. 
+ “Siap, Ren?”
+“Siap, komandan!”
+Mereka mengangkat tudung saji itu perlahan.., tenyata Isinya hanya sepiring pisang goreng sisa semalam yang sudah dingin dan tampak menyedihkan. Reno mendekatkannya ke hidung. “Hmmm… aroma masa lalu,” katanya lirih, penuh drama. Nara tertawa. “Kamu lucu banget sih! Ya udah, kita cari makan yang beneran aja. Yang baru. Yang hangat.”  Reno mengangguk cepat seperti burung berkicau.
+“Setujuuu!”
+Mereka bergegas ke dapur. Nara membuka kulkas dan mengeluarkan semua bahan yang tersedia: tepung, telur, susu, mentega, madu, dan gula. Semuanya berjejer rapi seperti pasukan penyelamat. Reno mengamati bahan-bahan itu dengan mata berbinar. “Dengan ini… kita bisa bikin sesuatu yang lembut, manis, dan bikin bahagia!” Nara mengangguk mantap. “Kita bikin pancake!” Reno langsung bersorak pelan. “Pancake adalah makanan pahlawan!” Mereka mencampur bahan-bahan dengan penuh semangat.“Reno, susu sedikit saja, ya,” pesan Nara.
+      Tapi Reno menuang susu seperti menuangkan hujan deras dari awan. Adonan langsung menjadi super cair. Saat dituangkan ke wajan, bentuknya melebar liar seperti benua baru yang belum    dinamai. Reno menatapnya sedih. “Nar… itu pancake atau peta dunia?” Nara tak bisa menahan    tawa. Tak ingin gagal lagi, Nara menambahkan tepung. Satu sendok. Dua sendok. Tiga sendok. Sampai adonannya setebal lumpur sawah. Saat dijatuhkan ke wajan, bunyinya cuma: “Pluk!”
+Pancake itu diam. Tidak mengembang. Tidak bergerak. Seperti sedang mogok kerja. Reno mengetuknya pelan .“Ini… bukan pancake. Ini batu bata versi empuk.” Mereka berdua tertawa sampai memegangi perut. Setelah mengukur dengan teliti, adonan mereka akhirnya tampak sempurna. “Reno, api kecil ya. Biar matang merata,” kata Nara seperti chef profesional. Reno mengangguk… tapi menaikkan api sedikit karena tidak sabar menunggu hidangan manis itu matang. Tak sampai satu menit, aroma hangus menyeruak memenuhi dapur. “Renoooo!!” Nara cepat-cepat membuka jendela. “Dapur kita jadi bau arang!!” Reno menunduk menyesal. Ia membuka toples tepung,  kosong.
+“Nar…, apa ini akhir dari segalanya?” katanya dengan suara kecil. Nara menjentikkan jarinya.
+“Tidak! Ini saatnya kita melakukan misi baru. Kita beli tepung sekarang!”
+Nara mengambil sepeda kayuhnya. Reno duduk di belakang sambil memegang kantong belanja kosong. Angin sore menerpa wajah mereka saat mereka melaju. “Semoga tepungnya masih ada ya!” Mereka membeli tepung paling besar yang tersedia dan pulang sambil tertawa karena kantong belanjanya lebih besar dari perut Reno. Dapur kini terasa lebih tenang. Cahaya matahari sore masuk lembut, membuat meja dapur tampak berkilau hangat.
+Reno menuang susu perlahan—sangat hati-hati. Nara mengaduk adonan sampai teksturnya halus seperti awan manis. Ketika dituangkan ke wajan, terdengar suara lembut: 
+“SssShh…” Gelembung kecil muncul. Aroma vanila menyebar, memenuhi dapur seperti pelukan hangat yang memanggil kenangan. Nara membalik pancake itu. Plup! Warnanya sempurna: kecokelatan lembut seperti roti panggang pagi hari. Reno ternganga kagum. “Nar… ini pancake sungguhan! Mereka menuangi madu yang jatuh perlahan, berkilau seperti tetesan sinar matahari cair. “Yuk kita coba!” kata Nara. Gigitan pertama terasa lembut, hangat, dan manis. Semua kegagalan tadi terasa lucu dan berharga. Reno tersenyum lebar. “Nar… aroma manis dari dapurmu bikin hati ikut bahagia.”
+Nara ikut tersenyum. Hari yang tadinya sepi kini berubah menjadi hari penuh tawa, kehangatan, dan aroma manis yang mengajarkan bahwa kebahagiaan sering lahir dari kegagalan-kegagalan kecil. 
+  )", "30-11-2018");
 
   tambahCerpen(3, "Misteri Rumah Tua", "Maya", "Horor",
                "Rumah tua di ujung desa itu sudah lama ditinggalkan penghuninya. Konon, setiap malam Jumat Kliwon, terdengar suara tangisan dari dalam rumah tersebut. Malam itu, empat orang remaja memutuskan untuk membuktikan kebenarannya, tanpa tahu apa yang menanti mereka di dalam.", "26-12-2019");
@@ -383,10 +446,11 @@ Di bawah rintik hujan sore itu, Irfan tahu bahwa si anak motor yang liar kini te
 // Forward declaration: dipakai oleh menuHistory & menuFavorit,
 // definisi lengkapnya ada di section "Baca Cerpen".
 void cerpenInfo(int indexAkun, Cerpen *c);
-
+void tampilIsiCerpen(int indexAkun, Cerpen *c, int halamanAwal = 1);
+void menuUtama(int indexAkun);
 // ─── History ─────────────────────────────────────────────────
 
-void tambahHistory(int indexAkun, const string &judul)
+void tambahHistory(int indexAkun, const string &judul, int idCerpen)
 {
   akun &user = daftarAkun[indexAkun];
 
@@ -410,9 +474,22 @@ void tambahHistory(int indexAkun, const string &judul)
     cur = cur->next;
   }
 
-  history *baru = new history{judul, getCurrentTimestamp(), user.riwayat, user.jumlahRiwayat + 1};
+  history *baru = new history{judul, getCurrentTimestamp(), user.riwayat, user.jumlahRiwayat + 1, idCerpen, 1};
   user.riwayat = baru;
   user.jumlahRiwayat++;
+}
+
+void updateHalamanHistory(int indexAkun, const string &judul, int halaman)
+{
+  akun &user = daftarAkun[indexAkun];
+  history *cur = user.riwayat;
+  while (cur != nullptr) {
+    if (cur->judul == judul) {
+      cur->halamanTerakhir = halaman;
+      break;
+    }
+    cur = cur->next;
+  }
 }
 
 void menuHistory(int indexAkun)
@@ -425,7 +502,11 @@ void menuHistory(int indexAkun)
     akun &user = daftarAkun[indexAkun];
     if (user.riwayat == nullptr)
     {
-      cout << COLOR_GRAY << "\n  Belum ada riwayat cerpen yang dibuka.\n"
+      cout << COLOR_PINK << R"(
+ /\_/\
+( o.o )
+ > ^ <
+Belum ada riwayat cerpen yang dibuka.)"
            << COLOR_RESET;
       cout << "\n  Tekan Enter untuk kembali...";
       cin.ignore();
@@ -433,45 +514,107 @@ void menuHistory(int indexAkun)
       return;
     }
 
-    int no = 1;
+    //array pointer untuk navigasi
+    vector<history*> items;
     history *cur = user.riwayat;
-    while (cur != nullptr)
-    {
-      cout << COLOR_YELLOW << "  [" << no << "] " << COLOR_RESET
-           << cur->judul << COLOR_GRAY << "  (" << cur->waktu << ")\n"
-           << COLOR_RESET;
-      no++;
+    while (cur != nullptr) {
+      items.push_back(cur);
       cur = cur->next;
     }
 
-    cout << COLOR_RED << "\n  [0] Kembali\n"
-         << COLOR_RESET
-         << "\n  Buka cerpen no: ";
+    int selected = 0;
+    int total = items.size();
 
-    int pilihan;
-    if (!(cin >> pilihan))
+    while (true) {
+      clearScreen();
+      tampilHeader("HISTORY");
+
+      // Tampilkan daftar pake highlight
+      for (int i = 0; i < total; i++) {
+        if (i == selected) {
+          cout << COLOR_GREEN << "  > " << COLOR_RESET;
+          cout << COLOR_WHITE << items[i]->judul << COLOR_RESET;
+        } else {
+          cout << "    " << items[i]->judul;
+        }
+        cout << COLOR_GRAY << "  (" << items[i]->waktu << ")\n" << COLOR_RESET;
+      }
+
+      cout << COLOR_GRAY << "\n  Gunakan panah atas/bawah, Enter untuk pilih, 0 untuk kembali\n" << COLOR_RESET;
+
+      int ch = _getch();
+      if (ch == 0 || ch == 224) { // tombol panah
+        ch = _getch();
+        if (ch == 72) { // atas
+          selected = (selected - 1 + total) % total;
+        } else if (ch == 80) { // bawah
+          selected = (selected + 1) % total;
+        }
+      } else if (ch == 48) {
+        menuUtama(indexAkun);   // kembali ke menu utama
+      }else if (ch == 13) { // Enter(kk)
+        // Pilih item (selec kk)
+        history *h = items[selected];
+        Cerpen *c = cariCerpenById(h->idCerpen);
+        if (c == nullptr) {
+          cout << COLOR_RED << "\n  Cerpen tidak ditemukan!\n" << COLOR_RESET;
+          cout << "  Tekan Enter...";
+          cin.ignore();
+          cin.get();
+          break; // kembali ke menu history? >_<
+        }
+        // Tampilkan 3 pilihan
+    vector<string> menu = {
+      "[1] Buka profile cerita",
+      "[2] Baca page yang dibaca terakhir kali (halaman " + to_string(h->halamanTerakhir) + ")",
+      "[3] Cancel"
+    };
+    int selected = 0;
+    while (true)
     {
-      cin.clear();
-      cin.ignore(1000, '\n');
-      continue;
+        clearScreen();
+        tampilHeader("PILIHAN");
+        cout << COLOR_WHITE << "\n  Cerpen: " << c->judul << "\n\n";
+
+        // mewarnai MENU xixi
+        for (int i = 0; i < menu.size(); i++)
+        {
+            string text = menu[i];
+
+            // 🔵 kalau dipilih ada highlightnya
+            if (i == selected)
+            {
+                cout << COLOR_BLUE << " > " << text << COLOR_RESET << "\n";
+            }
+            else
+            {
+                // 🔴 ini biar log out merah
+                if (i == 3)
+                    cout << COLOR_RED << "   " << text << COLOR_RESET << "\n";
+                else
+                    cout << COLOR_YELLOW << "   " << text << COLOR_RESET << "\n";
+            }
+        }
+        int result = menuSelector(menu, selected); //biar bisa selec kk(arrow)
+        if (result < 0)
+        {
+            int choice = -result - 1;
+            switch (choice)
+            {
+            case 0: cerpenInfo(indexAkun, c); break;
+            case 1: tampilIsiCerpen(indexAkun, c, h->halamanTerakhir); break;
+            case 2: menuHistory(indexAkun); break;
+            }
+        }
+        else
+        {
+            selected = result;
+        }
     }
-
-    if (pilihan == 0)
-      return;
-
-    if (pilihan < 1 || pilihan > user.jumlahRiwayat)
-      continue;
-
-    cur = user.riwayat;
-    for (int i = 1; i < pilihan; i++)
-      cur = cur->next;
-
-    Cerpen *c = cariCerpenByJudul(cur->judul);
-    if (c != nullptr)
-      cerpenInfo(indexAkun, c);
+    }
   }
 }
-
+}
 // ─── Bookmark / Favorit ──────────────────────────────────────
 
 Bookmark *cariBookmark(int indexAkun, const string &judul)
@@ -554,49 +697,78 @@ void menuFavorit(int indexAkun)
       return;
     }
 
-    int no = 1;
-    Bookmark *cur = user.bookmark;
-    while (cur != nullptr)
-    {
-      cout << COLOR_YELLOW << "  [" << no << "] " << COLOR_RESET << cur->judul;
+           // kumpulinn semua bookmark ke vector biar gampang diakses
+        vector<Bookmark*> items;
+        Bookmark *cur = user.bookmark;
+        while (cur != nullptr)
+        {
+            items.push_back(cur);
+            cur = cur->next;
+        }
 
-      Cerpen *c = cariCerpenByJudul(cur->judul);
-      if (c != nullptr)
-        cout << COLOR_GRAY << " - " << c->penulis << " (" << c->genre << ")" << COLOR_RESET;
+        int selected = 0;
+        int total = items.size();
 
-      cout << "\n";
-      no++;
-      cur = cur->next;
+        while (true)
+        {
+            clearScreen();
+            tampilHeader("FAVORIT");
+
+            // Tampilkan daftar dengan highlight
+            for (int i = 0; i < total; i++)
+            {
+                if (i == selected)
+                {
+                    cout << COLOR_GREEN << "  > " << COLOR_RESET;
+                    cout << COLOR_WHITE << items[i]->judul << COLOR_RESET;
+                }
+                else
+                {
+                    cout << "    " << items[i]->judul;
+                }
+
+                // Tambahkan info penulis and genre
+                Cerpen *c = cariCerpenByJudul(items[i]->judul);
+                if (c != nullptr)
+                    cout << COLOR_GRAY << " - " << c->penulis << " (" << c->genre << ")" << COLOR_RESET;
+
+                cout << "\n";
+            }
+
+            cout << COLOR_GRAY << "\n  Gunakan panah atas/bawah, Enter untuk pilih, 0 untuk kembali\n" << COLOR_RESET;
+
+            int ch = _getch();
+
+            if (ch == 0 || ch == 224) // Tombol panah
+            {
+                ch = _getch();
+                if (ch == 72) // Atas
+                    selected = (selected - 1 + total) % total;
+                else if (ch == 80) // Bawah
+                    selected = (selected + 1) % total;
+            }
+            else if (ch == 13) // Enter buat pilih bookmark
+            {
+                Bookmark *bm = items[selected];
+                Cerpen *c = cariCerpenByJudul(bm->judul);
+                if (c != nullptr)
+                    cerpenInfo(indexAkun, c); // buka profile cerpen
+                else
+                {
+                    cout << COLOR_RED << "\n  Cerpen tidak ditemukan!\n" << COLOR_RESET;
+                    cout << "  Tekan Enter...";
+                    cin.ignore();
+                    cin.get();
+                }
+                break; // keluar dari inner loop, kembali ke daftar favorit
+            }
+            else if (ch == '0') // Kembali ke menu utama
+            {
+                return;
+            }
+        }
     }
-
-    cout << COLOR_RED << "\n  [0] Kembali\n"
-         << COLOR_RESET
-         << "\n  Buka cerpen no: ";
-
-    int pilihan;
-    if (!(cin >> pilihan))
-    {
-      cin.clear();
-      cin.ignore(1000, '\n');
-      continue;
-    }
-
-    if (pilihan == 0)
-      return;
-
-    if (pilihan < 1 || pilihan > user.jumlahBookmark)
-      continue;
-
-    cur = user.bookmark;
-    for (int i = 1; i < pilihan; i++)
-      cur = cur->next;
-
-    Cerpen *c = cariCerpenByJudul(cur->judul);
-    if (c != nullptr)
-      cerpenInfo(indexAkun, c);
-  }
 }
-
 // ─── Baca Cerpen ─────────────────────────────────────────────
 
 void tampilSemuaCerpen()
@@ -771,53 +943,121 @@ vector<string> pecahBaris(const string &teks, int lebarMaks)
   return hasil;
 }
 
-void tampilIsiCerpen(int indexAkun, Cerpen *c)
+void tampilIsiCerpen(int indexAkun, Cerpen *c, int halamanAwal)
 {
-  tampilLayarBuka(c);
+    tampilLayarBuka(c);
 
-  const int BARIS_PER_HALAMAN = 20;
-  vector<string> baris = pecahBaris(c->isi, 68);
-  int totalHalaman = ((int)baris.size() + BARIS_PER_HALAMAN - 1) / BARIS_PER_HALAMAN;
-  if (totalHalaman == 0) totalHalaman = 1;
-  int halSaat = 1;
+    const int BARIS_PER_HALAMAN = 20;
+    vector<string> baris = pecahBaris(c->isi, 68);
+    int totalHalaman = ((int)baris.size() + BARIS_PER_HALAMAN - 1) / BARIS_PER_HALAMAN;
+    if (totalHalaman == 0) totalHalaman = 1;
+    int halSaat = halamanAwal;
+    if (halSaat < 1) halSaat = 1;
+    if (halSaat > totalHalaman) halSaat = totalHalaman;
 
-  while (true) {
-    clearScreen();
-    tampilHeader(c->judul);
-    cout << COLOR_GRAY << "  Halaman " << halSaat << " / " << totalHalaman
-         << COLOR_RESET << "\n\n";
+    while (true) {
+        clearScreen();
+        tampilHeader(c->judul);
+        cout << COLOR_GRAY << "  Halaman " << halSaat << " / " << totalHalaman
+             << COLOR_RESET << "\n\n";
 
-    int mulai = (halSaat - 1) * BARIS_PER_HALAMAN;
-    int akhir = mulai + BARIS_PER_HALAMAN;
-    if (akhir > (int)baris.size()) akhir = (int)baris.size();
+        int mulai = (halSaat - 1) * BARIS_PER_HALAMAN;
+        int akhir = mulai + BARIS_PER_HALAMAN;
+        if (akhir > (int)baris.size()) akhir = (int)baris.size();
 
-    for (int i = mulai; i < akhir; i++)
-      cout << "  " << baris[i] << "\n";
+        for (int i = mulai; i < akhir; i++)
+            cout << "  " << baris[i] << "\n";
 
-    cout << COLOR_CYAN << "\n  ------------------------------------------\n"
-         << COLOR_RESET;
+        cout << COLOR_CYAN << "\n  ------------------------------------------\n"
+             << COLOR_RESET;
+                // --- Bangun menu dinamis ---
+        cout << "\033[s";   // simpan posisi
 
-    if (halSaat < totalHalaman)
-      cout << COLOR_YELLOW << "  [N] Halaman Berikutnya\n" << COLOR_RESET;
-    if (halSaat > 1)
-      cout << COLOR_YELLOW << "  [P] Halaman Sebelumnya\n" << COLOR_RESET;
-    cout << COLOR_GREEN << "  [K] Komentar\n"
-         << COLOR_RED   << "  [0] Selesai Baca\n"
-         << COLOR_RESET << "\n  Pilih: ";
+        // Bangun menu dinamis
+        vector<string> menuItems;
+        vector<int> aksiKode;   // 0: prev, 1: next, 2: komentar, 3: selesai
 
-    char ch;
-    if (!(cin >> ch)) {
-      cin.clear();
-      cin.ignore(1000, '\n');
-      continue;
+        if (halSaat > 1) {
+            menuItems.push_back("[<-] Halaman Sebelumnya");
+            aksiKode.push_back(0);
+        }
+        if (halSaat < totalHalaman) {
+            menuItems.push_back("[->] Halaman Berikutnya");
+            aksiKode.push_back(1);
+        }
+        menuItems.push_back("[K] Komentar");
+        aksiKode.push_back(2);
+        menuItems.push_back("[0] Selesai Baca");
+        aksiKode.push_back(3);
+
+        int selected = 0;
+        if (selected >= (int)menuItems.size()) selected = 0;
+
+        while (true) {
+            // Kembali ke posisi setelah garis pemisah, hapus area menu lama
+            cout << "\033[u";   // restore posisi
+            cout << "\033[J";   // hapus dari posisi kursor sampai bawah
+
+            // Cetak menu dengan highlight
+            for (int i = 0; i < (int)menuItems.size(); i++) {
+                string text = menuItems[i];
+                if (i == selected) {
+                    cout << COLOR_BLUE << " > " << text << COLOR_RESET << "\n";
+                } else {
+                    // Warna merah khusus untuk opsi "Selesai" (selalu di akhir)
+                    if (i == (int)menuItems.size() - 1)
+                        cout << COLOR_RED << "   " << text << COLOR_RESET << "\n";
+                    else
+                        cout << COLOR_YELLOW << "   " << text << COLOR_RESET << "\n";
+                }
+            }
+
+            // Baca input tombol (manual)
+            int ch = getch();   // gunakan _getch() jika di Windows
+
+            if (ch == 224) {    // tombol panah (kode escape untuk Windows)
+                ch = getch();
+                switch (ch) {
+                    case 72:   // panah atas
+                        selected--;
+                        if (selected < 0) selected = (int)menuItems.size() - 1;
+                        break;
+                    case 80:   // panah bawah
+                        selected++;
+                        if (selected >= (int)menuItems.size()) selected = 0;
+                        break;
+                    default: break;
+                }
+                // Lanjutkan loop untuk refresh menu dengan highlight baru
+                continue;
+            }
+            else if (ch == 13) {   // Enter → pilih item yang sedang di-highlight
+                int aksi = aksiKode[selected];
+                switch (aksi) {
+                    case 0:   // Halaman Sebelumnya
+                        if (halSaat > 1) halSaat--;
+                        break;
+                    case 1:   // Halaman Berikutnya
+                        if (halSaat < totalHalaman) halSaat++;
+                        break;
+                    case 2:   // Komentar
+                        tampilKomentar(indexAkun, c);
+                        break;
+                    case 3:   // Selesai Baca
+                        return;   // keluar dari fungsi
+                }
+                // Setelah aksi selain selesai, keluar dari loop menu agar halaman direfresh
+                break;
+            }
+            else {
+                // Tombol lain (misal ESC) diabaikan, lanjutkan loop
+                continue;
+            }
+        } // end while menu
+
+        // Setelah break dari loop menu, lanjutkan ke iterasi berikutnya dari loop halaman
+        continue;
     }
-    ch = toupper((unsigned char)ch);
-
-    if      (ch == 'N' && halSaat < totalHalaman) halSaat++;
-    else if (ch == 'P' && halSaat > 1)            halSaat--;
-    else if (ch == 'K')                            tampilKomentar(indexAkun, c);
-    else if (ch == '0')                            return;
-  }
 }
 
 void cerpenInfo(int indexAkun, Cerpen *c)
@@ -841,37 +1081,70 @@ void cerpenInfo(int indexAkun, Cerpen *c)
     cout << COLOR_WHITE << "\n  Sinopsis:\n"
          << COLOR_RESET << "  " << buatSinopsis(c->isi) << "\n";
 
+    //ini batas perubahannya
+    cout << "\033[s";   // simpan posisi kursor (setelah sinopsis)
+
     bool favorit = cariBookmark(indexAkun, c->judul) != nullptr;
-    cout << "\n  [1] Baca Cerpen\n";
-    if (favorit)
-      cout << COLOR_RED << "  [2] Hapus dari Favorit\n"
-           << COLOR_RESET;
-    else
-      cout << COLOR_GREEN << "  [2] Tambah ke Favorit\n"
-           << COLOR_RESET;
-    cout << COLOR_RED << "  [0] Kembali\n"
-         << COLOR_RESET
-         << "\n  Pilih: ";
+    vector<string> menuItems;
+    vector<int> aksiKode;
+    menuItems.push_back("[1] Baca Cerpen");
+    aksiKode.push_back(1);
 
-    int pilihan;
-    if (!(cin >> pilihan))
-    {
-      cin.clear();
-      cin.ignore(1000, '\n');
-      continue;
+    if (favorit) {
+        menuItems.push_back("[2] Hapus dari Favorit");
+    } else {
+        menuItems.push_back("[2] Tambah ke Favorit");
     }
+    aksiKode.push_back(2);
 
-    switch (pilihan)
-    {
-    case 1:
-      tambahHistory(indexAkun, c->judul);
-      tampilIsiCerpen(indexAkun, c);
-      break;
-    case 2:
-      toggleBookmark(indexAkun, c->judul);
-      break;
-    case 0:
-      return;
+    menuItems.push_back("[0] Kembali");
+    aksiKode.push_back(0);
+
+    int selected = 0;
+
+    while (true) {
+        // modif di sini biar atas ga ilang pas pakai kusor
+        // Ganti clearScreen() dan cetak ulang judul dengan restore posisi + hapus area menu
+        cout << "\033[u";   // kembali ke posisi setelah sinopsis
+        cout << "\033[J";   // hapus dari posisi kursor sampai akhir layar (hanya menu)
+
+        // Cetak menu (tanpa mencetak ulang judul/info)
+        for (int i = 0; i < (int)menuItems.size(); i++) {
+            string text = menuItems[i];
+            if (i == selected) {
+                cout << COLOR_BLUE << " > " << text << COLOR_RESET << "\n";
+            } else {
+                if (i == (int)menuItems.size() - 1)
+                    cout << COLOR_RED << "   " << text << COLOR_RESET << "\n";
+                else
+                    cout << COLOR_YELLOW << "   " << text << COLOR_RESET << "\n";
+            }
+        }
+
+        int result = menuSelector(menuItems, selected);
+
+        if (result < 0) {
+            int indeksTerpilih = -result - 1;
+            int aksi = aksiKode[indeksTerpilih];
+            switch (aksi) {
+                case 1: {
+                    tambahHistory(indexAkun, c->judul, c->id);
+                    tampilIsiCerpen(indexAkun, c);
+                    break;
+                }
+                case 2: {
+                    toggleBookmark(indexAkun, c->judul);
+                    break;
+                }
+                case 0: {
+                    return;
+                }
+            }
+            break;
+        } else {
+            selected = result;
+            // Lanjutkan loop, menu akan diperbarui dengan highlight baru
+        }
     }
   }
 }
@@ -964,55 +1237,67 @@ void menuTambahCerpen(int indexAkun)
 
 void menuUtama(int indexAkun)
 {
-  while (true)
-  {
-    clearScreen();
-    tampilHeader("MENU UTAMA");
-    cout << COLOR_GREEN << "\n  Halo, " << daftarAkun[indexAkun].nama << "!\n"
-         << COLOR_RESET;
+    vector<string> menu = {
+        "Lihat Semua Cerpen",
+        "History",
+        "Favorit",
+        "Tambah Cerpen",
+        "Logout"
+    };
 
-    cout << COLOR_YELLOW
-         << "\n  [1] Lihat Semua Cerpen\n"
-         << "  [2] History\n"
-         << "  [3] Favorit\n"
-         << "  [4] Tambah Cerpen\n"
-         << COLOR_RED
-         << "  [0] Logout\n"
-         << COLOR_RESET
-         << "\n  Pilih: ";
+    int selected = 0;
 
-    int pilihan;
-    if (!(cin >> pilihan))
+    while (true)
     {
-      cin.clear();
-      cin.ignore(1000, '\n');
-      continue;
-    }
+        clearScreen();
 
-    switch (pilihan)
-    {
-    case 1:
-      menuListCerpen(indexAkun);
-      break;
-    case 2:
-      menuHistory(indexAkun);
-      break;
-    case 3:
-      menuFavorit(indexAkun);
-      break;
-    case 4:
-      menuTambahCerpen(indexAkun);
-      break;
-    case 0:
-      return;
-    default:
-      cout << COLOR_RED << "\n  Pilihan tidak valid!\n"
-           << COLOR_RESET;
-      cout << "  Tekan Enter...";
-      cin.ignore();
-      cin.get();
+        // HEADER SELALU DI ATAS
+        tampilHeader("MENU UTAMA");
+
+        cout << COLOR_GREEN << "\n  Halo, "
+             << daftarAkun[indexAkun].nama
+             << "\n" << COLOR_RESET;
+
+        // RENDER MENU
+        for (int i = 0; i < menu.size(); i++)
+        {
+            string text = menu[i];
+
+            // 🔵 kalau sedang dipilih
+            if (i == selected)
+            {
+                cout << COLOR_BLUE << " > " << text << COLOR_RESET << "\n";
+            }
+            else
+            {
+                // 🔴 Logout khusus merah
+                if (i == 4)
+                    cout << COLOR_RED << "   " << text << COLOR_RESET << "\n";
+                else
+                    cout << COLOR_YELLOW << "   " << text << COLOR_RESET << "\n";
+            }
+        }
+
+        int result = menuSelector(menu, selected);
+
+        if (result < 0)
+        {
+            int choice = -result - 1;
+
+            switch (choice)
+            {
+            case 0: menuListCerpen(indexAkun); break;
+            case 1: menuHistory(indexAkun); break;
+            case 2: menuFavorit(indexAkun); break;
+            case 3: menuTambahCerpen(indexAkun); break;
+            case 4: return;
+            }
+        }
+        else
+        {
+             selected = result;
+        }
     }
-  }
 }
 
 // ─── Register ────────────────────────────────────────────────
@@ -1109,6 +1394,55 @@ void menuLogin()
        << COLOR_RESET;
   menuUtama(idx);
 }
+// ─── Pembersih Memori ─────────────────────────────────────────
+
+void bersihkanMemori() {
+  // 1. Bersihkan riwayat (history) dan favorit (bookmark) di semua akun
+  for (int i = 0; i < jumlahAkun; i++) {
+    
+    // Membersihkan Linked List History
+    history *curHist = daftarAkun[i].riwayat;
+    while (curHist != nullptr) {
+      history *tempH = curHist;
+      curHist = curHist->next;
+      delete tempH;
+    }
+    daftarAkun[i].riwayat = nullptr; // Mengembalikan pointer ke null (Best Practice)
+    daftarAkun[i].jumlahRiwayat = 0;
+
+    // Membersihkan Linked List Bookmark
+    Bookmark *curBook = daftarAkun[i].bookmark;
+    while (curBook != nullptr) {
+      Bookmark *tempB = curBook;
+      curBook = curBook->next;
+      delete tempB;
+    }
+    daftarAkun[i].bookmark = nullptr;
+    daftarAkun[i].jumlahBookmark = 0;
+  }
+
+  // 2. Bersihkan daftar cerpen beserta semua komentar di dalamnya
+  Cerpen *curCerpen = headCerpen;
+  while (curCerpen != nullptr) {
+    
+    // Membersihkan Linked List Komentar di dalam cerpen yang sedang ditunjuk
+    Komentar *curKom = curCerpen->komentarHead;
+    while (curKom != nullptr) {
+      Komentar *tempK = curKom;
+      curKom = curKom->next;
+      delete tempK;
+    }
+    curCerpen->komentarHead = nullptr;
+
+    // Setelah komentar bersih, baru hapus node Cerpen itu sendiri
+    Cerpen *tempC = curCerpen;
+    curCerpen = curCerpen->next;
+    delete tempC;
+  }
+  
+  headCerpen = nullptr;
+  jumlahCerpen = 0;
+}
 
 // ─── Main ─────────────────────────────────────────────────────
 
@@ -1119,47 +1453,62 @@ int main()
   daftarAkun[1] = {"ridho", "321", nullptr, nullptr, 0, 0};
   jumlahAkun = 2;
 
-  int pilihan;
+  // Data dummy cerpen
+  seedCerpen();
 
-  while (true)
-  {
-    clearScreen();
-    tampilHeader("CERPENKITA");
-
-    cout << COLOR_YELLOW
-         << "\n  [1] Login\n"
-         << "  [2] Register\n"
-         << COLOR_RED
-         << "  [3] Keluar\n"
-         << COLOR_RESET
-         << "\n  Pilih: ";
-
-    if (!(cin >> pilihan))
+      vector<string> menu = {
+      "[1] Login",
+      "[2] Register",
+      "[3] keluar"
+    };
+    int selected = 0;
+    while (true)
     {
-      cin.clear();
-      cin.ignore(1000, '\n');
-      continue;
-    }
-
-    switch (pilihan)
-    {
-    case 1:
-      menuLogin();
-      break;
-    case 2:
-      menuRegister();
-      break;
-    case 3:
       clearScreen();
-      cout << COLOR_GREEN << "  Sampai jumpa!\n\n"
-           << COLOR_RESET;
-      return 0;
-    default:
-      cout << COLOR_RED << "\n  Pilihan tidak valid!\n"
-           << COLOR_RESET;
-      cout << "  Tekan Enter...";
-      cin.ignore();
-      cin.get();
+      tampilHeader("CERPENKITA");
+
+        // RENDER MENU
+        for (int i = 0; i < menu.size(); i++)
+        {
+            string text = menu[i];
+
+            // 🔵 kalau sedang dipilih
+            if (i == selected)
+            {
+                cout << COLOR_BLUE << " > " << text << COLOR_RESET << "\n";
+            }
+            else
+            {
+                // 🔴 Logout khusus merah
+                if (i == 2)
+                    cout << COLOR_RED << "   " << text << COLOR_RESET << "\n";
+                else
+                    cout << COLOR_YELLOW << "   " << text << COLOR_RESET << "\n";
+            }
+        }
+
+        int result = menuSelector(menu, selected);
+
+        if (result < 0)
+        {
+            int choice = -result - 1;
+
+            switch (choice)
+            {
+            case 0: menuLogin();
+                    break;
+            case 1: menuRegister();
+                    break;
+            case 2: bersihkanMemori();
+            clearScreen();
+            cout << COLOR_GREEN << "  Sampai jumpa!\n\n" << COLOR_RESET;
+            return 0;
+            default: break;
+            }
+        }
+        else
+        {
+            selected = result;
+        }
     }
-  }
 }
