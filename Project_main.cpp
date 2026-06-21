@@ -210,7 +210,7 @@ Cerpen *cariCerpenByJudul(const string &judul)
   return nullptr;
 }
 
-string buatSinopsis(const string &isi, int maxLen = 100)
+string buatPreview(const string &isi, int maxLen = 100)
 {
   string normal = normalkanKarakter(isi);
   if ((int)normal.size() <= maxLen)
@@ -1078,8 +1078,8 @@ void cerpenInfo(int indexAkun, Cerpen *c)
     else
       cout << rating << " / 5\n";
 
-    cout << COLOR_WHITE << "\n  Sinopsis:\n"
-         << COLOR_RESET << "  " << buatSinopsis(c->isi) << "\n";
+    cout << COLOR_WHITE << "\n  Preview:\n"
+         << COLOR_RESET << "  " << buatPreview(c->isi) << "\n";
 
     //ini batas perubahannya
     cout << "\033[s";   // simpan posisi kursor (setelah sinopsis)
