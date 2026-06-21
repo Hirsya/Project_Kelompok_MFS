@@ -212,9 +212,9 @@ double hitungRatingRata(Cerpen *c)
   return (double)total / jumlah;
 }
 
-void tambahCerpen(int id, string judul, string penulis, string genre, string isi)
+void tambahCerpen(int id, string judul, string penulis, string genre, string isi, string waktu)
 {
-  Cerpen *baru = new Cerpen{id, judul, penulis, genre, isi, getCurrentTimestamp(), nullptr, nullptr};
+  Cerpen *baru = new Cerpen{id, judul, penulis, genre, isi, waktu, nullptr, nullptr};
 
   if (headCerpen == nullptr)
   {
@@ -233,13 +233,13 @@ void tambahCerpen(int id, string judul, string penulis, string genre, string isi
 void seedCerpen()
 {
   tambahCerpen(1, "Senja di Ujung Jalan", "Hirsya", "Drama",
-               "Senja itu, Rian berdiri sendirian di ujung jalan yang sepi. Ia menatap langit yang perlahan berubah jingga, mengingat kembali semua kenangan yang pernah ia lalui di kota ini. Sebentar lagi ia akan pergi, meninggalkan semuanya untuk memulai hidup baru di kota lain.");
+               "Senja itu, Rian berdiri sendirian di ujung jalan yang sepi. Ia menatap langit yang perlahan berubah jingga, mengingat kembali semua kenangan yang pernah ia lalui di kota ini. Sebentar lagi ia akan pergi, meninggalkan semuanya untuk memulai hidup baru di kota lain.", "26-08-2016");
 
   tambahCerpen(2, "Surat Untuk Ayah", "Ridho", "Keluarga",
-               "Sudah lima tahun sejak ayah meninggal, namun surat itu baru kutemukan hari ini, terselip di antara buku-buku tua di gudang. Tanganku gemetar saat membuka lipatan kertas yang sudah menguning itu. Di dalamnya, ayah menuliskan harapan-harapan yang tak pernah ia ucapkan secara langsung.");
+               "Sudah lima tahun sejak ayah meninggal, namun surat itu baru kutemukan hari ini, terselip di antara buku-buku tua di gudang. Tanganku gemetar saat membuka lipatan kertas yang sudah menguning itu. Di dalamnya, ayah menuliskan harapan-harapan yang tak pernah ia ucapkan secara langsung.", "30-11-2018");
 
   tambahCerpen(3, "Misteri Rumah Tua", "Maya", "Horor",
-               "Rumah tua di ujung desa itu sudah lama ditinggalkan penghuninya. Konon, setiap malam Jumat Kliwon, terdengar suara tangisan dari dalam rumah tersebut. Malam itu, empat orang remaja memutuskan untuk membuktikan kebenarannya, tanpa tahu apa yang menanti mereka di dalam.");
+               "Rumah tua di ujung desa itu sudah lama ditinggalkan penghuninya. Konon, setiap malam Jumat Kliwon, terdengar suara tangisan dari dalam rumah tersebut. Malam itu, empat orang remaja memutuskan untuk membuktikan kebenarannya, tanpa tahu apa yang menanti mereka di dalam.", "26-12-2019");
 
   tambahCerpen(4, "Nala dan Mimpi Buruk", "Lala", "Fantasi", R"(Nala adalah seorang gadis berusia 12 tahun, berparas cantik dan memiliki lesung pipit 
 dikedua pipinya ketika ia tersenyum. Namun sayang, Nala memiliki sifat yang tidak 
@@ -348,7 +348,7 @@ Daah” Nala mematikan sambungan teleponnya, ia lega, semua kejadian yang ia ala
 hanyalah mimpi buruk tidur siangnya. Ia berjanji, mulai saat ini dan seterusnya ia tidak 
 akan pernah melakukan kesalahan yang sama lagi seperti dirinya yang dulu, Nala akan 
 menjaga lingkungan sekitarnya dengan baik agar mimpi buruk yang ia dapatkan tidak 
-menjadi kenyataan mengerikan yang menghancurkan segalanya.)");
+menjadi kenyataan mengerikan yang menghancurkan segalanya.)", "21-11-2020");
   
   tambahCerpen(5,"A Letter Z","JabReal", "Romance, Slice of Life" ,R"(Bagi Irfan, malam hari adalah puncak kehidupan dengan deru mesin motor di jalanan, dan siang hari di kampus hanyalah formalitas melelahkan di depan layar monitor. Sebagai mahasiswa Sistem Informasi, otaknya mungkin dipenuhi logika kode pemrograman, tapi penampilannya sama sekali tidak mencerminkan anak IT pada umumnya. Dengan jaket denim pudar, rambut agak berantakan, dan langkah kaki yang santai, ia menyusuri koridor lantai dua gedung fakultas hari itu.
 Bruk!
@@ -377,7 +377,7 @@ Mata Zoya membelalak. "Wah! Pembatas buku saya yang hilang! Kok bisa di Kak Irfa
 Zoya mengerjipkan matanya beberapa kali, mencerna istilah anak IT yang dikombinasikan dengan gaya ala cowok-cowok drakor. Detik berikutnya, wajah Zoya benar-benar matang seperti tomat. Ia menutupi wajahnya dengan pembatas buku tersebut, membuat Irfan tidak bisa lagi menahan tawa lepasnya.
 "Kak Irfan ih! Belajar gombal dari drakor apa, sih?!" seru Zoya malu-malu dari balik kertas.
 Di bawah rintik hujan sore itu, Irfan tahu bahwa si anak motor yang liar kini telah menemukan rute pemberhentian terakhirnya. Bukan di jalanan balap yang gelap, melainkan di dunia penuh warna milik cewek agamis pencinta drakor berinisial Z.
-)");
+)", "05-06-2021");
 
 }
 // Forward declaration: dipakai oleh menuHistory & menuFavorit,
@@ -597,22 +597,163 @@ void menuFavorit(int indexAkun)
   }
 }
 
+// ─── Baca Cerpen ─────────────────────────────────────────────
+
+void tampilSemuaCerpen()
+{
+  if (headCerpen == nullptr)
+  {
+    cout << COLOR_GRAY << "\n  Belum ada cerpen.\n"
+         << COLOR_RESET;
+    return;
+  }
+
+  Cerpen *cur = headCerpen;
+  while (cur != nullptr)
+  {
+    cout << COLOR_YELLOW << "  [" << cur->id << "] " << COLOR_RESET
+         << cur->judul << "\n";
+    cur = cur->next;
+  }
+}
+
+void menuListCerpen(int indexAkun)
+{
+  while (true)
+  {
+    clearScreen();
+    tampilHeader("DAFTAR CERPEN");
+    cout << "\n";
+    tampilSemuaCerpen();
+
+    cout << COLOR_RED << "\n  [0] Kembali\n"
+         << COLOR_RESET
+         << "\n  Pilih cerpen (ID): ";
+
+    int pilihan;
+    if (!(cin >> pilihan))
+    {
+      cin.clear();
+      cin.ignore(1000, '\n');
+      continue;
+    }
+
+    if (pilihan == 0)
+      return;
+
+    Cerpen *c = cariCerpenById(pilihan);
+    if (c == nullptr)
+    {
+      cout << COLOR_RED << "\n  Cerpen tidak ditemukan!\n"
+           << COLOR_RESET;
+      cout << "  Tekan Enter...";
+      cin.ignore();
+      cin.get();
+      continue;
+    }
+
+    cerpenInfo(indexAkun, c);
+  }
+}
+
+// ─── Tambah Cerpen ───────────────────────────────────────────
+
+void menuTambahCerpen(int indexAkun)
+{
+  clearScreen();
+  tampilHeader("TAMBAH CERPEN");
+
+  string judul, genre, isi, waktu = getCurrentTimestamp();
+
+  cout << "\n  " << COLOR_GRAY << "(ketik 0 untuk batal)\n"
+       << COLOR_RESET;
+
+  cout << "\n  Judul  : ";
+  cin.ignore();
+  getline(cin, judul);
+
+  if (judul == "0" || judul.empty())
+    return;
+
+  cout << "  Genre  : ";
+  getline(cin, genre);
+
+  if (genre == "0")
+    return;
+
+  cout << "  Isi    : ";
+  getline(cin, isi);
+
+  if (isi.empty())
+  {
+    cout << COLOR_RED << "\n  Isi cerpen tidak boleh kosong!\n"
+         << COLOR_RESET;
+    cout << "  Tekan Enter...";
+    cin.get();
+    return;
+  }
+
+  tambahCerpen(jumlahCerpen + 1, judul, daftarAkun[indexAkun].nama, genre, isi, waktu);
+
+  cout << COLOR_GREEN << "\n  Cerpen berhasil ditambahkan!\n"
+       << COLOR_RESET;
+  cout << "  Tekan Enter...";
+  cin.get();
+}
+
 // ─── Menu Utama Setelah Login ─────────────────────────────────
 
 void menuUtama(int indexAkun)
 {
-  clearScreen();
-  tampilHeader("MENU UTAMA");
-  cout << COLOR_GREEN << "\n  Halo, " << daftarAkun[indexAkun].nama << "! Selamat datang di CerpenKita. Hari ini mau ngapain?\n"
-       << COLOR_RESET;
+  while (true)
+  {
+    clearScreen();
+    tampilHeader("MENU UTAMA");
+    cout << COLOR_GREEN << "\n  Halo, " << daftarAkun[indexAkun].nama << "!\n"
+         << COLOR_RESET;
 
-  // Fitur nanti disini untuk kita kerjain masing" setelah bagi tugas
+    cout << COLOR_YELLOW
+         << "\n  [1] Lihat Semua Cerpen\n"
+         << "  [2] History\n"
+         << "  [3] Favorit\n"
+         << "  [4] Tambah Cerpen\n"
+         << COLOR_RED
+         << "  [0] Logout\n"
+         << COLOR_RESET
+         << "\n  Pilih: ";
 
-  cout << COLOR_GRAY << "  (fitur baca cerpen akan hadir di sini)\n"
-       << COLOR_RESET;
-  cout << "\n  Tekan Enter untuk kembali...";
-  cin.ignore();
-  cin.get();
+    int pilihan;
+    if (!(cin >> pilihan))
+    {
+      cin.clear();
+      cin.ignore(1000, '\n');
+      continue;
+    }
+
+    switch (pilihan)
+    {
+    case 1:
+      menuListCerpen(indexAkun);
+      break;
+    case 2:
+      menuHistory(indexAkun);
+      break;
+    case 3:
+      menuFavorit(indexAkun);
+      break;
+    case 4:
+      menuTambahCerpen(indexAkun);
+      break;
+    case 0:
+      return;
+    default:
+      cout << COLOR_RED << "\n  Pilihan tidak valid!\n"
+           << COLOR_RESET;
+      cout << "  Tekan Enter...";
+      cin.ignore();
+      cin.get();
+    }
+  }
 }
 
 // ─── Register ────────────────────────────────────────────────
