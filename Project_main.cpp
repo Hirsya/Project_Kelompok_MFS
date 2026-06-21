@@ -188,7 +188,7 @@ Cerpen *cariCerpenByJudul(const string &judul)
   return nullptr;
 }
 
-string buatPreview(const string &isi, int maxLen = 100)
+string buatSinopsis(const string &isi, int maxLen = 100)
 {
   string normal = normalkanKarakter(isi);
   if ((int)normal.size() <= maxLen)
