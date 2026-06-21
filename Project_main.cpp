@@ -616,6 +616,49 @@ void tampilSemuaCerpen()
     cur = cur->next;
   }
 }
+void tambahKomentar(Cerpen *c, int rating, const string &nama, const string &isi)
+{
+  Komentar *baru = new Komentar{rating, nama, isi, getCurrentTimestamp(), c->komentarHead};
+  c->komentarHead = baru;
+}
+
+void menuRatingKomentar(int indexAkun, Cerpen *c)
+{
+  clearScreen();
+  tampilHeader("RATING & KOMENTAR");
+  cout << COLOR_WHITE << "\n  Cerpen : " << COLOR_RESET << c->judul << "\n";
+
+  int rating = 0;
+  while (true)
+  {
+    cout << "\n  Beri rating (1-5) : ";
+    if (!(cin >> rating))
+    {
+      cin.clear();
+      cin.ignore(1000, '\n');
+      cout << COLOR_RED << "  Input tidak valid!\n" << COLOR_RESET;
+      continue;
+    }
+    if (rating < 1 || rating > 5)
+    {
+      cout << COLOR_RED << "  Rating harus antara 1 dan 5.\n" << COLOR_RESET;
+      continue;
+    }
+    break;
+  }
+
+  string isiKomentar;
+  cout << "  Tulis komentar    : ";
+  cin.ignore();
+  getline(cin, isiKomentar);
+
+  tambahKomentar(c, rating, daftarAkun[indexAkun].nama, isiKomentar);
+
+  cout << COLOR_GREEN << "\n  Rating dan komentar berhasil disimpan!\n" << COLOR_RESET;
+  cout << "  Tekan Enter...";
+  cin.get();
+}
+
 
 void menuListCerpen(int indexAkun)
 {
