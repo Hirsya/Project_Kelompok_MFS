@@ -1150,6 +1150,55 @@ void menuLogin()
        << COLOR_RESET;
   menuUtama(idx);
 }
+// ─── Pembersih Memori ─────────────────────────────────────────
+
+void bersihkanMemori() {
+  // 1. Bersihkan riwayat (history) dan favorit (bookmark) di semua akun
+  for (int i = 0; i < jumlahAkun; i++) {
+    
+    // Membersihkan Linked List History
+    history *curHist = daftarAkun[i].riwayat;
+    while (curHist != nullptr) {
+      history *tempH = curHist;
+      curHist = curHist->next;
+      delete tempH;
+    }
+    daftarAkun[i].riwayat = nullptr; // Mengembalikan pointer ke null (Best Practice)
+    daftarAkun[i].jumlahRiwayat = 0;
+
+    // Membersihkan Linked List Bookmark
+    Bookmark *curBook = daftarAkun[i].bookmark;
+    while (curBook != nullptr) {
+      Bookmark *tempB = curBook;
+      curBook = curBook->next;
+      delete tempB;
+    }
+    daftarAkun[i].bookmark = nullptr;
+    daftarAkun[i].jumlahBookmark = 0;
+  }
+
+  // 2. Bersihkan daftar cerpen beserta semua komentar di dalamnya
+  Cerpen *curCerpen = headCerpen;
+  while (curCerpen != nullptr) {
+    
+    // Membersihkan Linked List Komentar di dalam cerpen yang sedang ditunjuk
+    Komentar *curKom = curCerpen->komentarHead;
+    while (curKom != nullptr) {
+      Komentar *tempK = curKom;
+      curKom = curKom->next;
+      delete tempK;
+    }
+    curCerpen->komentarHead = nullptr;
+
+    // Setelah komentar bersih, baru hapus node Cerpen itu sendiri
+    Cerpen *tempC = curCerpen;
+    curCerpen = curCerpen->next;
+    delete tempC;
+  }
+  
+  headCerpen = nullptr;
+  jumlahCerpen = 0;
+}
 
 // ─── Main ─────────────────────────────────────────────────────
 
@@ -1191,8 +1240,9 @@ int main()
       menuRegister();
       break;
     case 3:
+    	bersihkanMemori();
       clearScreen();
-      cout << COLOR_GREEN << "  Sampai jumpa!\n\n"
+      cout << COLOR_GREEN << "  Sampai jumpa! Terimakasih Sudah Berkunjung :) \n\n"
            << COLOR_RESET;
       return 0;
     default:
