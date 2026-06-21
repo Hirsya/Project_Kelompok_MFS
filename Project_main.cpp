@@ -472,6 +472,131 @@ void menuHistory(int indexAkun)
   }
 }
 
+// ─── Bookmark / Favorit ──────────────────────────────────────
+
+Bookmark *cariBookmark(int indexAkun, const string &judul)
+{
+  Bookmark *cur = daftarAkun[indexAkun].bookmark;
+  while (cur != nullptr)
+  {
+    if (cur->judul == judul)
+      return cur;
+    cur = cur->next;
+  }
+  return nullptr;
+}
+
+void tambahBookmark(int indexAkun, const string &judul)
+{
+  akun &user = daftarAkun[indexAkun];
+  Bookmark *baru = new Bookmark{judul, user.bookmark, user.jumlahBookmark + 1};
+  user.bookmark = baru;
+  user.jumlahBookmark++;
+}
+
+void hapusBookmark(int indexAkun, const string &judul)
+{
+  akun &user = daftarAkun[indexAkun];
+  Bookmark *cur = user.bookmark;
+  Bookmark *prev = nullptr;
+
+  while (cur != nullptr)
+  {
+    if (cur->judul == judul)
+    {
+      if (prev == nullptr)
+        user.bookmark = cur->next;
+      else
+        prev->next = cur->next;
+      delete cur;
+      user.jumlahBookmark--;
+      return;
+    }
+    prev = cur;
+    cur = cur->next;
+  }
+}
+
+void toggleBookmark(int indexAkun, const string &judul)
+{
+  if (cariBookmark(indexAkun, judul) != nullptr)
+  {
+    hapusBookmark(indexAkun, judul);
+    cout << COLOR_RED << "\n  Dihapus dari favorit.\n"
+         << COLOR_RESET;
+  }
+  else
+  {
+    tambahBookmark(indexAkun, judul);
+    cout << COLOR_GREEN << "\n  Ditambahkan ke favorit.\n"
+         << COLOR_RESET;
+  }
+  cout << "  Tekan Enter...";
+  cin.ignore();
+  cin.get();
+}
+
+void menuFavorit(int indexAkun)
+{
+  while (true)
+  {
+    clearScreen();
+    tampilHeader("FAVORIT");
+
+    akun &user = daftarAkun[indexAkun];
+    if (user.bookmark == nullptr)
+    {
+      cout << COLOR_GRAY << "\n  Belum ada cerpen favorit.\n"
+           << COLOR_RESET;
+      cout << "\n  Tekan Enter untuk kembali...";
+      cin.ignore();
+      cin.get();
+      return;
+    }
+
+    int no = 1;
+    Bookmark *cur = user.bookmark;
+    while (cur != nullptr)
+    {
+      cout << COLOR_YELLOW << "  [" << no << "] " << COLOR_RESET << cur->judul;
+
+      Cerpen *c = cariCerpenByJudul(cur->judul);
+      if (c != nullptr)
+        cout << COLOR_GRAY << " - " << c->penulis << " (" << c->genre << ")" << COLOR_RESET;
+
+      cout << "\n";
+      no++;
+      cur = cur->next;
+    }
+
+    cout << COLOR_RED << "\n  [0] Kembali\n"
+         << COLOR_RESET
+         << "\n  Buka cerpen no: ";
+
+    int pilihan;
+    if (!(cin >> pilihan))
+    {
+      cin.clear();
+      cin.ignore(1000, '\n');
+      continue;
+    }
+
+    if (pilihan == 0)
+      return;
+
+    if (pilihan < 1 || pilihan > user.jumlahBookmark)
+      continue;
+
+    cur = user.bookmark;
+    for (int i = 1; i < pilihan; i++)
+      cur = cur->next;
+
+    Cerpen *c = cariCerpenByJudul(cur->judul);
+    if (c != nullptr)
+      cerpenInfo(indexAkun, c);
+  }
+}
+
 // ─── Menu Utama Setelah Login ─────────────────────────────────
 
 void menuUtama(int indexAkun)
