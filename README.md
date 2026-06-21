@@ -80,6 +80,8 @@ Apabila tidak ada pesan error setelah kompilasi selesai, Anda sudah bisa menjala
   ```bash
   ./CerpenKita
   ```
+---
+
 ## 📢 5. Catatan Penting Kompatibilitas OS
 
 Program ini menggunakan `<conio.h>` (fungsi `_getch()` untuk menyembunyikan input password) dan `system("cls")` untuk membersihkan layar. **Kedua hal ini bersifat khusus Windows** dan **tidak tersedia secara native di compiler g++ pada Linux/MacOS**, sehingga kompilasi kemungkinan akan **gagal** di sistem operasi tersebut.
