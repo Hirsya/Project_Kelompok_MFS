@@ -241,115 +241,115 @@ void seedCerpen()
   tambahCerpen(3, "Misteri Rumah Tua", "Maya", "Horor",
                "Rumah tua di ujung desa itu sudah lama ditinggalkan penghuninya. Konon, setiap malam Jumat Kliwon, terdengar suara tangisan dari dalam rumah tersebut. Malam itu, empat orang remaja memutuskan untuk membuktikan kebenarannya, tanpa tahu apa yang menanti mereka di dalam.", "26-12-2019");
 
-  tambahCerpen(4, "Nala dan Mimpi Buruk", "Lala", "Fantasi", R"(Nala adalah seorang gadis berusia 12 tahun, berparas cantik dan memiliki lesung pipit 
-dikedua pipinya ketika ia tersenyum. Namun sayang, Nala memiliki sifat yang tidak 
-cocok dengan parasnya itu, Nala sangatlah keras kepala, ia tidak suka dan tidak mau 
-mendengarkan orang lain, parahnya ia suka sekali melakukan hal yang bisa merusak 
-lingkungan, seperti membuang sampah sembarangan dan merusak tanaman apapun 
-yang ia rasa mengganggu penglihatannya. 
-Suatu hari tepat saat bel pulang sekolah berbunyi, seperti biasa Nala dan sahabatnya 
-Vanessa akan pulang bersama menggunakan sepedanya. Namun saat dipertengahan 
-jalan ban sepeda Nala bocor sehingga ia tidak bisa menggunakan sepedanya itu. 
-“Aduuh, kenapa pakai bocor segala siiih bannya? Mana panas banget lagi! Huh” keluh 
-Nala. 
-“Gak boleh ngeluh gitu atuh Naa, lagian situ udah dibilangin jangan lewat sana, banyak 
-kerikil tajamnnya. Masiih aja dilewatin” tegur Vanessa. 
-Nala tidak menghiraukan perkataan sahabat kecilnya itu, ia masih kesal. Ia pun lanjut 
-berjalan dengan terpaksa mendorong sepedanya, Vanessa yang merasa kasihan dengan 
-Nala pun ikut mendorong sepedanya mengikuti Nala. Selang beberapa menit kemudian 
-mereka berhenti di tempat tambal ban didekat taman. 
-“Pakdee, tolong ini di tambal ya! Saya mau beli es dulu di warung depan” ucap Nala 
-seraya meletakan sepedanya di tempat yang sudah disediakan. 
-“siap neng” balas Pakde. 
-Nala dan Vanessa pun berjalan menuju warung dan membeli dua es jeruk untuk mereka 
-minum. Sambil menunggu sepeda Nala ditambal, mereka bermain di taman dekat sana. 
-Nala yang masih sedikit kesal mulai mencabuti tanaman-tanaman yang ada di taman 
-tersebut, mulai dari bunga-bunga, rerumputan, hingga pohon yang masih baru ditanam 
-oleh tukang pun ia rusak. 
-“NALA! Jangan dirusak gituu atuh tanaman-tanamannya. Kan itu udah ditanam sama 
-tukang-tukang biar tamannya sejuk dan asri” omel Vanessa. 
-“Ish, tapi aku masi kesel Van. Aku butuh melampiaskan rasa kekesalanku” . 
-“Tapi jangan gitu juga doong, gak boleh merusak lingkungan! Kamu lupa sama apa 
-kata bu guru di sekolah? Nanti-” perkataan Vanessa tepotong. 
-“udah deh Van, buktinya aku selalu melakukan hal ini, gak terjadi apa-apa tuh!. udahlah 
-ayo balik, aku makin kesel denger kamu ngomel terus” Nala beranjak dari tempatnya 
-menuju tambal ban untuk mengambil sepedanya, ia membuang plastik esnya 
-disembarang tempat. 
-“ NALAAA! JANGAN BUANG SAMPAH SEMBARANGAN, HEI!” teriak Vanessa 
-dari bangku taman, Nala tak menghiraukan, ia malah melambaikan tanggannya sambil 
-berjalan meninggalkan Vanessa. Akhirnya Vanessa lah yang mebuang sampah tersebut 
-ke tempat sampah, dan langsung berlari menyusul Nala. ------ 
-Sampai dirumah Nala segera mengganti seragamnya dengan pakaian rumah yang biasa 
-ia gunakan, mencuci tangan, dan makan siang. Setelah nya Nala kembali ke kamarnya 
-untuk tidur siang. 
-“NALA! BANGUN SAYANG, CEPAT” terdengar teriakan sang bunda 
-membangunkan Nala dari alam mimpinya. 
-“kenapa sih buun?? Nala masih ngantuk ini…hoaaam” ujar Nala namun matanya masih 
-terpejam. 
-“Ayo segera sayang, air sudah mulai tinggi. Kita harus segera evakuasi!” balas bunda 
-terdengar panik, menarik tangan Nala menuju pintu keluar. 
-Nala terkejut, ia melihat seluruh desanya sudah digenangi air yang cukup tinggi hingga 
-sebatas pahanya. Rasa kantuknya tiba-tiba menghilang, ia mulai panik. Segera ia 
-menaiki perahu yang sudah menunggu didepan rumahnya, ia melihat sang ayah 
+  tambahCerpen(4, "Nala dan Mimpi Buruk", "Lala", "Fantasi", R"(Nala adalah seorang gadis berusia 12 tahun, berparas cantik dan memiliki lesung pipit
+dikedua pipinya ketika ia tersenyum. Namun sayang, Nala memiliki sifat yang tidak
+cocok dengan parasnya itu, Nala sangatlah keras kepala, ia tidak suka dan tidak mau
+mendengarkan orang lain, parahnya ia suka sekali melakukan hal yang bisa merusak
+lingkungan, seperti membuang sampah sembarangan dan merusak tanaman apapun
+yang ia rasa mengganggu penglihatannya.
+Suatu hari tepat saat bel pulang sekolah berbunyi, seperti biasa Nala dan sahabatnya
+Vanessa akan pulang bersama menggunakan sepedanya. Namun saat dipertengahan
+jalan ban sepeda Nala bocor sehingga ia tidak bisa menggunakan sepedanya itu.
+“Aduuh, kenapa pakai bocor segala siiih bannya? Mana panas banget lagi! Huh” keluh
+Nala.
+“Gak boleh ngeluh gitu atuh Naa, lagian situ udah dibilangin jangan lewat sana, banyak
+kerikil tajamnnya. Masiih aja dilewatin” tegur Vanessa.
+Nala tidak menghiraukan perkataan sahabat kecilnya itu, ia masih kesal. Ia pun lanjut
+berjalan dengan terpaksa mendorong sepedanya, Vanessa yang merasa kasihan dengan
+Nala pun ikut mendorong sepedanya mengikuti Nala. Selang beberapa menit kemudian
+mereka berhenti di tempat tambal ban didekat taman.
+“Pakdee, tolong ini di tambal ya! Saya mau beli es dulu di warung depan” ucap Nala
+seraya meletakan sepedanya di tempat yang sudah disediakan.
+“siap neng” balas Pakde.
+Nala dan Vanessa pun berjalan menuju warung dan membeli dua es jeruk untuk mereka
+minum. Sambil menunggu sepeda Nala ditambal, mereka bermain di taman dekat sana.
+Nala yang masih sedikit kesal mulai mencabuti tanaman-tanaman yang ada di taman
+tersebut, mulai dari bunga-bunga, rerumputan, hingga pohon yang masih baru ditanam
+oleh tukang pun ia rusak.
+“NALA! Jangan dirusak gituu atuh tanaman-tanamannya. Kan itu udah ditanam sama
+tukang-tukang biar tamannya sejuk dan asri” omel Vanessa.
+“Ish, tapi aku masi kesel Van. Aku butuh melampiaskan rasa kekesalanku” .
+“Tapi jangan gitu juga doong, gak boleh merusak lingkungan! Kamu lupa sama apa
+kata bu guru di sekolah? Nanti-” perkataan Vanessa tepotong.
+“udah deh Van, buktinya aku selalu melakukan hal ini, gak terjadi apa-apa tuh!. udahlah
+ayo balik, aku makin kesel denger kamu ngomel terus” Nala beranjak dari tempatnya
+menuju tambal ban untuk mengambil sepedanya, ia membuang plastik esnya
+disembarang tempat.
+“ NALAAA! JANGAN BUANG SAMPAH SEMBARANGAN, HEI!” teriak Vanessa
+dari bangku taman, Nala tak menghiraukan, ia malah melambaikan tanggannya sambil
+berjalan meninggalkan Vanessa. Akhirnya Vanessa lah yang mebuang sampah tersebut
+ke tempat sampah, dan langsung berlari menyusul Nala. ------
+Sampai dirumah Nala segera mengganti seragamnya dengan pakaian rumah yang biasa
+ia gunakan, mencuci tangan, dan makan siang. Setelah nya Nala kembali ke kamarnya
+untuk tidur siang.
+“NALA! BANGUN SAYANG, CEPAT” terdengar teriakan sang bunda
+membangunkan Nala dari alam mimpinya.
+“kenapa sih buun?? Nala masih ngantuk ini…hoaaam” ujar Nala namun matanya masih
+terpejam.
+“Ayo segera sayang, air sudah mulai tinggi. Kita harus segera evakuasi!” balas bunda
+terdengar panik, menarik tangan Nala menuju pintu keluar.
+Nala terkejut, ia melihat seluruh desanya sudah digenangi air yang cukup tinggi hingga
+sebatas pahanya. Rasa kantuknya tiba-tiba menghilang, ia mulai panik. Segera ia
+menaiki perahu yang sudah menunggu didepan rumahnya, ia melihat sang ayah
 membawa beberapa barang penting keluar dari rumahnya. Nala tak bisa berkata apa
 apa, ia hanya terdiam melihat ke sekitar. Ia terheran, kenapa ia tidak bisa melihat pohon
-pohon tinggi yang ada didesanya saat itu, semua yang bisa ia lihat adalah langit yang 
-menggelap karena matahari sudah mulai menghilang bak ikut tenggelam kedalam air. 
-Seketika suasana terasa hening, hanya terdengar lantunan pelan sang Bunda yang 
-membaca doa agar mereka bisa sampai di tempat evakuasi dengan selamat sore itu. 
-Sekitar 40 menitan mereka diatas air, akhirnya mereka sampai di tempat evakuasi yang 
-berada dibukit yang cukup tinggi. Nala turun begitu pula dengan Ayah dan Bundanya.  
-Nala berkeliling di lokasi tenda-tenda, mencari sahabatnya. Ia melihat siluet tante Anita, 
-Bunda Vanessa, berlari menuju sebuah tenda berwarna orange menyala. Nala merasa 
-ada sesuatu yang mengganjal, membuatnya mengikuti Tante Anita dari belakang.  
-Kaget, sedih, panik. Itu yang ia rasakan, hatinya sesak melihat sahabat baiknya itu 
-tergeletak kaku di atas terpal. Ia mendekat secara perlahan, seperti sedang membawa 
-sesuatu yang rentan dan mudah hancur di dalam dirinya. Kakinya gemetar, air mata 
-mulai menutupi pandangannya. 
-“.… Van? Vanessa aurelia, kamu kenapa? Tan- hiks, Tante, Vanessa kenapa Tan? 
-Vanessa gak apa-apa kan Tan? Dia cuma tidur aja kan? Tapi- hiks, kenapa tubuh 
-Vanessa dingin? Padahal disini gak dingin”  Nala terisak, ia mulai meracau 
-mengeluarkan pertanyaan-pertanyaan yang timbul di benaknya. Bulir air matanya 
-sudah jatuh entah sejak kapan. 
-“... tenggelam… Vanessa tenggelam” tutur Tante Anita pelan. 
-“ ia ditemukan didekat taman, sudah tidak sadarkan diri, dan saat dibawa kesini, 
-dia..dia.. sudah pergi, jauh meninggalkan Tante” lanjutnya. 
-Nala tersentak, tidak percaya dengan apa yang barusan ia dengar. Ia berlari keluar dari 
-tenda dengan air matanya yang sudah deras mengalir. Terduduk di bagian bukit yang 
-sepi, menatap langit malam sambil menangis. Ia membatin, kenapa tuhan jahat sekali 
-kepadanya? Apa yang telah ia lakukan hingga berakibat seperti ini?. seketika terputar 
-ingatannya tentang kejadian tadi siang, ketika ia kesal, dan merusak tanaman- tanaman 
-di taman, dan ia yang membuang sampah sembarangan. Memori lain ikut terputar, 
-tentang perkataan gurunya disekolah. 
-“Anak-anak yang ibu cintai, kalian jangan pernah membuang sampah sembarangan 
-ya. Karena itu akan mengakibatkan saluran air tersumbat dan bisa terjadi banjir. Juga 
-jangan merusak tanaman-tanaman di sekeliling kalian, selain untuk memperindah 
-suasana, tanaman juga berfungsi untuk mencegah banjir”. 
-Tangisan Nala semakin kencang, ia menyesal tidak mendengarkan perkataan Vanessa, 
-ia menyesal telah merusak banyak tumbuhan di sekitarannya. Ia menyesal, berpikir 
-bahwa semua ini adalah salah nya, Vanessa pergi karena ketidak peduliannya terhadap 
-lingkungannya. Ia kemudian berdoa kepada tuhan agar memaafkan segala hal tidak baik 
-yang telah ia lakukan kepada lingkungannya. Kemudian pandangannya menggelap. ------ 
-tit..tiit..tiit.. 
-Nala terbangun dari tidurnya, ia membeku. Tak lama ia melihat ke sekeliling kamarnya, 
-beranjak turun dan melihat keluar, burung-burung berterbangan untuk kembali pulang 
-ke sangkarnya. Angin bertiup lembut, pohon bergerak tertiup hembusan angin, dan 
-langit berwarna jingga keemasan yang indah. 
-“tidak ada air” batinnya. 
-Ia segera kembali kekamarnya, mengambil smartphone miliknya dari atas meja 
-belajarnya. Menekan kontak yang tertulis ‘Vanessa cerewet’ dan benda itu mulai 
-berdering. Perasaan gelisah di hatinya, berharap sang sahabat mengangkat teleponnya. 
-‘tuk’ 
-“Halo Nala? Ada apa?” terdengar suara halus menyapa telinganya. 
-“Kamu.. kamu gak apa-apa kan?”  
-“huh? Iya aku gak apa-apa kok, kenapa emangnya?” 
-“tidak, tidak ada. Aku hanya ingin minta maaf ke kamu. Ya sudah aku matikan ya. 
-Daah” Nala mematikan sambungan teleponnya, ia lega, semua kejadian yang ia alami 
-hanyalah mimpi buruk tidur siangnya. Ia berjanji, mulai saat ini dan seterusnya ia tidak 
-akan pernah melakukan kesalahan yang sama lagi seperti dirinya yang dulu, Nala akan 
-menjaga lingkungan sekitarnya dengan baik agar mimpi buruk yang ia dapatkan tidak 
+pohon tinggi yang ada didesanya saat itu, semua yang bisa ia lihat adalah langit yang
+menggelap karena matahari sudah mulai menghilang bak ikut tenggelam kedalam air.
+Seketika suasana terasa hening, hanya terdengar lantunan pelan sang Bunda yang
+membaca doa agar mereka bisa sampai di tempat evakuasi dengan selamat sore itu.
+Sekitar 40 menitan mereka diatas air, akhirnya mereka sampai di tempat evakuasi yang
+berada dibukit yang cukup tinggi. Nala turun begitu pula dengan Ayah dan Bundanya.
+Nala berkeliling di lokasi tenda-tenda, mencari sahabatnya. Ia melihat siluet tante Anita,
+Bunda Vanessa, berlari menuju sebuah tenda berwarna orange menyala. Nala merasa
+ada sesuatu yang mengganjal, membuatnya mengikuti Tante Anita dari belakang.
+Kaget, sedih, panik. Itu yang ia rasakan, hatinya sesak melihat sahabat baiknya itu
+tergeletak kaku di atas terpal. Ia mendekat secara perlahan, seperti sedang membawa
+sesuatu yang rentan dan mudah hancur di dalam dirinya. Kakinya gemetar, air mata
+mulai menutupi pandangannya.
+“.… Van? Vanessa aurelia, kamu kenapa? Tan- hiks, Tante, Vanessa kenapa Tan?
+Vanessa gak apa-apa kan Tan? Dia cuma tidur aja kan? Tapi- hiks, kenapa tubuh
+Vanessa dingin? Padahal disini gak dingin”  Nala terisak, ia mulai meracau
+mengeluarkan pertanyaan-pertanyaan yang timbul di benaknya. Bulir air matanya
+sudah jatuh entah sejak kapan.
+“... tenggelam… Vanessa tenggelam” tutur Tante Anita pelan.
+“ ia ditemukan didekat taman, sudah tidak sadarkan diri, dan saat dibawa kesini,
+dia..dia.. sudah pergi, jauh meninggalkan Tante” lanjutnya.
+Nala tersentak, tidak percaya dengan apa yang barusan ia dengar. Ia berlari keluar dari
+tenda dengan air matanya yang sudah deras mengalir. Terduduk di bagian bukit yang
+sepi, menatap langit malam sambil menangis. Ia membatin, kenapa tuhan jahat sekali
+kepadanya? Apa yang telah ia lakukan hingga berakibat seperti ini?. seketika terputar
+ingatannya tentang kejadian tadi siang, ketika ia kesal, dan merusak tanaman- tanaman
+di taman, dan ia yang membuang sampah sembarangan. Memori lain ikut terputar,
+tentang perkataan gurunya disekolah.
+“Anak-anak yang ibu cintai, kalian jangan pernah membuang sampah sembarangan
+ya. Karena itu akan mengakibatkan saluran air tersumbat dan bisa terjadi banjir. Juga
+jangan merusak tanaman-tanaman di sekeliling kalian, selain untuk memperindah
+suasana, tanaman juga berfungsi untuk mencegah banjir”.
+Tangisan Nala semakin kencang, ia menyesal tidak mendengarkan perkataan Vanessa,
+ia menyesal telah merusak banyak tumbuhan di sekitarannya. Ia menyesal, berpikir
+bahwa semua ini adalah salah nya, Vanessa pergi karena ketidak peduliannya terhadap
+lingkungannya. Ia kemudian berdoa kepada tuhan agar memaafkan segala hal tidak baik
+yang telah ia lakukan kepada lingkungannya. Kemudian pandangannya menggelap. ------
+tit..tiit..tiit..
+Nala terbangun dari tidurnya, ia membeku. Tak lama ia melihat ke sekeliling kamarnya,
+beranjak turun dan melihat keluar, burung-burung berterbangan untuk kembali pulang
+ke sangkarnya. Angin bertiup lembut, pohon bergerak tertiup hembusan angin, dan
+langit berwarna jingga keemasan yang indah.
+“tidak ada air” batinnya.
+Ia segera kembali kekamarnya, mengambil smartphone miliknya dari atas meja
+belajarnya. Menekan kontak yang tertulis ‘Vanessa cerewet’ dan benda itu mulai
+berdering. Perasaan gelisah di hatinya, berharap sang sahabat mengangkat teleponnya.
+‘tuk’
+“Halo Nala? Ada apa?” terdengar suara halus menyapa telinganya.
+“Kamu.. kamu gak apa-apa kan?”
+“huh? Iya aku gak apa-apa kok, kenapa emangnya?”
+“tidak, tidak ada. Aku hanya ingin minta maaf ke kamu. Ya sudah aku matikan ya.
+Daah” Nala mematikan sambungan teleponnya, ia lega, semua kejadian yang ia alami
+hanyalah mimpi buruk tidur siangnya. Ia berjanji, mulai saat ini dan seterusnya ia tidak
+akan pernah melakukan kesalahan yang sama lagi seperti dirinya yang dulu, Nala akan
+menjaga lingkungan sekitarnya dengan baik agar mimpi buruk yang ia dapatkan tidak
 menjadi kenyataan mengerikan yang menghancurkan segalanya.)", "21-11-2020");
-  
+
   tambahCerpen(5,"A Letter Z","JabReal", "Romance, Slice of Life" ,R"(Bagi Irfan, malam hari adalah puncak kehidupan dengan deru mesin motor di jalanan, dan siang hari di kampus hanyalah formalitas melelahkan di depan layar monitor. Sebagai mahasiswa Sistem Informasi, otaknya mungkin dipenuhi logika kode pemrograman, tapi penampilannya sama sekali tidak mencerminkan anak IT pada umumnya. Dengan jaket denim pudar, rambut agak berantakan, dan langkah kaki yang santai, ia menyusuri koridor lantai dua gedung fakultas hari itu.
 Bruk!
 "Aduh! Omo, omo! Laptopku, buku fikihku!"
@@ -659,6 +659,222 @@ void menuRatingKomentar(int indexAkun, Cerpen *c)
   cin.get();
 }
 
+void tampilKomentar(int indexAkun, Cerpen *c)
+{
+  clearScreen();
+  tampilHeader("KOMENTAR");
+  cout << COLOR_WHITE << "\n  Cerpen : " << COLOR_RESET << c->judul << "\n";
+
+  if (c->komentarHead == nullptr)
+  {
+    cout << COLOR_GRAY << "\n  Belum ada komentar untuk cerpen ini.\n"
+         << COLOR_RESET;
+  }
+  else
+  {
+    cout << "\n";
+    Komentar *cur = c->komentarHead;
+    while (cur != nullptr)
+    {
+      cout << COLOR_YELLOW << "  " << cur->nama << COLOR_RESET
+           << " [" << cur->rating << "/5]"
+           << COLOR_GRAY << "  " << cur->waktu << "\n"
+           << COLOR_RESET
+           << "  " << cur->isi << "\n\n";
+      cur = cur->next;
+    }
+  }
+
+  cout << COLOR_YELLOW << "  [1] Beri Rating & Komentar\n"
+       << COLOR_RED << "  [0] Kembali\n"
+       << COLOR_RESET
+       << "\n  Pilih: ";
+
+  int pilihan;
+  if (!(cin >> pilihan))
+  {
+    cin.clear();
+    cin.ignore(1000, '\n');
+    return;
+  }
+
+  if (pilihan == 1)
+    menuRatingKomentar(indexAkun, c);
+}
+
+void tampilLayarBuka(Cerpen *c)
+{
+  clearScreen();
+  cout << "\n\n";
+
+  const int INNER = 38;
+  cout << COLOR_CYAN << "|======================================|\n"
+       << "|                                      |\n";
+
+  // Judul di tengah
+  cout << "|" << COLOR_WHITE;
+  string judulTampil = c->judul;
+  if ((int)judulTampil.size() > INNER) judulTampil = judulTampil.substr(0, INNER - 3) + "...";
+  int padJ = (INNER - (int)judulTampil.size()) / 2;
+  for (int i = 0; i < padJ; i++) cout << ' ';
+  cout << judulTampil;
+  for (int i = 0; i < INNER - padJ - (int)judulTampil.size(); i++) cout << ' ';
+  cout << COLOR_CYAN << "|\n"
+       << "|                                      |\n";
+
+  // Penulis di tengah
+  cout << "|" << COLOR_GRAY;
+  string penulisBaris = "~ " + c->penulis + " ~";
+  if ((int)penulisBaris.size() > INNER) penulisBaris = penulisBaris.substr(0, INNER);
+  int padP = (INNER - (int)penulisBaris.size()) / 2;
+  for (int i = 0; i < padP; i++) cout << ' ';
+  cout << penulisBaris;
+  for (int i = 0; i < INNER - padP - (int)penulisBaris.size(); i++) cout << ' ';
+  cout << COLOR_CYAN << "|\n"
+       << "|                                      |\n"
+       << "|======================================|\n"
+       << COLOR_RESET;
+
+  cout << "\n  " << COLOR_GRAY << "Tekan Enter untuk mulai membaca..."
+       << COLOR_RESET;
+  cin.ignore(1000, '\n');
+  cin.get();
+}
+
+vector<string> pecahBaris(const string &teks, int lebarMaks)
+{
+  vector<string> hasil;
+  string barisSaat;
+  string src = normalkanKarakter(teks);
+
+  for (size_t i = 0; i <= src.size(); i++) {
+    char ch = (i < src.size()) ? src[i] : '\n';
+
+    if (ch == '\n') {
+      while ((int)barisSaat.size() > lebarMaks) {
+        int cut = lebarMaks;
+        while (cut > 0 && barisSaat[cut] != ' ')
+          cut--;
+        if (cut == 0) cut = lebarMaks;
+        hasil.push_back(barisSaat.substr(0, cut));
+        barisSaat = barisSaat.substr(
+          (cut < (int)barisSaat.size() && barisSaat[cut] == ' ') ? cut + 1 : cut
+        );
+      }
+      hasil.push_back(barisSaat);
+      barisSaat.clear();
+    } else {
+      barisSaat += ch;
+    }
+  }
+
+  return hasil;
+}
+
+void tampilIsiCerpen(int indexAkun, Cerpen *c)
+{
+  tampilLayarBuka(c);
+
+  const int BARIS_PER_HALAMAN = 20;
+  vector<string> baris = pecahBaris(c->isi, 68);
+  int totalHalaman = ((int)baris.size() + BARIS_PER_HALAMAN - 1) / BARIS_PER_HALAMAN;
+  if (totalHalaman == 0) totalHalaman = 1;
+  int halSaat = 1;
+
+  while (true) {
+    clearScreen();
+    tampilHeader(c->judul);
+    cout << COLOR_GRAY << "  Halaman " << halSaat << " / " << totalHalaman
+         << COLOR_RESET << "\n\n";
+
+    int mulai = (halSaat - 1) * BARIS_PER_HALAMAN;
+    int akhir = mulai + BARIS_PER_HALAMAN;
+    if (akhir > (int)baris.size()) akhir = (int)baris.size();
+
+    for (int i = mulai; i < akhir; i++)
+      cout << "  " << baris[i] << "\n";
+
+    cout << COLOR_CYAN << "\n  ------------------------------------------\n"
+         << COLOR_RESET;
+
+    if (halSaat < totalHalaman)
+      cout << COLOR_YELLOW << "  [N] Halaman Berikutnya\n" << COLOR_RESET;
+    if (halSaat > 1)
+      cout << COLOR_YELLOW << "  [P] Halaman Sebelumnya\n" << COLOR_RESET;
+    cout << COLOR_GREEN << "  [K] Komentar\n"
+         << COLOR_RED   << "  [0] Selesai Baca\n"
+         << COLOR_RESET << "\n  Pilih: ";
+
+    char ch;
+    if (!(cin >> ch)) {
+      cin.clear();
+      cin.ignore(1000, '\n');
+      continue;
+    }
+    ch = toupper((unsigned char)ch);
+
+    if      (ch == 'N' && halSaat < totalHalaman) halSaat++;
+    else if (ch == 'P' && halSaat > 1)            halSaat--;
+    else if (ch == 'K')                            tampilKomentar(indexAkun, c);
+    else if (ch == '0')                            return;
+  }
+}
+
+void cerpenInfo(int indexAkun, Cerpen *c)
+{
+  while (true)
+  {
+    clearScreen();
+    tampilHeader(c->judul);
+
+    cout << COLOR_WHITE << "\n  Penulis      : " << COLOR_RESET << c->penulis << "\n"
+         << COLOR_WHITE << "  Genre        : " << COLOR_RESET << c->genre << "\n"
+         << COLOR_WHITE << "  Ditambahkan  : " << COLOR_RESET << c->waktu << "\n";
+
+    double rating = hitungRatingRata(c);
+    cout << COLOR_WHITE << "  Rating  : " << COLOR_RESET;
+    if (rating <= 0)
+      cout << COLOR_GRAY << "Belum ada rating" << COLOR_RESET << "\n";
+    else
+      cout << rating << " / 5\n";
+
+    cout << COLOR_WHITE << "\n  Sinopsis:\n"
+         << COLOR_RESET << "  " << buatSinopsis(c->isi) << "\n";
+
+    bool favorit = cariBookmark(indexAkun, c->judul) != nullptr;
+    cout << "\n  [1] Baca Cerpen\n";
+    if (favorit)
+      cout << COLOR_RED << "  [2] Hapus dari Favorit\n"
+           << COLOR_RESET;
+    else
+      cout << COLOR_GREEN << "  [2] Tambah ke Favorit\n"
+           << COLOR_RESET;
+    cout << COLOR_RED << "  [0] Kembali\n"
+         << COLOR_RESET
+         << "\n  Pilih: ";
+
+    int pilihan;
+    if (!(cin >> pilihan))
+    {
+      cin.clear();
+      cin.ignore(1000, '\n');
+      continue;
+    }
+
+    switch (pilihan)
+    {
+    case 1:
+      tambahHistory(indexAkun, c->judul);
+      tampilIsiCerpen(indexAkun, c);
+      break;
+    case 2:
+      toggleBookmark(indexAkun, c->judul);
+      break;
+    case 0:
+      return;
+    }
+  }
+}
 
 void menuListCerpen(int indexAkun)
 {
