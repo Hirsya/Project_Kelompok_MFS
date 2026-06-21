@@ -1208,7 +1208,7 @@ int main()
   daftarAkun[0] = {"hirsya", "123", nullptr, nullptr, 0, 0};
   daftarAkun[1] = {"ridho", "321", nullptr, nullptr, 0, 0};
   jumlahAkun = 2;
-
+  seedCerpen();
   int pilihan;
 
   while (true)
