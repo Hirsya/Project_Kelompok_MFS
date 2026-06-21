@@ -13,6 +13,8 @@ using namespace std;
 #define COLOR_GRAY "\033[0;90m"
 #define COLOR_WHITE "\033[1;37m"
 #define COLOR_MAGENTA "\033[1;35m"
+#define COLOR_BLUE "\033[1;34m"
+#define COLOR_PINK "\033[95m"
 
 // ─── Structs ─────────────────────────────────────────────────
 struct Komentar
@@ -36,13 +38,14 @@ struct Cerpen
   Komentar *komentarHead;
 };
 
-
 struct history
 {
   string judul;
   string waktu;
   history *next;
   int idHistory;
+  int idCerpen;
+  int halamanTerakhir;
 };
 
 struct Bookmark
@@ -74,6 +77,25 @@ int jumlahCerpen = 0;
 // ─── Helper ──────────────────────────────────────────────────
 
 void clearScreen() { system("cls"); }
+
+int menuSelector(const vector<string> &menu, int selected)
+{
+    int ch = _getch();
+
+    if (ch == 0 || ch == 224)
+    {
+        ch = _getch();
+        if (ch == 72) selected = (selected - 1 + menu.size()) % menu.size();
+        if (ch == 80) selected = (selected + 1) % menu.size();
+    }
+    else if (ch == 13)
+    {
+        return -selected - 1; 
+        // pakai trik: ENTER
+    }
+
+    return selected;
+}
 
 void tampilHeader(const string &judul)
 {
@@ -424,10 +446,11 @@ Di bawah rintik hujan sore itu, Irfan tahu bahwa si anak motor yang liar kini te
 // Forward declaration: dipakai oleh menuHistory & menuFavorit,
 // definisi lengkapnya ada di section "Baca Cerpen".
 void cerpenInfo(int indexAkun, Cerpen *c);
-
+void tampilIsiCerpen(int indexAkun, Cerpen *c, int halamanAwal = 1);
+void menuUtama(int indexAkun);
 // ─── History ─────────────────────────────────────────────────
 
-void tambahHistory(int indexAkun, const string &judul)
+void tambahHistory(int indexAkun, const string &judul, int idCerpen)
 {
   akun &user = daftarAkun[indexAkun];
 
@@ -451,9 +474,22 @@ void tambahHistory(int indexAkun, const string &judul)
     cur = cur->next;
   }
 
-  history *baru = new history{judul, getCurrentTimestamp(), user.riwayat, user.jumlahRiwayat + 1};
+  history *baru = new history{judul, getCurrentTimestamp(), user.riwayat, user.jumlahRiwayat + 1, idCerpen, 1};
   user.riwayat = baru;
   user.jumlahRiwayat++;
+}
+
+void updateHalamanHistory(int indexAkun, const string &judul, int halaman)
+{
+  akun &user = daftarAkun[indexAkun];
+  history *cur = user.riwayat;
+  while (cur != nullptr) {
+    if (cur->judul == judul) {
+      cur->halamanTerakhir = halaman;
+      break;
+    }
+    cur = cur->next;
+  }
 }
 
 void menuHistory(int indexAkun)
@@ -466,7 +502,11 @@ void menuHistory(int indexAkun)
     akun &user = daftarAkun[indexAkun];
     if (user.riwayat == nullptr)
     {
-      cout << COLOR_GRAY << "\n  Belum ada riwayat cerpen yang dibuka.\n"
+      cout << COLOR_PINK << R"(
+ /\_/\
+( o.o )
+ > ^ <
+Belum ada riwayat cerpen yang dibuka.)"
            << COLOR_RESET;
       cout << "\n  Tekan Enter untuk kembali...";
       cin.ignore();
@@ -474,45 +514,107 @@ void menuHistory(int indexAkun)
       return;
     }
 
-    int no = 1;
+    //array pointer untuk navigasi
+    vector<history*> items;
     history *cur = user.riwayat;
-    while (cur != nullptr)
-    {
-      cout << COLOR_YELLOW << "  [" << no << "] " << COLOR_RESET
-           << cur->judul << COLOR_GRAY << "  (" << cur->waktu << ")\n"
-           << COLOR_RESET;
-      no++;
+    while (cur != nullptr) {
+      items.push_back(cur);
       cur = cur->next;
     }
 
-    cout << COLOR_RED << "\n  [0] Kembali\n"
-         << COLOR_RESET
-         << "\n  Buka cerpen no: ";
+    int selected = 0;
+    int total = items.size();
 
-    int pilihan;
-    if (!(cin >> pilihan))
+    while (true) {
+      clearScreen();
+      tampilHeader("HISTORY");
+
+      // Tampilkan daftar pake highlight
+      for (int i = 0; i < total; i++) {
+        if (i == selected) {
+          cout << COLOR_GREEN << "  > " << COLOR_RESET;
+          cout << COLOR_WHITE << items[i]->judul << COLOR_RESET;
+        } else {
+          cout << "    " << items[i]->judul;
+        }
+        cout << COLOR_GRAY << "  (" << items[i]->waktu << ")\n" << COLOR_RESET;
+      }
+
+      cout << COLOR_GRAY << "\n  Gunakan panah atas/bawah, Enter untuk pilih, 0 untuk kembali\n" << COLOR_RESET;
+
+      int ch = _getch();
+      if (ch == 0 || ch == 224) { // tombol panah
+        ch = _getch();
+        if (ch == 72) { // atas
+          selected = (selected - 1 + total) % total;
+        } else if (ch == 80) { // bawah
+          selected = (selected + 1) % total;
+        }
+      } else if (ch == 48) {
+        menuUtama(indexAkun);   // kembali ke menu utama
+      }else if (ch == 13) { // Enter(kk)
+        // Pilih item (selec kk)
+        history *h = items[selected];
+        Cerpen *c = cariCerpenById(h->idCerpen);
+        if (c == nullptr) {
+          cout << COLOR_RED << "\n  Cerpen tidak ditemukan!\n" << COLOR_RESET;
+          cout << "  Tekan Enter...";
+          cin.ignore();
+          cin.get();
+          break; // kembali ke menu history? >_<
+        }
+        // Tampilkan 3 pilihan
+    vector<string> menu = {
+      "[1] Buka profile cerita",
+      "[2] Baca page yang dibaca terakhir kali (halaman " + to_string(h->halamanTerakhir) + ")",
+      "[3] Cancel"
+    };
+    int selected = 0;
+    while (true)
     {
-      cin.clear();
-      cin.ignore(1000, '\n');
-      continue;
+        clearScreen();
+        tampilHeader("PILIHAN");
+        cout << COLOR_WHITE << "\n  Cerpen: " << c->judul << "\n\n";
+
+        // mewarnai MENU xixi
+        for (int i = 0; i < menu.size(); i++)
+        {
+            string text = menu[i];
+
+            // 🔵 kalau dipilih ada highlightnya
+            if (i == selected)
+            {
+                cout << COLOR_BLUE << " > " << text << COLOR_RESET << "\n";
+            }
+            else
+            {
+                // 🔴 ini biar log out merah
+                if (i == 3)
+                    cout << COLOR_RED << "   " << text << COLOR_RESET << "\n";
+                else
+                    cout << COLOR_YELLOW << "   " << text << COLOR_RESET << "\n";
+            }
+        }
+        int result = menuSelector(menu, selected); //biar bisa selec kk(arrow)
+        if (result < 0)
+        {
+            int choice = -result - 1;
+            switch (choice)
+            {
+            case 0: cerpenInfo(indexAkun, c); break;
+            case 1: tampilIsiCerpen(indexAkun, c, h->halamanTerakhir); break;
+            case 2: menuHistory(indexAkun); break;
+            }
+        }
+        else
+        {
+            selected = result;
+        }
     }
-
-    if (pilihan == 0)
-      return;
-
-    if (pilihan < 1 || pilihan > user.jumlahRiwayat)
-      continue;
-
-    cur = user.riwayat;
-    for (int i = 1; i < pilihan; i++)
-      cur = cur->next;
-
-    Cerpen *c = cariCerpenByJudul(cur->judul);
-    if (c != nullptr)
-      cerpenInfo(indexAkun, c);
+    }
   }
 }
-
+}
 // ─── Bookmark / Favorit ──────────────────────────────────────
 
 Bookmark *cariBookmark(int indexAkun, const string &judul)
@@ -595,49 +697,78 @@ void menuFavorit(int indexAkun)
       return;
     }
 
-    int no = 1;
-    Bookmark *cur = user.bookmark;
-    while (cur != nullptr)
-    {
-      cout << COLOR_YELLOW << "  [" << no << "] " << COLOR_RESET << cur->judul;
+           // kumpulinn semua bookmark ke vector biar gampang diakses
+        vector<Bookmark*> items;
+        Bookmark *cur = user.bookmark;
+        while (cur != nullptr)
+        {
+            items.push_back(cur);
+            cur = cur->next;
+        }
 
-      Cerpen *c = cariCerpenByJudul(cur->judul);
-      if (c != nullptr)
-        cout << COLOR_GRAY << " - " << c->penulis << " (" << c->genre << ")" << COLOR_RESET;
+        int selected = 0;
+        int total = items.size();
 
-      cout << "\n";
-      no++;
-      cur = cur->next;
+        while (true)
+        {
+            clearScreen();
+            tampilHeader("FAVORIT");
+
+            // Tampilkan daftar dengan highlight
+            for (int i = 0; i < total; i++)
+            {
+                if (i == selected)
+                {
+                    cout << COLOR_GREEN << "  > " << COLOR_RESET;
+                    cout << COLOR_WHITE << items[i]->judul << COLOR_RESET;
+                }
+                else
+                {
+                    cout << "    " << items[i]->judul;
+                }
+
+                // Tambahkan info penulis and genre
+                Cerpen *c = cariCerpenByJudul(items[i]->judul);
+                if (c != nullptr)
+                    cout << COLOR_GRAY << " - " << c->penulis << " (" << c->genre << ")" << COLOR_RESET;
+
+                cout << "\n";
+            }
+
+            cout << COLOR_GRAY << "\n  Gunakan panah atas/bawah, Enter untuk pilih, 0 untuk kembali\n" << COLOR_RESET;
+
+            int ch = _getch();
+
+            if (ch == 0 || ch == 224) // Tombol panah
+            {
+                ch = _getch();
+                if (ch == 72) // Atas
+                    selected = (selected - 1 + total) % total;
+                else if (ch == 80) // Bawah
+                    selected = (selected + 1) % total;
+            }
+            else if (ch == 13) // Enter buat pilih bookmark
+            {
+                Bookmark *bm = items[selected];
+                Cerpen *c = cariCerpenByJudul(bm->judul);
+                if (c != nullptr)
+                    cerpenInfo(indexAkun, c); // buka profile cerpen
+                else
+                {
+                    cout << COLOR_RED << "\n  Cerpen tidak ditemukan!\n" << COLOR_RESET;
+                    cout << "  Tekan Enter...";
+                    cin.ignore();
+                    cin.get();
+                }
+                break; // keluar dari inner loop, kembali ke daftar favorit
+            }
+            else if (ch == '0') // Kembali ke menu utama
+            {
+                return;
+            }
+        }
     }
-
-    cout << COLOR_RED << "\n  [0] Kembali\n"
-         << COLOR_RESET
-         << "\n  Buka cerpen no: ";
-
-    int pilihan;
-    if (!(cin >> pilihan))
-    {
-      cin.clear();
-      cin.ignore(1000, '\n');
-      continue;
-    }
-
-    if (pilihan == 0)
-      return;
-
-    if (pilihan < 1 || pilihan > user.jumlahBookmark)
-      continue;
-
-    cur = user.bookmark;
-    for (int i = 1; i < pilihan; i++)
-      cur = cur->next;
-
-    Cerpen *c = cariCerpenByJudul(cur->judul);
-    if (c != nullptr)
-      cerpenInfo(indexAkun, c);
-  }
 }
-
 // ─── Baca Cerpen ─────────────────────────────────────────────
 
 void tampilSemuaCerpen()
@@ -812,53 +943,121 @@ vector<string> pecahBaris(const string &teks, int lebarMaks)
   return hasil;
 }
 
-void tampilIsiCerpen(int indexAkun, Cerpen *c)
+void tampilIsiCerpen(int indexAkun, Cerpen *c, int halamanAwal)
 {
-  tampilLayarBuka(c);
+    tampilLayarBuka(c);
 
-  const int BARIS_PER_HALAMAN = 20;
-  vector<string> baris = pecahBaris(c->isi, 68);
-  int totalHalaman = ((int)baris.size() + BARIS_PER_HALAMAN - 1) / BARIS_PER_HALAMAN;
-  if (totalHalaman == 0) totalHalaman = 1;
-  int halSaat = 1;
+    const int BARIS_PER_HALAMAN = 20;
+    vector<string> baris = pecahBaris(c->isi, 68);
+    int totalHalaman = ((int)baris.size() + BARIS_PER_HALAMAN - 1) / BARIS_PER_HALAMAN;
+    if (totalHalaman == 0) totalHalaman = 1;
+    int halSaat = halamanAwal;
+    if (halSaat < 1) halSaat = 1;
+    if (halSaat > totalHalaman) halSaat = totalHalaman;
 
-  while (true) {
-    clearScreen();
-    tampilHeader(c->judul);
-    cout << COLOR_GRAY << "  Halaman " << halSaat << " / " << totalHalaman
-         << COLOR_RESET << "\n\n";
+    while (true) {
+        clearScreen();
+        tampilHeader(c->judul);
+        cout << COLOR_GRAY << "  Halaman " << halSaat << " / " << totalHalaman
+             << COLOR_RESET << "\n\n";
 
-    int mulai = (halSaat - 1) * BARIS_PER_HALAMAN;
-    int akhir = mulai + BARIS_PER_HALAMAN;
-    if (akhir > (int)baris.size()) akhir = (int)baris.size();
+        int mulai = (halSaat - 1) * BARIS_PER_HALAMAN;
+        int akhir = mulai + BARIS_PER_HALAMAN;
+        if (akhir > (int)baris.size()) akhir = (int)baris.size();
 
-    for (int i = mulai; i < akhir; i++)
-      cout << "  " << baris[i] << "\n";
+        for (int i = mulai; i < akhir; i++)
+            cout << "  " << baris[i] << "\n";
 
-    cout << COLOR_CYAN << "\n  ------------------------------------------\n"
-         << COLOR_RESET;
+        cout << COLOR_CYAN << "\n  ------------------------------------------\n"
+             << COLOR_RESET;
+                // --- Bangun menu dinamis ---
+        cout << "\033[s";   // simpan posisi
 
-    if (halSaat < totalHalaman)
-      cout << COLOR_YELLOW << "  [N] Halaman Berikutnya\n" << COLOR_RESET;
-    if (halSaat > 1)
-      cout << COLOR_YELLOW << "  [P] Halaman Sebelumnya\n" << COLOR_RESET;
-    cout << COLOR_GREEN << "  [K] Komentar\n"
-         << COLOR_RED   << "  [0] Selesai Baca\n"
-         << COLOR_RESET << "\n  Pilih: ";
+        // Bangun menu dinamis
+        vector<string> menuItems;
+        vector<int> aksiKode;   // 0: prev, 1: next, 2: komentar, 3: selesai
 
-    char ch;
-    if (!(cin >> ch)) {
-      cin.clear();
-      cin.ignore(1000, '\n');
-      continue;
+        if (halSaat > 1) {
+            menuItems.push_back("[<-] Halaman Sebelumnya");
+            aksiKode.push_back(0);
+        }
+        if (halSaat < totalHalaman) {
+            menuItems.push_back("[->] Halaman Berikutnya");
+            aksiKode.push_back(1);
+        }
+        menuItems.push_back("[K] Komentar");
+        aksiKode.push_back(2);
+        menuItems.push_back("[0] Selesai Baca");
+        aksiKode.push_back(3);
+
+        int selected = 0;
+        if (selected >= (int)menuItems.size()) selected = 0;
+
+        while (true) {
+            // Kembali ke posisi setelah garis pemisah, hapus area menu lama
+            cout << "\033[u";   // restore posisi
+            cout << "\033[J";   // hapus dari posisi kursor sampai bawah
+
+            // Cetak menu dengan highlight
+            for (int i = 0; i < (int)menuItems.size(); i++) {
+                string text = menuItems[i];
+                if (i == selected) {
+                    cout << COLOR_BLUE << " > " << text << COLOR_RESET << "\n";
+                } else {
+                    // Warna merah khusus untuk opsi "Selesai" (selalu di akhir)
+                    if (i == (int)menuItems.size() - 1)
+                        cout << COLOR_RED << "   " << text << COLOR_RESET << "\n";
+                    else
+                        cout << COLOR_YELLOW << "   " << text << COLOR_RESET << "\n";
+                }
+            }
+
+            // Baca input tombol (manual)
+            int ch = getch();   // gunakan _getch() jika di Windows
+
+            if (ch == 224) {    // tombol panah (kode escape untuk Windows)
+                ch = getch();
+                switch (ch) {
+                    case 72:   // panah atas
+                        selected--;
+                        if (selected < 0) selected = (int)menuItems.size() - 1;
+                        break;
+                    case 80:   // panah bawah
+                        selected++;
+                        if (selected >= (int)menuItems.size()) selected = 0;
+                        break;
+                    default: break;
+                }
+                // Lanjutkan loop untuk refresh menu dengan highlight baru
+                continue;
+            }
+            else if (ch == 13) {   // Enter → pilih item yang sedang di-highlight
+                int aksi = aksiKode[selected];
+                switch (aksi) {
+                    case 0:   // Halaman Sebelumnya
+                        if (halSaat > 1) halSaat--;
+                        break;
+                    case 1:   // Halaman Berikutnya
+                        if (halSaat < totalHalaman) halSaat++;
+                        break;
+                    case 2:   // Komentar
+                        tampilKomentar(indexAkun, c);
+                        break;
+                    case 3:   // Selesai Baca
+                        return;   // keluar dari fungsi
+                }
+                // Setelah aksi selain selesai, keluar dari loop menu agar halaman direfresh
+                break;
+            }
+            else {
+                // Tombol lain (misal ESC) diabaikan, lanjutkan loop
+                continue;
+            }
+        } // end while menu
+
+        // Setelah break dari loop menu, lanjutkan ke iterasi berikutnya dari loop halaman
+        continue;
     }
-    ch = toupper((unsigned char)ch);
-
-    if      (ch == 'N' && halSaat < totalHalaman) halSaat++;
-    else if (ch == 'P' && halSaat > 1)            halSaat--;
-    else if (ch == 'K')                            tampilKomentar(indexAkun, c);
-    else if (ch == '0')                            return;
-  }
 }
 
 void cerpenInfo(int indexAkun, Cerpen *c)
@@ -882,37 +1081,70 @@ void cerpenInfo(int indexAkun, Cerpen *c)
     cout << COLOR_WHITE << "\n  Sinopsis:\n"
          << COLOR_RESET << "  " << buatSinopsis(c->isi) << "\n";
 
+    //ini batas perubahannya
+    cout << "\033[s";   // simpan posisi kursor (setelah sinopsis)
+
     bool favorit = cariBookmark(indexAkun, c->judul) != nullptr;
-    cout << "\n  [1] Baca Cerpen\n";
-    if (favorit)
-      cout << COLOR_RED << "  [2] Hapus dari Favorit\n"
-           << COLOR_RESET;
-    else
-      cout << COLOR_GREEN << "  [2] Tambah ke Favorit\n"
-           << COLOR_RESET;
-    cout << COLOR_RED << "  [0] Kembali\n"
-         << COLOR_RESET
-         << "\n  Pilih: ";
+    vector<string> menuItems;
+    vector<int> aksiKode;
+    menuItems.push_back("[1] Baca Cerpen");
+    aksiKode.push_back(1);
 
-    int pilihan;
-    if (!(cin >> pilihan))
-    {
-      cin.clear();
-      cin.ignore(1000, '\n');
-      continue;
+    if (favorit) {
+        menuItems.push_back("[2] Hapus dari Favorit");
+    } else {
+        menuItems.push_back("[2] Tambah ke Favorit");
     }
+    aksiKode.push_back(2);
 
-    switch (pilihan)
-    {
-    case 1:
-      tambahHistory(indexAkun, c->judul);
-      tampilIsiCerpen(indexAkun, c);
-      break;
-    case 2:
-      toggleBookmark(indexAkun, c->judul);
-      break;
-    case 0:
-      return;
+    menuItems.push_back("[0] Kembali");
+    aksiKode.push_back(0);
+
+    int selected = 0;
+
+    while (true) {
+        // modif di sini biar atas ga ilang pas pakai kusor
+        // Ganti clearScreen() dan cetak ulang judul dengan restore posisi + hapus area menu
+        cout << "\033[u";   // kembali ke posisi setelah sinopsis
+        cout << "\033[J";   // hapus dari posisi kursor sampai akhir layar (hanya menu)
+
+        // Cetak menu (tanpa mencetak ulang judul/info)
+        for (int i = 0; i < (int)menuItems.size(); i++) {
+            string text = menuItems[i];
+            if (i == selected) {
+                cout << COLOR_BLUE << " > " << text << COLOR_RESET << "\n";
+            } else {
+                if (i == (int)menuItems.size() - 1)
+                    cout << COLOR_RED << "   " << text << COLOR_RESET << "\n";
+                else
+                    cout << COLOR_YELLOW << "   " << text << COLOR_RESET << "\n";
+            }
+        }
+
+        int result = menuSelector(menuItems, selected);
+
+        if (result < 0) {
+            int indeksTerpilih = -result - 1;
+            int aksi = aksiKode[indeksTerpilih];
+            switch (aksi) {
+                case 1: {
+                    tambahHistory(indexAkun, c->judul, c->id);
+                    tampilIsiCerpen(indexAkun, c);
+                    break;
+                }
+                case 2: {
+                    toggleBookmark(indexAkun, c->judul);
+                    break;
+                }
+                case 0: {
+                    return;
+                }
+            }
+            break;
+        } else {
+            selected = result;
+            // Lanjutkan loop, menu akan diperbarui dengan highlight baru
+        }
     }
   }
 }
@@ -1005,55 +1237,67 @@ void menuTambahCerpen(int indexAkun)
 
 void menuUtama(int indexAkun)
 {
-  while (true)
-  {
-    clearScreen();
-    tampilHeader("MENU UTAMA");
-    cout << COLOR_GREEN << "\n  Halo, " << daftarAkun[indexAkun].nama << "!\n"
-         << COLOR_RESET;
+    vector<string> menu = {
+        "Lihat Semua Cerpen",
+        "History",
+        "Favorit",
+        "Tambah Cerpen",
+        "Logout"
+    };
 
-    cout << COLOR_YELLOW
-         << "\n  [1] Lihat Semua Cerpen\n"
-         << "  [2] History\n"
-         << "  [3] Favorit\n"
-         << "  [4] Tambah Cerpen\n"
-         << COLOR_RED
-         << "  [0] Logout\n"
-         << COLOR_RESET
-         << "\n  Pilih: ";
+    int selected = 0;
 
-    int pilihan;
-    if (!(cin >> pilihan))
+    while (true)
     {
-      cin.clear();
-      cin.ignore(1000, '\n');
-      continue;
-    }
+        clearScreen();
 
-    switch (pilihan)
-    {
-    case 1:
-      menuListCerpen(indexAkun);
-      break;
-    case 2:
-      menuHistory(indexAkun);
-      break;
-    case 3:
-      menuFavorit(indexAkun);
-      break;
-    case 4:
-      menuTambahCerpen(indexAkun);
-      break;
-    case 0:
-      return;
-    default:
-      cout << COLOR_RED << "\n  Pilihan tidak valid!\n"
-           << COLOR_RESET;
-      cout << "  Tekan Enter...";
-      cin.ignore();
-      cin.get();
+        // HEADER SELALU DI ATAS
+        tampilHeader("MENU UTAMA");
+
+        cout << COLOR_GREEN << "\n  Halo, "
+             << daftarAkun[indexAkun].nama
+             << "\n" << COLOR_RESET;
+
+        // RENDER MENU
+        for (int i = 0; i < menu.size(); i++)
+        {
+            string text = menu[i];
+
+            // 🔵 kalau sedang dipilih
+            if (i == selected)
+            {
+                cout << COLOR_BLUE << " > " << text << COLOR_RESET << "\n";
+            }
+            else
+            {
+                // 🔴 Logout khusus merah
+                if (i == 4)
+                    cout << COLOR_RED << "   " << text << COLOR_RESET << "\n";
+                else
+                    cout << COLOR_YELLOW << "   " << text << COLOR_RESET << "\n";
+            }
+        }
+
+        int result = menuSelector(menu, selected);
+
+        if (result < 0)
+        {
+            int choice = -result - 1;
+
+            switch (choice)
+            {
+            case 0: menuListCerpen(indexAkun); break;
+            case 1: menuHistory(indexAkun); break;
+            case 2: menuFavorit(indexAkun); break;
+            case 3: menuTambahCerpen(indexAkun); break;
+            case 4: return;
+            }
+        }
+        else
+        {
+             selected = result;
+        }
     }
-  }
 }
 
 // ─── Register ────────────────────────────────────────────────
@@ -1209,48 +1453,62 @@ int main()
   daftarAkun[1] = {"ridho", "321", nullptr, nullptr, 0, 0};
   jumlahAkun = 2;
 
-  int pilihan;
+  // Data dummy cerpen
+  seedCerpen();
 
-  while (true)
-  {
-    clearScreen();
-    tampilHeader("CERPENKITA");
-
-    cout << COLOR_YELLOW
-         << "\n  [1] Login\n"
-         << "  [2] Register\n"
-         << COLOR_RED
-         << "  [3] Keluar\n"
-         << COLOR_RESET
-         << "\n  Pilih: ";
-
-    if (!(cin >> pilihan))
+      vector<string> menu = {
+      "[1] Login",
+      "[2] Register",
+      "[3] keluar"
+    };
+    int selected = 0;
+    while (true)
     {
-      cin.clear();
-      cin.ignore(1000, '\n');
-      continue;
-    }
-
-    switch (pilihan)
-    {
-    case 1:
-      menuLogin();
-      break;
-    case 2:
-      menuRegister();
-      break;
-    case 3:
-    	bersihkanMemori();
       clearScreen();
-      cout << COLOR_GREEN << "  Sampai jumpa! Terimakasih Sudah Berkunjung :) \n\n"
-           << COLOR_RESET;
-      return 0;
-    default:
-      cout << COLOR_RED << "\n  Pilihan tidak valid!\n"
-           << COLOR_RESET;
-      cout << "  Tekan Enter...";
-      cin.ignore();
-      cin.get();
+      tampilHeader("CERPENKITA");
+
+        // RENDER MENU
+        for (int i = 0; i < menu.size(); i++)
+        {
+            string text = menu[i];
+
+            // 🔵 kalau sedang dipilih
+            if (i == selected)
+            {
+                cout << COLOR_BLUE << " > " << text << COLOR_RESET << "\n";
+            }
+            else
+            {
+                // 🔴 Logout khusus merah
+                if (i == 2)
+                    cout << COLOR_RED << "   " << text << COLOR_RESET << "\n";
+                else
+                    cout << COLOR_YELLOW << "   " << text << COLOR_RESET << "\n";
+            }
+        }
+
+        int result = menuSelector(menu, selected);
+
+        if (result < 0)
+        {
+            int choice = -result - 1;
+
+            switch (choice)
+            {
+            case 0: menuLogin();
+                    break;
+            case 1: menuRegister();
+                    break;
+            case 2: bersihkanMemori();
+            clearScreen();
+            cout << COLOR_GREEN << "  Sampai jumpa!\n\n" << COLOR_RESET;
+            return 0;
+            default: break;
+            }
+        }
+        else
+        {
+            selected = result;
+        }
     }
-  }
 }
