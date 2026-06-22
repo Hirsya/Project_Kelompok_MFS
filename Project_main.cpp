@@ -77,7 +77,6 @@ int jumlahCerpen = 0;
 // ─── Helper ──────────────────────────────────────────────────
 
 void clearScreen()   {  cout << "\033[2J\033[3J\033[1;1H"; }
-void setKursorHome() { cout << "\033[H" << flush; }
 void hideKursor()    { cout << "\033[?25l" << flush; }
 void showKursor()    { cout << "\033[?25h" << flush; }
 
