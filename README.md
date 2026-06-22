@@ -87,9 +87,10 @@ Apabila tidak ada pesan error setelah kompilasi selesai, Anda sudah bisa menjala
 
 <p>
 
-sebenarnya ini hal yang tidak penting tapi yasudahlah <br>
-selamat dan terimakasih dari saya _**Hirsya**_ karena sudah mau membantu saya dalam project ini<br>
-semoga kita semuaa sukses di masa depan
+_sebenarnya ini hal yang tidak penting tapi yasudahlah_ <br>
+Selamat dan terimakasih sebesar besarnya dari saya _**Hirsya**_ <br>
+Untuk para contributor karena sudah mau membantu saya dalam project ini🥳<br>
+_✨Semoga kita semuaa sukses di masa depan✨_
   
 </p>
 
