@@ -79,7 +79,8 @@ Apabila tidak ada pesan error setelah kompilasi selesai, Anda sudah bisa menjala
 <br>
 <div align="center">
   
-**DASAR ORANG KEPOAN...** Selamat! Kamu Sudah Menemukan *Easter Egg* (yang sama sekali tidak rahasia) di dalam repositori ini. 
+**DASAR ORANG KEPOAN...** <br>
+Selamat! Kamu Sudah Menemukan *Easter Egg* (yang sama sekali tidak rahasia) di dalam repositori ini. 
 
 <!-- KALAU KALIHAN MEMBACA INI KALIAN ORANG TIDAK SABARAN BANGET DAH GWS-->
 
