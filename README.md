@@ -1,6 +1,6 @@
 <div align="center">
-<h1> 📚CerpenKita </h1>
   <p>
+<img src="gif_cerpenkita.gif" width="70%" alt="CerpenKita"/><br>
     ⚙️ Project Ini Berjudul <b>CerpenKita</b>.<br>
     💻 Sistem Informasi Sederhana untuk Penikmat dan Penulis Cerita Pendek.<br>
     👷🏻‍♂️ Project Ini Dikerjakan Oleh <b>Kelompok 12 (MFS)</b>.
@@ -8,10 +8,6 @@
 ![C++](https://img.shields.io/badge/BAHASA-C%2B%2B-blue%3F?style=for-the-badge&color=blue)
 ![Interface](https://img.shields.io/badge/INTERFACE-TERMINAL-black%3F?style=for-the-badge&color=orange)
 ![Status](https://img.shields.io/badge/STATUS-COMPLETE-black%3F?style=for-the-badge&color=green)
-
-
-<!-- SABAR YA MASIH DALAM PROSES INI -->
-
   
 </div>
 
@@ -21,7 +17,7 @@
 
 **CerpenKita** adalah aplikasi terminal berbasis C++ yang dibuat untuk membantu pengguna membaca, menulis, dan mengelola cerita pendek (cerpen). Sistem ini menggabungkan fitur akun pengguna, daftar bacaan cerpen, riwayat baca, bookmark/favorit, hingga kolom komentar dan rating — semuanya berjalan langsung di terminal tanpa perlu koneksi internet atau database eksternal.
 
-> ⚠️ **Catatan:** Saat ini seluruh data (akun, cerpen, history, bookmark, komentar) disimpan **di memori (RAM)** selama program berjalan dan akan **hilang setiap program ditutup**. Belum ada penyimpanan permanen ke file.
+> ⚠️ **Catatan:** Program ini khusus untuk perangkat **Windows**. Saat ini seluruh data (akun, cerpen, history, bookmark, komentar) disimpan **di memori (RAM)** selama program berjalan dan akan **hilang setiap program ditutup**. Belum ada penyimpanan permanen ke file.
 
 ---
 
@@ -71,19 +67,31 @@ g++ Project_main.cpp -o CerpenKita
 *Keterangan:* Perintah ini menyuruh compiler `g++` untuk membaca file pusat `Project_main.cpp` (yang otomatis akan menarik file `.cpp` modular lainnya) dan membungkusnya menjadi satu file aplikasi utuh bernama `CerpenKita`.
 
 ### 🖥️Menjalankan Program
-Apabila tidak ada pesan error setelah kompilasi selesai, Anda sudah bisa menjalankan programnya. Gunakan perintah berikut sesuai dengan sistem operasi Anda:
-* **Untuk pengguna Windows (melalui CMD atau PowerShell):**
+Apabila tidak ada pesan error setelah kompilasi selesai, Anda sudah bisa menjalankan programnya. Gunakan perintah berikut:
   ```bash
   .\CerpenKita.exe
   ```
-* **Untuk pengguna Linux atau MacOS (melalui Terminal):**
-  ```bash
-  ./CerpenKita
-  ```
----
 
-## 📢 5. Catatan Penting Kompatibilitas OS
+## Hal yang tidak penting
 
-Program ini menggunakan `<conio.h>` (fungsi `_getch()` untuk menyembunyikan input password) dan `system("cls")` untuk membersihkan layar. **Kedua hal ini bersifat khusus Windows** dan **tidak tersedia secara native di compiler g++ pada Linux/MacOS**, sehingga kompilasi kemungkinan akan **gagal** di sistem operasi tersebut.
+<details>
+<summary><b>👉 Jangan Ditekan 👈</b></summary>
+<br>
+<div align="center">
+  
+**DASAR ORANG KEPOAN...** Selamat! Kamu Sudah Menemukan *Easter Egg* (yang sama sekali tidak rahasia) di dalam repositori ini. 
 
-➡️ **Disarankan menjalankan program ini di Windows.** Jika ingin mendukung Linux/MacOS, fungsi `_getch()` perlu diganti dengan alternatif (misalnya `termios.h`) dan `system("cls")` diganti `system("clear")`.
+<!-- KALAU KALIHAN MEMBACA INI KALIAN ORANG TIDAK SABARAN BANGET DAH GWS-->
+
+<img src="https://media.tenor.com/WyttCDFchNkAAAAM/sparxie-hoyoverse.gif" alt="Yay" width="250"/>
+
+<p>
+
+sebenarnya ini hal yang tidak penting tapi yasudahlah <br>
+selamat dan terimakasih dari saya _**Hirsya**_ karena sudah mau membantu saya dalam project ini<br>
+semoga kita semuaa sukses di masa depan
+  
+</p>
+
+</div>
+</details>
