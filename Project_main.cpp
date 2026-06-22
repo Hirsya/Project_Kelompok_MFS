@@ -76,7 +76,10 @@ int jumlahCerpen = 0;
 
 // ─── Helper ──────────────────────────────────────────────────
 
-void clearScreen() { system("cls"); }
+void clearScreen()   {  cout << "\033[2J\033[3J\033[1;1H"; }
+void setKursorHome() { cout << "\033[H" << flush; }
+void hideKursor()    { cout << "\033[?25l" << flush; }
+void showKursor()    { cout << "\033[?25h" << flush; }
 
 int menuSelector(const vector<string> &menu, int selected)
 {
@@ -301,8 +304,325 @@ Reno menuang susu perlahan—sangat hati-hati. Nara mengaduk adonan sampai tekst
 Nara ikut tersenyum. Hari yang tadinya sepi kini berubah menjadi hari penuh tawa, kehangatan, dan aroma manis yang mengajarkan bahwa kebahagiaan sering lahir dari kegagalan-kegagalan kecil. 
   )", "30-11-2018");
 
-  tambahCerpen(3, "Misteri Rumah Tua", "Maya", "Horor",
-               "Rumah tua di ujung desa itu sudah lama ditinggalkan penghuninya. Konon, setiap malam Jumat Kliwon, terdengar suara tangisan dari dalam rumah tersebut. Malam itu, empat orang remaja memutuskan untuk membuktikan kebenarannya, tanpa tahu apa yang menanti mereka di dalam.", "26-12-2019");
+  tambahCerpen(3, "Merindu dan Gemanya", "Nathan", "Drama",
+               R"(Bunyi yang memasuki telingaku dipagi hari Minggu ini diawali dengan pesan dari Group Chat angkatanku semasa SMA. Setelah kubuka, ternyata pesan tersebut berisi file undangan reuni angkatan 2014/2015, yang membuatku menghela nafas kasar sebab aku sangat malas menghadiri acara tersebut. Bukan karena aku anti sosial tetapi, karena aku sangat malas untuk bertemu dengan teman-temanku yang hingga saat ini pun masih bertemu dengan mereka. Dan juga aku sedikit ragu untuk bertemu kembali dengan inti dari gemaku dahulu. Aku tahu dia akan menghadiri acara tersebut, sebab namanya berada disususan acara sebagai perwakilan angkatan untuk menyumbangkan suara emasnya itu. Entahlah, mungkin aku akan memikirkannya kembali untuk menghadiri acara itu atau tidak. Namun, tidak dapat dipungkiri bahwa aku rindu mengenang masa-masa SMA ku.
+Kring!, Kring!, Kring!.... Dering ponselku kembali menggangguku untuk melanjutkan aktivitas di hari libur yang akan kugunakan untuk rebahan ini. Kuangkat telepon itu tanpa melihat nama siapa yang tertera disana
+“Haloo...” sapa orang dipanggilan tersebut.
+“Ganggu bat dah Geng, kenapa khe  telfon-telfon?” Tanyaku dengan nada tinggi pada Ageng, teman SMA ku. 
+“Gabut aja, khe kangen gak sama aku?” Ageng dengan nada centilnya.
+Seketika aku langsung mematikan telepon dari Ageng itu dan kembali ke posisi tidurku. Tidak lama ponselku kembali berdering dan pastinya dari Ageng lagi. 
+“Sekali lagi khe gak jelas, ku block ya” ucapku disertai penekanan disetiap katanya. 
+“Eitss canda candaa, cepat kali marahnya nok . Aku cuma mau nanya, khe dah baca undangan reuni tu gak?” Tanya Ageng. 
+Ternyata tujuan telepon dari Ageng adalah menanyakan mengenai undangan itu, padahal dia bisa saja menanyakan lewat chat. 
+“Udah, kenapa emang?” nada yang kesal tetap kugunakan
+Khe pergi gak? Kalo khe pergi samaan yo, males aku pergi sendiri” pinta Ageng 
+“Gak tau, aku masih pikir-pikir lagi” kataku
+Kukatakan begitu karena sesuai dengan kenyataannya bahwa aku masih menimbang-nimbang untuk pergi atau tidak. 
+“Lho kenapa masih pikir-pikir, pergi jak, kan samaan aku juga. Atau khe takut ketemu sama dia ya? Tadi aku baca susunan acaranya, ada nama dia disitu” Tebakan Ageng.
+Ini dia yang kukagum dari temanku, ia bisa menebak apa yang kupikirkan, tetapi tentu saja akan kututupi semua itu. 
+“Mana ada begitu, orang aku males aja pergi-pergi acara gituan” alibiku pada Ageng. 
+“Terserah khe dah yang penting aku dah ajak, kalo khe jadi pergi kasih tau aku, biar samaan perginya.” balasnya.
+“Iya-iyaa, dah aku mau lanjut rebahan” setelah kata itu keluar dari mulutku, langsung kumatikan telepon itu dan kembali melanjutkan aktivitas terpentingku, tidur.
+Gita POV
+“Iyaaa Widya, nanti aku nginep dirumahmu waktu di Bali” ucapan pastiku.
+Pagi hariku sudah diisi dengan telepon dari Widya, temenku yang meminta agar aku menginap dirumahnya saat di Bali nanti. Semalam aku mendapat undangan Reuni SMA angkatanku, acara itu akan dilaksanakan di Bali nantinya.Yang membuatku terkejut adalah namaku tertera pada bagian pengisi acara,sehingga membuatku mau tidak mau harus datang pada acara itu. Sebenarnya bisa saja aku menolak, namun aku tidak enak dengan tim acaranya, dan juga aku sedikit kangen sih sama sekolah tercintaku itu, sekolah yang penuh dengan kenangan bersama temanku, guru, dan juga dengan gemaku dahulu. Yahh, aku akan mengenangnya nanti saja, sekarang lebih baik mempersiapkan tiket berangkat dan semacamnya
+Gita POV
+(Kantor Tempat Gita Bekerja)
+“Hikss.. Hikss.. Hikss.. kangennn” tangisku berseru pada benda digital didepanku. 
+“Eh lo kenapaa Git, sakit apa gimana?” tanya Ratih dengan pandangan yang masih pada layar dihadapannya. 
+“Inii, gw ada reuni SMA jadi gw mau liat-liat album foto lama gw di hp, terus kangennn” ungkapku dengan sedih dan sedikit tersungguk-sungguk. 
+“Oalahh, kupikir kenapa, kalo kangen kenapa gak hubungin mereka?” kata Ratih.
+Bener juga sih kata Ratih, tapi masalahnya 
+“Aku gak ada nomornya hiks…” yap, itulah masalahnya. 
+“Yaelahh, gak mungkin lo gak berteman di media sosial sama mereka kan, dm aja kali, terus minta  nomornya, beres deh” perkataan Ratih tidak ada yang salah, masalahnya ada di aku. 
+“Maluuu” ungkapku.
+Jujur saja entah kenapa aku malu, padahal mereka adalah  teman-temanku dulu dan saat ini Ratih hanya diam.
+”Kok lo gak ngomong apa-apa sihh?” kesalku.
+Padahal dia yang nanya kenapa, sekarang dia yang diam. 
+”Ya gw harus apa Gita, gw paling males kalo lo udh kayak gini, makanya gw diem aja” alasan Ratih. 
+Aku hanya cemberut dan menerima pernyataan yang diberi Ratih. 
+Aku cek kembali tiket pesawatku dan terlihat tanggal keberangkatanku pada hari Kamis, 5 September 2024. Terhitung tinggal beberapa hari lagi, aku harus segera menyiapkan izin cuti dan keperluanku, serta sudah kuputuskan sepulang kantor akan ke toko pakaian bersama Ratih untuk membeli outfit yang cocok denganku nantinya.
+(Toko Pakaian)
+Sesampainya di toko pakaian yang disarankan oleh Ratih.
+“Bagaimana kalo kamu pilih baju di toko ini saja git, kayanya bagus deh sesuai sama gaya berpakaianmu” saran dari Ratih.
+“Boleh tuh yuk masuk, aku mau liat-liat dulu” ajak Gita
+Mereka mulai mencari pakaian yang sekiranya cocok buat outfit Gita untuk acara reuni nanti. Gita mulai mencoba beberapa pakaian dan tak lupa menanyakan saran ke Ratih.
+“Ratih bagaimana dengan baju ini?” 
+“Eum kayanya kurang cocok deh”
+Karena Ratih kurang setuju dengan pilihan Gita, Ratih pun ikut membantu memilih juga.
+“Gitaaa Gitaa Gitaa!” seru Ratih dengan nada hebohnya itu.
+“Apasih, heboh banget tau” kesal Gita kepada Ratih 
+“Coba deh kamu liat baju sama celana ini, cocok deh buat kamu”
+“Pastel banget ya, tapi aku mau coba deh” 
+Gita mulai mencoba beberapa pakaian yang sudah dipilihkan oleh Ratih. Tak dipungkiri Ratih memang jago dalam hal memilih outfit seperti ini, makanya Gita sangat beruntung memiliki teman seperti Ratih karenakan sangat bisa di handalkan dalam hal seperti ini. 
+“Gimana, bagus ngga?” tanya Gita kepada Ratih sambil ia memutar badan untuk memperlihatkan outfit pilihan Ratih.
+“Ih cantik banget, cocok tuh buat kamu” puji Ratih
+“Yang bener, yaudah deh, aku mau coba lagi satu outift yang kamu pilihin” 
+Gita memasuki lagi ruang ganti baju yang ada di toko itu, dan mencoba kembali satu outfit pilihan Ratih. Sementara Ratih masih mencari-cari pakaian lagi buat buat Gita.  
+“Ratih Ratih Ratih!” panggil Gita heboh
+“Kenapa sih” kesal Ratih kepda Gita
+“Liat bagus ngga warna biru ini?” tanya Gita untuk memastikannya. 
+“Bagus dong, kan aku yang pilihkan” jawab Ratih dengan sombongnya.
+“Ish serius loh, ini kan sama modelnya sama baju yang pertama, cuman beda warna aja” ucap Gita.
+“Serius, yang pertama kan polos, kalo ini ada garis-garisnya gitu” bantah Ratih.
+“Yaudah deh, aku ambil semuanya aja deh buat jaga-jaga juga nanti”  jawab Gita
+Akhirnya setelah beberapa jam memilih dan mecoba beberapa pakaian Gita menemukan pakaian yang cocok buat dirinya. Gita pun ke kasir untuk membayar beberapa pakaian yang telah ia pilih.  Setelah membayar pakaian, ia pun kembali pulang bersama Ratih.
+Gita POV
+(Bandara Surabaya)
+Tibalah dimana hari keberangkatan Gita ke Bali. Dengan perasaan yang campur aduk ia melangkahkan kakinya menuju bandara dengan di temani Ratih. 
+“Udah ngga ada yang ketinggalan kan?” tanya Ratih untuk memastikan sudah tidak ada barang yang ketinggalan.
+“Aman kok Rat, sudah aku cek tadi sebelum berangkat” jawab Gita meyakin Ratih.
+“Baguslah kalo gitu, hati-hati ya git disana jangan lama-lama nanti aku kangen” ucap Ratih sedih.
+“Hahaha, ngga lama kok Rat cuman 3 atau 4 harian aja nanti kalo lama bagaimana sama kerjaanku yang disini” balas Gita sambil memeluk Ratih sebagai ucapan selamat tinggal.
+“Ratih, bentar lagi pesawatnya mau Take Off nih. Aku ke ruang tunggu sekarang ya, terimakasih sudah nganterin aku” pamit Gita kepada Ratih.
+“Safe flight ya Git, dadahh” Ratih melambaikan tangannya.
+Author POV
+(Bandara Bali)
+Jam menunjukkan pukul 12.00 pesawat yang dinaikan oleh Gita sudah landing di kota tujuannya yaitu Bali. Kota yang penuh kenangan, dan kebahagiannya dimasa putih abu-abu kemarin. Sesampainya di Bandara, Gita di sambut oleh teman baiknya semasa SMA yaitu Widya.
+“GITAAAAA!!!” teriak Widya sambil melambaikan tangannya ke Gita.
+Gita pun berlari kecil ke arah seseorang yang memanggilnya, dan mereka berpelukan untuk melepas rindu yang telah lama mereka simpan.
+“AAAA... aku kangen banget sama kamu Wid, kamu apa kabar?” ucap Gita saat mereka  berpelukan.
+“Aku juga kangen banget sama kamu Git, kabar aku baik. Kamu sendiri gimana?” tanya Widya balik.
+“Alhamdulillah, Kabar aku baik Wid” jawab Gita.
+Diperjalan pulang ke rumah Widya mereka berbincang-bincang membahas kenangan mereka saat masa SMA. Saking asiknya membahas kenangan tak terasa sudah mereka telah tiba di depan bangunan yang begitu indah, dengan ukiran-ukiran khas Balinya. 
+“Wahh, di Bali udaranya seger yaa dan ukirannya juga sangat berseni sekali.”
+Gita kagum melihat ukiran bali dan bangunannya yang telah lama tidak dilihat.
+“Jelas dong… Bikin kangen kannn” ucap Widya dengan bangga.
+“Iya nih” Gita tersenyum senang.
+Mereka pun akhirnya masuk ke rumah yang berukiran indah itu yang merupakan rumah dari Widya.  Di dalam, mereka di sambut hangat oleh ibu dari Widya dan dipersilahkan untuk masuk.
+”Halo Gita, lama ga keliatan. Gimana kabarnya Gita?” Ibu Widya menyambut dan menanyakan kabar dengan ramah.
+“Alhamdulillah baik tante, tante gimana kabarnya?”
+“Kabar tante baik. Kamu pasti capek kan diperjalanan tadi, istirahat gih di kamarnya Widya”
+“Baik tante, Gita izin ke kamar dulu ya tan” pamit Gita kepada ibu Widya.
+Gita dan Widya pun masuk ke dalam kamar yang sangat menggambarkan Widya perempuan yang sederhana. Didalam kamar Gita langsung merebahkan badannya ke kasur empuk milik Widya, tak lama ia pun terlelap.
+Gita POV
+(H-1 Acara Reuni)
+“Widya ayo cepat lagi bentar kita telat nih” panggil Gita saat ia melihat arlojinya yang menunjukkan pukul 18.30.
+“Iya sebentar Git, lagi nyari sepatu dulu” balas Widya.
+Gita dan Widya akan berangkat ke sekolah mereka yang dulu yaitu SMA Aksara Pramana. Mereka akan melakukan gladi bersih terlebih dahulu untuk persiapan reuni mereka di keesokan harinya.  Sesampainya di sekolah, mereka langsung menuju aula yang dimana nantinya akan menjadi tempat mereka melepas rindu. 
+Gita dan teman-teman lainnya yang menjadi pengisi acara reuni nantinya mulai melakukan gladi bersih. Mulai dari acara pembuka, acara inti, hingga acara penutup. Gita membawakan beberapa lagu favoritnya untuk acara tersebut. Tak terasa jam sudah menunjukkan pukul 20.30, Gita dan teman-temannya yang lain mengakhiri kegiatan gladi bersihnya.
+Chandra POV
+“Chandraa woyyy Chandraa!!” 
+“Apa si Geng teriak-teriak???” Chandra menutup kupingnya mendengar suara nyaring Ageng.
+“Yee khe lupa apa gimana si, kan nanti malam acara reuni kita nih” Ujar Ageng dengan alis yang menyatu.
+“Ya terus kenapa, khe ngapain cariin aku”
+“Temenin aku pergi yok cari pakaian buat acaranya”
+“Ngga ah, males kali aku nok”
+“Ih bentaran aja, aku ngga punya baju loh buat acara nanti malam nih”
+“Ishh iya iya, awas aja lama”
+“iyaa Chandraa”
+Ageng dan Chandra akhirnya pergi mencari pakaian untuk acara reuni mereka nanti malam. Meski Chandra awalnya menolak, tapi pada akhirnya Chandra menyetujuinya. Ia pikir ia juga harus mencari pakaian untuk acara nanti malam. Namun, selama perjalanan ke toko baju itu, Chandra diam tak banyak bicara entah apa yang ia pikirkan, akankah hadir sosok yang selama ini ia tunggu-tunggu, sosok yang berhasil membutanya merindu selama ini.
+“Kenapa sih khe melamun dari tadi” tanya Ageng untuk membuyarkan lamunan Chandra
+“Hah?, mana ada aku melamun. Eh udah sampai ya?” Alibi Chandra.
+“hm” Balas Ageng.
+Tak ada pembicaraan lagi diantara mereka, mereka pun turun dari mobil dan berjalan masuk ke dalam toko yang menjadi tujuan mereka saat ini. Mereka pun mulai memilih-milih pakaian yang ingin mereka gunankan nanti malam. 
+“Khe beli baju juga?” tanya Ageng kepada Chandra
+“Hm” jawab Chandra singkat.
+Entah sudah berapa lama waktu yang di habiskan untuk memilih baju, akhirnya mereka menemukan baju yang mereka inginkan. 
+“Aku pake baju ini aja dah warna coklat cocok kayanya. Khe dah dapet baju belum?” 
+“Hm, udah. Aku pilih warna biru.” Balas Chandra.
+Setelah menemukan baju yang mereka inginkan, mereka pun membayarnya dan kembali pulang untuk mempersiapkan hal-hal yang lain.
+Author POV
+(Aula SMA)
+Matahari mulai terbenam, tak terasa jam sudah menunjukkan pukul 18.50 itu artinya sebentar lagi acara reunian mereka akan di mulai. Riuh ricuh senang dan canda tawa terdengar untuk saling melepaskan rindu.
+“Halo… Selamat Malam semuanya, selamat datang di acara reuninya Aksara Pramana angkatan 2014/2015.”  sapa MC  yang memecahkan riuh ricuh mereka semuanya.
+“Bagaimana nih kabar kalian semua?”
+“BAIKK!!” jawab semua hadirin yang hadir di acara reunian tersebut.
+“Nah teman-teman sebelum masuk ke acara inti kita nih, ada persembahan lagu dari salah satu alumni kita yang memiliki suara indah nih. Yaitu Gita Rasa Kirana, kepada yang bersangkutan disilahkan” 
+“Ayo kita berikan temukan tangan yang meriah”
+Semua hadirin bertepuk tangan untuk Gita. Sementara di sisi lain ada sosok pemuda yang sedang reka ulang kenangan bersama sosok gadis yang sering melantunkan suara indahnya itu.
+“Selamat Malam semua, lagu yang akan saya bawakan untuk mengawali acara kita hari ini adalah lagu Remaja dari HIVI!, saya membawakan lagu ini agar kita mengingat kembali masa-masa remaja kita yang saya rasa lebih dominan pada cinta-cintaannya dari pada belajarnya, bener gak nihh temen-temen?” tanya Gita
+“BENERRR!!!”
+“NGGAKKK!!!”
+“Hahaha, kayaknya kita langsung mulai aja ya, selamat mendengarkan” ucap Gita yang menandakan ia akan memulai penampilannya.
+Tak lama, setelah instruksi dari Gita kepada panitia, alunan musik pun dimulai dan Gita menyanyikannya dengan sangat merdu membuat Chandra tak dapat berhenti menatap kedepan.
+......
+Indahnya kisah-kasih kita di masa remaja
+Di bawah rayu senja kita di madu bermanja
+Tiada masa-masa yang lebih indah dari masa remaja (dari masa remaja)
+Seakan dunia
+Seakan dunia
+Seakan dunia, milik berdua
+Masa remaja
+Seakan dunia, milik berdua
+(Remaja-HIVI!)
+Begitu indah Gita melantunkan suara emasnya, semuanya ikut bernyanyi Bersama Gita. 
+“Kangenkan sama dia?” Ageng yang peka
+Pemuda itu, Chandra hanya diam, tak menjawab pertanyaan dari temannya, dan hanya memandangi gadis cantik yang sedang bernyanyi itu.
+“Malah melamun” karena terlalu fokus, pertanyaan Ageng pun diacuhkan
+“Bacott” kesel Chandra
+“Dihh, marah-marah gak jelas” balas Ageng
+“Wahhh penampilan yang sangat keren yaa, benar-benar membawa Kembali rasa-rasa saat SMA dulu, hmm kira-kira masih ada yang gamon gak ya sama mantan-mantannya duluuu”
+“ADAAAA, SI CHANDRA” teriak Ageng, hanya dia saja yang berteriak sehingga semua orang menatap padanya dan Chandra.
+“Waduhhh, buat mantannya Chandra dengerin nihh, ada yang gamonin” ucap pembawa acara yang membuat semua hadirin terkekeh.
+Acara pun kembali berjalan sesuai dengan susunan acara yang sudah dibuat, ada yang menari, quiz, pemotongan tumpeng, dll.
+“Hai, lama gak ketemu ya” ucap Gita menyapa gemanya.
+“Eh aku dipanggil kesana, duluan ya bro, sukses” alibi Ageng untuk menjauh dari dua orang itu.
+“Hai, yah kayaknya pas kelulusan deh terakhir kita ketemu, kabar kamu gimana?” balas Chandra untuk sapaan Gita.
+“Iyaa... Dahh lamaa banget ternyata, kabarku ya gini-gini aja sih, baik, sehat, ceria, kayak biasaa hehe, kamu gimana?”
+“Hahaha... Aku juga kayak biasanya, Chandra yang kuat dan sehat” Chandra dengan nada sedikit angkuh.
+“Bisa aja kamu, kalo tante gimana kabarnya? Masih sehat kan, aku kangen dehh.” Gita mengingat ibunya Chandra karena semasa mereka pacaran dahulu, Gita dekat dengan ibunya Chandra, Tante Kadek.
+“Baik kokk, ayo kerumah biar ketemu sama mamah” ajak Chandra, mencari kesempatan dalam kesempitan
+“Syukurlahh, boleh tuhh, tante kapan kosongnya biar aku samperin?” Gita sangat senang mendengar kabar Tante Kadek yang baik-baik saja, terlebih lagi kalau anaknya secara tidak langsung mengizinkannya untuk bertemu dengan ibunya.
+“Besok aja gimana? Aku libur kok, biar sekalian aku jemput dan jalan-jalan” tawar Chandra.
+“Hmm boleh dehh, jam berapa ya enaknya?” tanpa pikir panjang Gita mengiyakan, lumayan lepas rindu dalam hati Gita.
+“Pagi aja gimana? Mama siang sampai malam mau pergi acara” saran Chandra agar lebih lama bersama Gita.
+“Okayy, nanti aku chat kamu ya alamat rumahnya Widya, aku nginap dirumah dia soalnya” Gita mengiyakan semua tawaran Chandra.
+“Okayy, eh kayaknya kamu di panggil deh, masih mau tampilin lagu selanjutnya kan?”
+“Oh iyaa, syukur kamu ingetinn, aku masuk dulu yaa sampai ketemu  besokk” Gita masuk sambil melambaikan tangan dan tersenyum pada Chandra yang hanya tertegun dengan cantiknya wanita yang perlahan meninggalkannya masuk kedalam ruangan itu.
+Chandra POV
+“Cantik bangett ya bro, tau gitu aku pacarin juga tuh” Ageng yang entah datang dari mana membuat lamunan Chandra buyar.
+“Aku pukul khe ya” ucapku dengan kepalan tangan yang siap kulayangkan pada Ageng
+“Canda-candaa, yaelah gitu aja marah” Ageng sedikit ngeri saat kubilang begitu karena badanku lebih besar darinya.
+Tak lama kemudian, alunan musik mulai terdengar menandakan Gita akan kembali memerdukan sekitar dengan suara emasnya.
+....
+You still look like a movie, 
+you still sound like a song
+My God this reminds me 
+of when we were young
+Let me photograph you in this light 
+in case it is the last time
+That we might 
+be exactly like we were 
+before we realised
+We were sad of getting old, 
+it made us restless
+It was just like a movie, 
+it was just like a song
+when we were young
+(When We Were Young-Adele)
+Lagu yang dibawakan Gita di penghujung acara ini adalah lagu dari Adele berjudul When We Were Young, yang membuat banyak hadirin tersentuh dengan maknanya, bahkan Chandra pun menyadarinya, ia tau makna lagu ini.
+Gita POV
+(Rumah Widya)
+“Iyaa, nanti masuk di gang ketiga terus lurus aja sampai ketemu rumah warna ungu” Instruksiku pada Chandra yang sedang dalam perjalanan menjemputku.
+Sebenarnya aku sudah mengirimkan alamat rumah Widya padanya tetapi entah kenapa ia diarahkan menuju gang buntu, ternyata tidak selamanya harus berharap pada teknologi. Setelah 1 jam Chandra keliling mencari jalan lain, ia akhirnya menelponku.
+“Ohh okay, ini sudah kelihatan rumahnya” sungguh sangat gesit Chandra mengemudikan mobilnya.
+“Niceee, ini aku keluarr yaa” ucapku dan langsung mematikan panggilan itu.
+“Widd, aku pergi dulu yaaa” pamitku pada Widya.
+“Iyaa, jangan pulang kalau belum balikan yaa” balas Widya sambil tercengir mengejekku.
+“Gabakalann pulang dong kalo gituu, dah ahh aku pergi, byee” gurauku menimpal ejekannya dan langsung keluar dari rumah itu.
+Sesampainya aku diluar, Chandra sudah menunggu diluar mobil sembari tersenyum kepadaku. Sungguh sangat indah pemandangan didepanku ini, andai saat ini 
+aku berani pasti aku akan langsung mengeluarkan handphone ku dan memotret sosok lelaki didepanku ini.
+“Haii, sorry lama tadi pamitan dulu sama Widya, biasa agak rempong dikit hehe” kuberikan alasan yang sesungguhnya karena aku tidak mau berbohong untuk hal-hal kecil.
+“Nggak kok, baru juga aku keluar dari mobil, kita mau langsung ketemu mamah atau sarapan dulu?” tanya Chandra. 
+Aku sedikit membodohi diriku karena lupa membeli buah tangan tadi malam. Terlebih lagi aku lupa sarapan, kan bisa malu kalau perut ini merengek meminta asupan saat aku sedang bersama Tante Kadek dan Chandra
+“Hmm makan dulu deh, aku agak lapar sihh, sama habis itu beli buah tangan buat Tante Kadek dulu, gapapa kan?” pintaku tanpa tau malu.
+“Iyaa gapapa, ayo masuk biar kita jalan sekarang” Chandra sambil terkekeh mengiyakan dan membukakan pintu mobil untukku.
+“Thank you Ndraa” terima kasihku atas perlakuan Chandra yang manis.
+Author POV
+(Mobil Chandra)
+Perjalanan pun terasa heningnya, canggung yang dirasakan kedua insan itu melingkupi atmosfer disekitar mereka.
+“Kamu sekarang kerja dimana?” tanya Gita untuk menghilangkan canggung disekitar mereka.
+“Aku kerja di perusahaan arsitek, kalo kamu?” tanya Chandra
+“Ohh, bener juga sih kan kamu pernah bilang dulu kamu mau jadi arsitek, gambaran kamu juga bagus-bagus. Sekarang aku kerja di kantor jasa akuntansi” jawab Gita
+“Wahh keren tuhh, kayaknya asik deh kerjaan kamu” Chandra memberikan pernyataan yang langsung dijawab oleh Gita.
+“Yahh, dibilang asik sih gak juga yaa, kebanyakan stressnya aku tuhh, kerjaan kamu lebih asik deh kayaknya” begitulah jawaban Gita.
+“Sama kayak kamu lah jawabanku, banyakan stressnya, klien biasanya banyak maunya” jawab Chandra sambil terkekeh.
+Akhirnya selama diperjalanan itu mereka membahas tentang kerjaan mereka, hingga tibalah mereka disatu rumah makan yang sering mereka kunjungi saat pacaran dahulu.
+“Ehh ini rumah makan Ibu Mini gak sihh??” tanya Gita yang langsung mengtahui lokasinya saat itu.
+“Iyaa, aku gak tau kamu mau makan apa, kalau ditanya juga jawabnya pasti terserah jadi aku bawa kesini aja, biar kamu bisa makan Ayam Betutu kesukaan kamu” jawab Chandra yang membuat Gita sedikit luluh.
+“Ihh kamu tau aja aku lagi pengen ayam ini, di Surabaya aku coba makan Ayam Betutu juga tapi gak ada yang sama kayak disini” Gita tampaknya sangat berterimakasih karena sudah dibawa ke tempat kesukaannya sampai-sampai ia sedikit curhat akan apa yang ia rasakan di Surabaya.
+“Hahaha… Iya dongg, Chandra gituloh” Chandra menjawab itu dengan rasa bangga dihatinya seperti memenangkan hadiah utama di sebuah event.
+“Dah yok masuk, dah laper kann” ajak Chandra agar mereka cepat masuk dan menyantap makanan yang mereka inginkan.
+“Hehee, ayokkk” Gita pun secara tidak sadar langsung menarik tangan Chandra yang membuat pemuda itu sontak terkaget dan diakhiri dengan tersenyum.
+Author POV
+(Toko Kue)
+“Gitt ayoo, sebelum kesiangann” ajak Chandra.
+Masalahnya, sudah hampir sejam mereka berada di toko kue itu. 
+“Ihh sabar Ndraa, aku bingungg kasih Tante apa, ini atau yang ini Ndraa?” tanya Gita sambil menunjuk kue lapis dan kue nastar.
+“Yang ini aja deh Gitt, mamah kayaknya suka yang ini” jawab Chandra menunjuk Kue Lapis.
+“Yaudah, mbak saya ambil kue lapisnya 2 box ya” ucap Gita kepada salah satu staff di toko itu.
+“Aku bayar dulu ya, kamu kalo mau tunggu diluar gapapaa” ucap Gita selagi berjalan menuju meja kasir.
+Chandra pun keluar menuju mobil dan langsung menyalakan mesin serta ac agar saat Gita masuk ia tidak kepanasan.
+Sesampainya dimobil Gita langsung mengarahkan ac mobil ke arah dirinya.
+“Duhh panas bangett yaa, aku arahin acnya ke aku gapapa ya?” ijin Gita walaupun ia sudah melakukannya.
+“Iyaa, terserah kamu deh mau ngapainn, gapapa kokk” balas Chandra sedikit menggoda Gita.
+Gita terkekeh mendengar tuturan kata Chandra, ia jadi ingat kalau Chandra dulu suka mengucapkan sesuatu yang manis padanya.
+Setelah itu, Chandra pun mulai mengemudikan mobilnya menuju kediaman mamahnya. Selama diperjalanan pun mereka tidak canggung lagi melainkan saling bercanda gurau.
+“Eh tapi iya tauu, masa waktu aku pergi ke kebun binatang ada panda tapi ternyata itu anjing yang di cat” kata Gita berdasarkan pengalamannya berkunjung ke kebun binatang waktu itu.
+“Dihh aneh-aneh ajaa, padahal kalo gak mampu dapat panda gak usah dipaksain gak sih?” Chandra membalasnya dengan sedikit kesal karena ia tidak suka sesuatu yang bersifat dipaksakan.
+“Betul-betul, tapi yaudahlah biarkan aja”
+“Ehh tapi kamu tau gak, masa ya si itu…”
+Yap, perjalanan mereka pun berlanjut dengan pergibahan yang dipimpin oleh wanita Surabaya itu.
+(Rumah Tante Kadek)
+“Wahh, rumah kamu gak berubah yaa, masih fresh bangett” kagum Gita sembari tersenyum dan menarik nafas dalam-dalam.
+Mamahku memang seorang yang suka sekali dengan tanaman, tak heran jika Gita berkata bahwa rumahku terlihat fresh hanya dengan menghirup udara disekitarnya saja.
+Aku tersenyum memandanginya “Iya dong, mamah masih suka ngerawat pekarangannya, bisa-bisa pekarangan ini yang jadi anaknya, bukan aku hahaha…”
+“Aku setuju sihh, kalo aku jadi Tante Kadek juga bakalan pilih ngerawat pekarangan dari pada anak tengil kayak kamu” gurau Gita yang membuatku memasang wajah sok sedih.
+Dengan nada sedikit merengek aku berkata “Kok gitu sihh, padahal aku anak yang baik hati dan tidak sombong”  membuat Gita langsung memasang ekspresi geli dan mengernyit.
+“Ihhh, gelii bangetttt, Chandra diam gakkk” Gita berkata sambil mengelus kedua lengannya menandakan ia geli.
+“Hahahaa….” Gelak tawaku ketika melihat dia.
+“Chandraa??” suara perempuan terdengar dari arah pintu rumah.
+“Mahh” sapaku langsung menghampiri Mamah, tidak lupa kuajak Gita juga.
+“Halo tantee...” Gita juga menyapa Mamah dengan tersenyum manis
+Mamah tampak kebingungan tetapi langsung ingat siapa sosok perempuan yang kubawa ini.
+“Astagaa, Gita yaaa? Ya ampun sayangg, lama banget gak ketemu” ucap mama langsung memeluk Gita.
+Sambil membalas pelukan mamah, Gita menanyakan kabar mamah “Iya tantee, kangen bangett sama Tantee, apa kabar tann?”
+“Baikk sayangg, duhh kamu makin cantik aja” puji mamahku dan kulihat Gita lansung merona malu.
+“Yukk masuk sayangg, tante ada buat jajan didalamm” sambil mamah tarik Gita masuk.
+Aku hanya bisa menghela nafas, sungguh bagaimana bisa anaknya ditinggalkan diluar dan anak orang lain diajak masuk, tapi selain itu aku tetap senang melihat pemandangan didepanku. Tanpa lama-lama aku juga masuk kedalam dan melihat rumah yang tetap bersih, entah bagaimana caranya, sepertinya mamahku membersihkan rumah ini setiap hari. Mungkin aku harus lebih sering menginap dirumah ini dari pada di apartemenku.
+Sesampai didalam aku melihat mamah dan Gita sudah saling bercengkerama bagai sudah sedekat ibu dan anak kandung.
+Sambil duduk di sofa aku menyela obrolan mereka “Akrab bener diliat-liat” 
+“Iya dongg, kan udah lama gak ketemuu” sahut mamah
+“Oh Iya tan, ini aku ada beli kue buat tante, semoga suka yaa” Gita menyerahkan tas berisi Kue Lapis yang dibelinya tadi.
+“Duhh kamu repot-repot, tante kan jadi enak, eh ngga enak maksudnya” mamahku sedikit bergurau dan membuat Gita juga terkekeh, padahal tidak ada yang lucu.
+Obrolan kembali berlanjut, entah apa saja yang dibahas aku hanya mendengarkan dengan sesekali kutimpal juga. Tak terasa jam sudah menunjukkan pukul 12.30 yang menandakan bahwa mamah harus bersiap-siap karena akan pergi ke suatu acara. 
+“Ehh tante siap-siap dulu ya sayang, mau pergi acara dulu. Maaf tante gak bisa suguhin apa-apa” ucap mamahku padahal dimeja depan kami sudah ada berbagai macam jajan yang mamah buat dan minuman. 
+Gita langsung mengiyakan “Iya tantee, makasihh banyak ya tantee maaf ngerepotin”
+“Gak ngerepotin kok sayang, sering-sering datang kesini sama Chandra yaa, kalau bisa statusnya jangan hanya temen aja pas datang lagi, hahaha….” Ucap mamahku.
+KANNNN.... Aku paling gak suka kalo mamahku sudah begini, kenapa sih orang tua di Indonesia ceplas-ceplos banget. Sekarang Gita hanya bisa tersenyum, dan  sempat saling tatap denganku. Aku hanya bisa terkekeh dan menimpali omongan mamahku dengan sedikit kesal.
+“Mamah apasihh” kesalku
+“Kan Cuma bercandaa, yakan Gita?” pertanyaan yang hanya dijawab senyuman kecil dari Gita.
+“Kalau gitu kita sekalian pamit aja mahh, mau lanjut ketempat lain” aku ingin segera pergi dari sini, takutnya makin kesana-kesini nanti.
+“Yaudah, kalian hati-hati yaa” sepertinya mamahku juga buru-buru karena ia langsung mengiyakan omonganku.
+“Pamit dulu ya tante” Gita menyalim tangan mamahku
+“Pergi dulu mahh” aku mencium pipi mamahku.
+Setelah itu mamah mengantarkan kami ke depan pintu rumah dan kami langsung menaiki mobil. Aku sempatkan diri untuk mengklakson dahulu sebelum keluar dari halaman rumah itu.
+Gita POV
+(Didalam Mobil)
+Duhh siall, canggung banget sihh, bahas apa ya biar gak canggung, oh aku tau…
+“Kita mau kemana Ndraa? tadi kamu bilang mau pergi ke suatu tempat” tanyaku karena memang kami tidak ada plan mau pergi kemana-mana selain kerumah Tante Kadek.
+“Gak tau sih, aku tadi bilang gitu supaya cepat keluar daripada mamah makin ngelantur omongannya” Chandra menjawab dengan sangat realistis yang membuatku menganggukkan kepala tanda setuju.
+“Tapi bosan juga sih, mau ke mall gak? Nonton, makan, atau main kalo kamu mau” lanjut Chandra
+Aku sedikit menimbang-nimbang namun saya kalau sudah liburan dan diam dirumah saja “Boleh deh, bosan juga dirumah”
+“Okay kita ke Mall yaa” Chandra tersenyum melihatku dan aku juga tersenyum melihatnya. Debaran jantungku sedikit lebih kencang ketika itu terjadi, aku jadi takut akan terulang kembali.
+Author POV
+(Mall)
+Sesampainya di mall, Gita dan Chandra menjelajah semua toko yang terdapat didalamnya, mereka makan, nonton film, dan bermain permainan. Semuanya dilakukan seperti mengenang masa pacaran mereka dahulu. Sampai-sampai mereka tidak ingat waktu yang dimana sekarang menunjukkan pukul 17.30.
+“Sudah jam segini, mau ke pantai gak? Sunsetan enak nih kayaknya” ajak Chandra 
+“Wihh asikk tuh, ayokkk” girang Gita.
+Selanjutnya mereka berdua keluar dari mall dan bergegas menuju pantai terdekat. 
+Sesampainya di pantai, dua insan itu langsung mencari spot terbaik untuk menikmati matahari terbenam. Setelah mendapat tempat dan duduk, barulah percakapan mereka dimulai.
+Chandra menutup matanya “Ahh, segar banget ya anginnya”
+Gita yang melihat Chandra menutup matanya juga ikutan untuk menikmati seperti cara Chandra “iyaa seger bangett, sudah lama aku nggak menikmati duniawi kayak gini”
+Chandra membuka matanya dan menatap gadis disampingnya ini, sangat cantik batinnya. Ia mengingat masa-masa akhir SMA, saat ia diputuskan oleh Gita hanya karena mereka harus fokus dalam belajar dan juga mereka berbeda, keyakinan berbeda dan mereka tau bahwa itu sulit untuk disatukan. Alasan yang terdengar biasa saja namun siapapun yang mengalaminya pasti merasakan sakit yang dalam. Banyak orang yang mengalaminya dan banyak juga yang merelakan kepercayaannya demi sebuah cinta, Chandra dan Gita bukan orang yang seperti itu, mereka mengingat siapa yang selalu menjadi tempatnya menangis, meminta, dan memohon, mereka bukanlah kacang yang lupa kulitnya, mereka akan mendahulukan kepercayaannya dari pada duniawi.
+“Gitt, andai aja kita seagama ya, pasti sehari-hari kita bisa nikmatin senja, main bareng, makan bareng” ucap Chandra dengan menatap Gita.
+Gita membuka matanya dan menatap Chandra “Udahlah Ndraa gak usah dibahas lagi, nanti aku gamon nih, hahhaa…” Sempat-sempatnya Gita bercanda disaat seperti ini.
+“Hahaha, bisa aja kamu, tapi sekarang kita fine-fine aja kan ya” Chandra memastikan.
+“Iya dongg bestiee, hahaha” rasanya Gita sudah berdamai dengan perasaannya kepada Chandra dan seharusnya Chandra pun begitu.
+Gita POV
+(Bandara)
+“Hikss Gitaaa, kenapa cepett bangett baliknyaa” aku mengusap-usap punggung Widya untuk menenangkan sahabatku ini.
+Aku menanggapinya dengan sedikit berlinang air mata “Cutikuu udah habiss Widd, ntar kalo liburan aku balik lagi yaa” 
+Sejujurnya aku juga sedikit tidak rela untuk harus kembali ke realita kehidupanku, aku masih ingin berlibur di Bali, bersenang-senang dan memanjakan diriku dengan berbagai kesenangan yang tentunya tidak bersifat haram.
+“Beneran balik lagi kan?” suara berat ini terdengar sangat familiar.
+Aku langsung melepaskan pelukan Widya dan membalik badanku, benar saja, saat ini Chandra sudah ada didepanku dengan memegang sebuah kotak kecil dan paper bag yang aku yakini isinya adalah oleh-oleh khas Bali.
+“Kok kamu bisa ada disinii Ndraa?” tanyaku heran.
+“Kan kamu yang kasih tau kalo mau balik hari ini, jadi aku samperin aja sekalian antar titipan mamah” jawab Chandra sambil menyerahkan tote bag oleh-oleh itu.
+“Astagaa, tante sampai repot-repot ginii, sampaikan  salamku yaa, terima kasih banyakk tantee” kuminta Chandra menyampaikan salamku sebab kutahu Tante Kadek tidak ikut karena berbagai acara tau kesibukan lainnya, biasa orang tua ada saja acaranya.
+“Iyaa nanti aku sampaikan, sama ini oleh-oleh dari aku” kata Chandra sambil memberikan kotak kecil yang kulihat tadi.
+“Apa nih Ndraa?” aku heran karena kotak itu sangat kecil.
+“Buka aja nanti dipesawat” jawab Chandra
+“Good Morning, ladies and gentleman. This is a pre-boarding announcement for passengers of Selamat Airlines on flight number 127B to Surabaya, we would like to…..” terdengar pengumuman keberangkatan pesawatku sebentar lagi
+“Itu pesawat kamu kan?” tanya Chandra
+“Iyaa, aku masuk dulu yaa, makasih banyak Chandraa” seruku pada Chandra yang dibalas dengan anggukan dari pemuda itu.
+“Ehemm ehemm” aku tau itu Widya.
+“Makasih banyak ya sayanggkuu, aku pulang duluu” ucapku sambil memeluk Widya lagi
+“Janji yaaa Gitt” 
+“Iyaaa Widd”
+Setelah berpelukan dengan Widya, aku langsung mengambil barang-barangku dan melanjutkan dengan check in dan lain-lainnya.
+Pesawatku sudah terbang, saat ini aku membuka kotak yang diberikan Chandra. Saat kubuka ternyata isinya adalah sebuah Memory Card, sungguh ini membuatku penasaran apa isi dari benda tersebut. Aku pun mendapatkan ide, Kuambil jarum pentul yang tertancap di hijabku dan kubuka bagian hpku untuk menaruh memory card tersebut di SD Card Slot yang ada pada hpku. Setelah itu aku melihat apa isi dari benda kecil itu. Air mataku mulai berlinang melihat isi benda itu, sebuah folder berjudul ‘GC Memories’ yang berisikan foto, video, dan segala kenangan antara kami berdua tersimpan di dalam folder itu. Jujur tangisanku bukan karena sedih tapi karena aku bangga akan diriku yang berani mengambil keputusan besar sebelum keadaan semakin parah, dan bangga pada kami berdua yang berhasil menahan perasaan satu sama lain hingga bertemu insan yang dapat menggantikan gema yang berbayang dalam hidup kami.
+)", "26-12-2019");
 
   tambahCerpen(4, "Nala dan Mimpi Buruk", "Lala", "Fantasi", R"(Nala adalah seorang gadis berusia 12 tahun, berparas cantik dan memiliki lesung pipit
 dikedua pipinya ketika ia tersenyum. Namun sayang, Nala memiliki sifat yang tidak
@@ -509,6 +829,7 @@ void menuHistory(int indexAkun)
 Belum ada riwayat cerpen yang dibuka.)"
            << COLOR_RESET;
       cout << "\n  Tekan Enter untuk kembali...";
+      showKursor();
       cin.ignore();
       cin.get();
       return;
@@ -525,6 +846,7 @@ Belum ada riwayat cerpen yang dibuka.)"
     int selected = 0;
     int total = items.size();
 
+    hideKursor();
     while (true) {
       clearScreen();
       tampilHeader("HISTORY");
@@ -551,7 +873,8 @@ Belum ada riwayat cerpen yang dibuka.)"
           selected = (selected + 1) % total;
         }
       } else if (ch == 48) {
-        menuUtama(indexAkun);   // kembali ke menu utama
+        showKursor();
+        return;   // kembali ke menu utama
       }else if (ch == 13) { // Enter(kk)
         // Pilih item (selec kk)
         history *h = items[selected];
@@ -559,18 +882,21 @@ Belum ada riwayat cerpen yang dibuka.)"
         if (c == nullptr) {
           cout << COLOR_RED << "\n  Cerpen tidak ditemukan!\n" << COLOR_RESET;
           cout << "  Tekan Enter...";
+          showKursor();
           cin.ignore();
           cin.get();
           break; // kembali ke menu history? >_<
         }
         // Tampilkan 3 pilihan
     vector<string> menu = {
-      "[1] Buka profile cerita",
-      "[2] Baca page yang dibaca terakhir kali (halaman " + to_string(h->halamanTerakhir) + ")",
-      "[3] Cancel"
+      "Buka profile cerita",
+      "Baca page yang dibaca terakhir kali (halaman " + to_string(h->halamanTerakhir) + ")",
+      "Cancel"
     };
     int selected = 0;
-    while (true)
+    bool selesai = false;
+    hideKursor();
+    while (!selesai)
     {
         clearScreen();
         tampilHeader("PILIHAN");
@@ -601,9 +927,9 @@ Belum ada riwayat cerpen yang dibuka.)"
             int choice = -result - 1;
             switch (choice)
             {
-            case 0: cerpenInfo(indexAkun, c); break;
-            case 1: tampilIsiCerpen(indexAkun, c, h->halamanTerakhir); break;
-            case 2: menuHistory(indexAkun); break;
+            case 0: showKursor(); cerpenInfo(indexAkun, c); hideKursor(); selesai = true; break;
+            case 1: showKursor(); tampilIsiCerpen(indexAkun, c, h->halamanTerakhir); hideKursor(); selesai = true; break;
+            case 2: selesai = true; break;
             }
         }
         else
@@ -692,6 +1018,7 @@ void menuFavorit(int indexAkun)
       cout << COLOR_GRAY << "\n  Belum ada cerpen favorit.\n"
            << COLOR_RESET;
       cout << "\n  Tekan Enter untuk kembali...";
+      showKursor();
       cin.ignore();
       cin.get();
       return;
@@ -709,6 +1036,7 @@ void menuFavorit(int indexAkun)
         int selected = 0;
         int total = items.size();
 
+        hideKursor();
         while (true)
         {
             clearScreen();
@@ -752,11 +1080,15 @@ void menuFavorit(int indexAkun)
                 Bookmark *bm = items[selected];
                 Cerpen *c = cariCerpenByJudul(bm->judul);
                 if (c != nullptr)
+                {
+                    showKursor();
                     cerpenInfo(indexAkun, c); // buka profile cerpen
+                }
                 else
                 {
                     cout << COLOR_RED << "\n  Cerpen tidak ditemukan!\n" << COLOR_RESET;
                     cout << "  Tekan Enter...";
+                    showKursor();
                     cin.ignore();
                     cin.get();
                 }
@@ -764,6 +1096,7 @@ void menuFavorit(int indexAkun)
             }
             else if (ch == '0') // Kembali ke menu utama
             {
+                showKursor();
                 return;
             }
         }
@@ -796,6 +1129,7 @@ void tambahKomentar(Cerpen *c, int rating, const string &nama, const string &isi
 
 void menuRatingKomentar(int indexAkun, Cerpen *c)
 {
+  showKursor();
   clearScreen();
   tampilHeader("RATING & KOMENTAR");
   cout << COLOR_WHITE << "\n  Cerpen : " << COLOR_RESET << c->judul << "\n";
@@ -833,6 +1167,7 @@ void menuRatingKomentar(int indexAkun, Cerpen *c)
 
 void tampilKomentar(int indexAkun, Cerpen *c)
 {
+  showKursor();
   clearScreen();
   tampilHeader("KOMENTAR");
   cout << COLOR_WHITE << "\n  Cerpen : " << COLOR_RESET << c->judul << "\n";
@@ -909,6 +1244,7 @@ void tampilLayarBuka(Cerpen *c)
 
   cout << "\n  " << COLOR_GRAY << "Tekan Enter untuk mulai membaca..."
        << COLOR_RESET;
+  showKursor();
   cin.ignore(1000, '\n');
   cin.get();
 }
@@ -945,77 +1281,73 @@ vector<string> pecahBaris(const string &teks, int lebarMaks)
 
 void tampilIsiCerpen(int indexAkun, Cerpen *c, int halamanAwal)
 {
-    tampilLayarBuka(c);
+  tampilLayarBuka(c);
 
-    const int BARIS_PER_HALAMAN = 20;
-    vector<string> baris = pecahBaris(c->isi, 68);
-    int totalHalaman = ((int)baris.size() + BARIS_PER_HALAMAN - 1) / BARIS_PER_HALAMAN;
-    if (totalHalaman == 0) totalHalaman = 1;
-    int halSaat = halamanAwal;
-    if (halSaat < 1) halSaat = 1;
-    if (halSaat > totalHalaman) halSaat = totalHalaman;
+  const int BARIS_PER_HALAMAN = 20;
+  vector<string> baris = pecahBaris(c->isi, 68);
+  int totalHalaman = ((int)baris.size() + BARIS_PER_HALAMAN - 1) / BARIS_PER_HALAMAN;
+  if (totalHalaman == 0) totalHalaman = 1;
+  int halSaat = halamanAwal;
+  if (halSaat < 1) halSaat = 1;
+  if (halSaat > totalHalaman) halSaat = totalHalaman;
 
-    while (true) {
-        clearScreen();
-        tampilHeader(c->judul);
-        cout << COLOR_GRAY << "  Halaman " << halSaat << " / " << totalHalaman
-             << COLOR_RESET << "\n\n";
-
-        int mulai = (halSaat - 1) * BARIS_PER_HALAMAN;
-        int akhir = mulai + BARIS_PER_HALAMAN;
-        if (akhir > (int)baris.size()) akhir = (int)baris.size();
-
-        for (int i = mulai; i < akhir; i++)
-            cout << "  " << baris[i] << "\n";
-
-        cout << COLOR_CYAN << "\n  ------------------------------------------\n"
-             << COLOR_RESET;
-                // --- Bangun menu dinamis ---
-        cout << "\033[s";   // simpan posisi
-
-        // Bangun menu dinamis
-        vector<string> menuItems;
-        vector<int> aksiKode;   // 0: prev, 1: next, 2: komentar, 3: selesai
-
-        if (halSaat > 1) {
-            menuItems.push_back("[<-] Halaman Sebelumnya");
+  vector<string> menuItems;
+  vector<int> aksiKode;   // 0: prev, 1: next, 2: komentar, 3: selesai
+  int selected = 0;
+    
+  auto bangunMenu = [&]() {
+      menuItems.clear();
+      aksiKode.clear();
+      if (halSaat > 1) {
+            menuItems.push_back("[<-]Halaman Sebelumnya");
             aksiKode.push_back(0);
         }
-        if (halSaat < totalHalaman) {
-            menuItems.push_back("[->] Halaman Berikutnya");
+      if (halSaat < totalHalaman) {
+            menuItems.push_back("[->]Halaman Berikutnya");
             aksiKode.push_back(1);
         }
-        menuItems.push_back("[K] Komentar");
-        aksiKode.push_back(2);
-        menuItems.push_back("[0] Selesai Baca");
-        aksiKode.push_back(3);
+      menuItems.push_back("Komentar");
+      aksiKode.push_back(2);
+      menuItems.push_back("Selesai Baca");
+       aksiKode.push_back(3);
+      if (selected >= (int)menuItems.size()) selected = 0;
+    };
+ 
+    bangunMenu();
+    hideKursor();
 
-        int selected = 0;
-        if (selected >= (int)menuItems.size()) selected = 0;
-
-        while (true) {
-            // Kembali ke posisi setelah garis pemisah, hapus area menu lama
-            cout << "\033[u";   // restore posisi
-            cout << "\033[J";   // hapus dari posisi kursor sampai bawah
-
-            // Cetak menu dengan highlight
+    while (true) {
+        {
+            clearScreen();
+            tampilHeader(c->judul);
+            cout << COLOR_GRAY << "  Halaman " << halSaat << " / " << totalHalaman
+                 << COLOR_RESET << "\n\n";
+ 
+            int mulai = (halSaat - 1) * BARIS_PER_HALAMAN;
+            int akhir = mulai + BARIS_PER_HALAMAN;
+            if (akhir > (int)baris.size()) akhir = (int)baris.size();
+ 
+            for (int i = mulai; i < akhir; i++)
+                cout << "  " << baris[i] << "\n";
+ 
+            cout << COLOR_CYAN << "\n  ------------------------------------------\n"
+                 << COLOR_RESET;
+ 
             for (int i = 0; i < (int)menuItems.size(); i++) {
                 string text = menuItems[i];
                 if (i == selected) {
                     cout << COLOR_BLUE << " > " << text << COLOR_RESET << "\n";
                 } else {
-                    // Warna merah khusus untuk opsi "Selesai" (selalu di akhir)
                     if (i == (int)menuItems.size() - 1)
                         cout << COLOR_RED << "   " << text << COLOR_RESET << "\n";
                     else
                         cout << COLOR_YELLOW << "   " << text << COLOR_RESET << "\n";
                 }
             }
-
-            // Baca input tombol (manual)
-            int ch = getch();   // gunakan _getch() jika di Windows
-
-            if (ch == 224) {    // tombol panah (kode escape untuk Windows)
+ 
+            int ch = getch();
+ 
+            if (ch == 224) { 
                 ch = getch();
                 switch (ch) {
                     case 72:   // panah atas
@@ -1036,27 +1368,30 @@ void tampilIsiCerpen(int indexAkun, Cerpen *c, int halamanAwal)
                 switch (aksi) {
                     case 0:   // Halaman Sebelumnya
                         if (halSaat > 1) halSaat--;
+                        updateHalamanHistory(indexAkun, c->judul, halSaat);
                         break;
                     case 1:   // Halaman Berikutnya
                         if (halSaat < totalHalaman) halSaat++;
+                        updateHalamanHistory(indexAkun, c->judul, halSaat);
                         break;
                     case 2:   // Komentar
+                        showKursor();
                         tampilKomentar(indexAkun, c);
+                        hideKursor();
                         break;
                     case 3:   // Selesai Baca
+                        updateHalamanHistory(indexAkun, c->judul, halSaat);
+                        showKursor();
                         return;   // keluar dari fungsi
                 }
-                // Setelah aksi selain selesai, keluar dari loop menu agar halaman direfresh
-                break;
+                // Bangun ulang menu karena item nav bisa berubah (misal
+                // "Halaman Sebelumnya" muncul/hilang) tergantung halaman baru
+                bangunMenu();
             }
             else {
-                // Tombol lain (misal ESC) diabaikan, lanjutkan loop
                 continue;
             }
-        } // end while menu
-
-        // Setelah break dari loop menu, lanjutkan ke iterasi berikutnya dari loop halaman
-        continue;
+        }
     }
 }
 
@@ -1087,21 +1422,22 @@ void cerpenInfo(int indexAkun, Cerpen *c)
     bool favorit = cariBookmark(indexAkun, c->judul) != nullptr;
     vector<string> menuItems;
     vector<int> aksiKode;
-    menuItems.push_back("[1] Baca Cerpen");
+    menuItems.push_back("Baca Cerpen");
     aksiKode.push_back(1);
 
     if (favorit) {
-        menuItems.push_back("[2] Hapus dari Favorit");
+        menuItems.push_back("Hapus dari Favorit");
     } else {
-        menuItems.push_back("[2] Tambah ke Favorit");
+        menuItems.push_back("Tambah ke Favorit");
     }
     aksiKode.push_back(2);
 
-    menuItems.push_back("[0] Kembali");
+    menuItems.push_back("Kembali");
     aksiKode.push_back(0);
 
     int selected = 0;
 
+    hideKursor();
     while (true) {
         // modif di sini biar atas ga ilang pas pakai kusor
         // Ganti clearScreen() dan cetak ulang judul dengan restore posisi + hapus area menu
@@ -1128,15 +1464,20 @@ void cerpenInfo(int indexAkun, Cerpen *c)
             int aksi = aksiKode[indeksTerpilih];
             switch (aksi) {
                 case 1: {
+                    showKursor();
                     tambahHistory(indexAkun, c->judul, c->id);
                     tampilIsiCerpen(indexAkun, c);
+                    hideKursor();
                     break;
                 }
                 case 2: {
+                    showKursor();
                     toggleBookmark(indexAkun, c->judul);
+                    hideKursor();
                     break;
                 }
                 case 0: {
+                    showKursor();
                     return;
                 }
             }
@@ -1151,6 +1492,7 @@ void cerpenInfo(int indexAkun, Cerpen *c)
 
 void menuListCerpen(int indexAkun)
 {
+  showKursor();
   while (true)
   {
     clearScreen();
@@ -1192,6 +1534,7 @@ void menuListCerpen(int indexAkun)
 
 void menuTambahCerpen(int indexAkun)
 {
+  showKursor();
   clearScreen();
   tampilHeader("TAMBAH CERPEN");
 
@@ -1247,6 +1590,7 @@ void menuUtama(int indexAkun)
 
     int selected = 0;
 
+    hideKursor();
     while (true)
     {
         clearScreen();
@@ -1290,7 +1634,7 @@ void menuUtama(int indexAkun)
             case 1: menuHistory(indexAkun); break;
             case 2: menuFavorit(indexAkun); break;
             case 3: menuTambahCerpen(indexAkun); break;
-            case 4: return;
+            case 4: showKursor(); return;
             }
         }
         else
@@ -1304,6 +1648,7 @@ void menuUtama(int indexAkun)
 
 void menuRegister()
 {
+  showKursor();
   clearScreen();
   tampilHeader("REGISTER");
 
@@ -1363,6 +1708,7 @@ void menuRegister()
 
 void menuLogin()
 {
+  showKursor();
   clearScreen();
   tampilHeader("LOGIN");
 
@@ -1462,6 +1808,7 @@ int main()
       "[3] keluar"
     };
     int selected = 0;
+    hideKursor();
     while (true)
     {
       clearScreen();
@@ -1500,6 +1847,7 @@ int main()
             case 1: menuRegister();
                     break;
             case 2: bersihkanMemori();
+            showKursor();
             clearScreen();
             cout << COLOR_GREEN << "  Sampai jumpa!\n\n" << COLOR_RESET;
             return 0;
