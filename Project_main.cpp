@@ -3,6 +3,7 @@
 #include <ctime>
 #include <conio.h>
 #include <vector>
+#include <list>
 using namespace std;
 
 #define COLOR_RESET "\033[0m"
@@ -23,7 +24,6 @@ struct Komentar
   string nama;
   string isi;
   string waktu;
-  Komentar *next;
 };
 
 struct Cerpen
@@ -34,15 +34,13 @@ struct Cerpen
   string genre;
   string isi;
   string waktu;
-  Cerpen *next;
-  Komentar *komentarHead;
+  list<Komentar> komentarList;
 };
 
 struct history
 {
   string judul;
   string waktu;
-  history *next;
   int idHistory;
   int idCerpen;
   int halamanTerakhir;
@@ -51,7 +49,6 @@ struct history
 struct Bookmark
 {
   string judul;
-  Bookmark *next;
   int idBookmark;
 };
 
@@ -59,8 +56,8 @@ struct akun
 {
   string nama;
   string password;
-  history *riwayat;
-  Bookmark *bookmark;
+  list<history> riwayat;
+  list<Bookmark> bookmark;
   int jumlahRiwayat;
   int jumlahBookmark;
 };
@@ -71,7 +68,7 @@ const int MAX_AKUN = 100;
 akun daftarAkun[MAX_AKUN];
 int jumlahAkun = 0;
 
-Cerpen *headCerpen = nullptr;
+list<Cerpen> daftarCerpen;
 int jumlahCerpen = 0;
 
 // ─── Helper ──────────────────────────────────────────────────
@@ -190,24 +187,20 @@ int cariAkun(const string &nama, const string &password)
 
 Cerpen *cariCerpenById(int id)
 {
-  Cerpen *cur = headCerpen;
-  while (cur != nullptr)
+  for (auto &c : daftarCerpen)
   {
-    if (cur->id == id)
-      return cur;
-    cur = cur->next;
+    if (c.id == id)
+      return &c;
   }
   return nullptr;
 }
 
 Cerpen *cariCerpenByJudul(const string &judul)
 {
-  Cerpen *cur = headCerpen;
-  while (cur != nullptr)
+  for (auto &c : daftarCerpen)
   {
-    if (cur->judul == judul)
-      return cur;
-    cur = cur->next;
+    if (c.judul == judul)
+      return &c;
   }
   return nullptr;
 }
@@ -222,35 +215,29 @@ string buatPreview(const string &isi, int maxLen = 100)
 
 double hitungRatingRata(Cerpen *c)
 {
-  if (c->komentarHead == nullptr)
+  if (c->komentarList.empty())
     return 0;
 
   int total = 0, jumlah = 0;
-  Komentar *cur = c->komentarHead;
-  while (cur != nullptr)
+  for (const auto &kom : c->komentarList)
   {
-    total += cur->rating;
+    total += kom.rating;
     jumlah++;
-    cur = cur->next;
   }
   return (double)total / jumlah;
 }
 
 void tambahCerpen(int id, string judul, string penulis, string genre, string isi, string waktu)
 {
-  Cerpen *baru = new Cerpen{id, judul, penulis, genre, isi, waktu, nullptr, nullptr};
-
-  if (headCerpen == nullptr)
-  {
-    headCerpen = baru;
-  }
-  else
-  {
-    Cerpen *cur = headCerpen;
-    while (cur->next != nullptr)
-      cur = cur->next;
-    cur->next = baru;
-  }
+  Cerpen baru;
+  baru.id = id;
+  baru.judul = judul;
+  baru.penulis = penulis;
+  baru.genre = genre;
+  baru.isi = isi;
+  baru.waktu = waktu;
+  
+  daftarCerpen.push_back(baru);
   jumlahCerpen++;
 }
 
@@ -775,39 +762,31 @@ void tambahHistory(int indexAkun, const string &judul, int idCerpen)
 
   // Hapus entry lama kalau judul yang sama sudah pernah dibuka,
   // supaya cerpen yang dibuka lagi pindah ke paling atas (bukan duplikat).
-  history *cur = user.riwayat;
-  history *prev = nullptr;
-  while (cur != nullptr)
-  {
-    if (cur->judul == judul)
-    {
-      if (prev == nullptr)
-        user.riwayat = cur->next;
-      else
-        prev->next = cur->next;
-      delete cur;
-      user.jumlahRiwayat--;
-      break;
-    }
-    prev = cur;
-    cur = cur->next;
-  }
+  user.riwayat.remove_if([&judul](const history &h) { return h.judul == judul; });
+  if (user.riwayat.size() < user.jumlahRiwayat)
+    user.jumlahRiwayat--;
 
-  history *baru = new history{judul, getCurrentTimestamp(), user.riwayat, user.jumlahRiwayat + 1, idCerpen, 1};
-  user.riwayat = baru;
+  history baru;
+  baru.judul = judul;
+  baru.waktu = getCurrentTimestamp();
+  baru.idHistory = user.jumlahRiwayat + 1;
+  baru.idCerpen = idCerpen;
+  baru.halamanTerakhir = 1;
+  
+  user.riwayat.push_front(baru);
   user.jumlahRiwayat++;
 }
 
 void updateHalamanHistory(int indexAkun, const string &judul, int halaman)
 {
   akun &user = daftarAkun[indexAkun];
-  history *cur = user.riwayat;
-  while (cur != nullptr) {
-    if (cur->judul == judul) {
-      cur->halamanTerakhir = halaman;
+  for (auto &h : user.riwayat)
+  {
+    if (h.judul == judul)
+    {
+      h.halamanTerakhir = halaman;
       break;
     }
-    cur = cur->next;
   }
 }
 
@@ -819,7 +798,7 @@ void menuHistory(int indexAkun)
     tampilHeader("HISTORY");
 
     akun &user = daftarAkun[indexAkun];
-    if (user.riwayat == nullptr)
+    if (user.riwayat.empty())
     {
       cout << COLOR_PINK << R"(
  /\_/\
@@ -836,10 +815,9 @@ Belum ada riwayat cerpen yang dibuka.)"
 
     //array pointer untuk navigasi
     vector<history*> items;
-    history *cur = user.riwayat;
-    while (cur != nullptr) {
-      items.push_back(cur);
-      cur = cur->next;
+    for (auto &h : user.riwayat)
+    {
+      items.push_back(&h);
     }
 
     int selected = 0;
@@ -944,12 +922,10 @@ Belum ada riwayat cerpen yang dibuka.)"
 
 Bookmark *cariBookmark(int indexAkun, const string &judul)
 {
-  Bookmark *cur = daftarAkun[indexAkun].bookmark;
-  while (cur != nullptr)
+  for (auto &b : daftarAkun[indexAkun].bookmark)
   {
-    if (cur->judul == judul)
-      return cur;
-    cur = cur->next;
+    if (b.judul == judul)
+      return &b;
   }
   return nullptr;
 }
@@ -957,32 +933,18 @@ Bookmark *cariBookmark(int indexAkun, const string &judul)
 void tambahBookmark(int indexAkun, const string &judul)
 {
   akun &user = daftarAkun[indexAkun];
-  Bookmark *baru = new Bookmark{judul, user.bookmark, user.jumlahBookmark + 1};
-  user.bookmark = baru;
+  Bookmark baru;
+  baru.judul = judul;
+  baru.idBookmark = user.jumlahBookmark + 1;
+  user.bookmark.push_back(baru);
   user.jumlahBookmark++;
 }
 
 void hapusBookmark(int indexAkun, const string &judul)
 {
   akun &user = daftarAkun[indexAkun];
-  Bookmark *cur = user.bookmark;
-  Bookmark *prev = nullptr;
-
-  while (cur != nullptr)
-  {
-    if (cur->judul == judul)
-    {
-      if (prev == nullptr)
-        user.bookmark = cur->next;
-      else
-        prev->next = cur->next;
-      delete cur;
-      user.jumlahBookmark--;
-      return;
-    }
-    prev = cur;
-    cur = cur->next;
-  }
+  user.bookmark.remove_if([&judul](const Bookmark &b) { return b.judul == judul; });
+  user.jumlahBookmark--;
 }
 
 void toggleBookmark(int indexAkun, const string &judul)
@@ -1012,7 +974,7 @@ void menuFavorit(int indexAkun)
     tampilHeader("FAVORIT");
 
     akun &user = daftarAkun[indexAkun];
-    if (user.bookmark == nullptr)
+    if (user.bookmark.empty())
     {
       cout << COLOR_GRAY << "\n  Belum ada cerpen favorit.\n"
            << COLOR_RESET;
@@ -1025,11 +987,9 @@ void menuFavorit(int indexAkun)
 
            // kumpulinn semua bookmark ke vector biar gampang diakses
         vector<Bookmark*> items;
-        Bookmark *cur = user.bookmark;
-        while (cur != nullptr)
+        for (auto &b : user.bookmark)
         {
-            items.push_back(cur);
-            cur = cur->next;
+            items.push_back(&b);
         }
 
         int selected = 0;
@@ -1105,25 +1065,27 @@ void menuFavorit(int indexAkun)
 
 void tampilSemuaCerpen()
 {
-  if (headCerpen == nullptr)
+  if (daftarCerpen.empty())
   {
     cout << COLOR_GRAY << "\n  Belum ada cerpen.\n"
          << COLOR_RESET;
     return;
   }
 
-  Cerpen *cur = headCerpen;
-  while (cur != nullptr)
+  for (const auto &c : daftarCerpen)
   {
-    cout << COLOR_YELLOW << "  [" << cur->id << "] " << COLOR_RESET
-         << cur->judul << "\n";
-    cur = cur->next;
+    cout << COLOR_YELLOW << "  [" << c.id << "] " << COLOR_RESET
+         << c.judul << "\n";
   }
 }
 void tambahKomentar(Cerpen *c, int rating, const string &nama, const string &isi)
 {
-  Komentar *baru = new Komentar{rating, nama, isi, getCurrentTimestamp(), c->komentarHead};
-  c->komentarHead = baru;
+  Komentar baru;
+  baru.rating = rating;
+  baru.nama = nama;
+  baru.isi = isi;
+  baru.waktu = getCurrentTimestamp();
+  c->komentarList.push_front(baru);
 }
 
 void menuRatingKomentar(int indexAkun, Cerpen *c)
@@ -1171,7 +1133,7 @@ void tampilKomentar(int indexAkun, Cerpen *c)
   tampilHeader("KOMENTAR");
   cout << COLOR_WHITE << "\n  Cerpen : " << COLOR_RESET << c->judul << "\n";
 
-  if (c->komentarHead == nullptr)
+  if (c->komentarList.empty())
   {
     cout << COLOR_GRAY << "\n  Belum ada komentar untuk cerpen ini.\n"
          << COLOR_RESET;
@@ -1179,15 +1141,13 @@ void tampilKomentar(int indexAkun, Cerpen *c)
   else
   {
     cout << "\n";
-    Komentar *cur = c->komentarHead;
-    while (cur != nullptr)
+    for (const auto &kom : c->komentarList)
     {
-      cout << COLOR_YELLOW << "  " << cur->nama << COLOR_RESET
-           << " [" << cur->rating << "/5]"
-           << COLOR_GRAY << "  " << cur->waktu << "\n"
+      cout << COLOR_YELLOW << "  " << kom.nama << COLOR_RESET
+           << " [" << kom.rating << "/5]"
+           << COLOR_GRAY << "  " << kom.waktu << "\n"
            << COLOR_RESET
-           << "  " << cur->isi << "\n\n";
-      cur = cur->next;
+           << "  " << kom.isi << "\n\n";
     }
   }
 
@@ -1694,7 +1654,7 @@ void menuRegister()
     return;
   }
 
-  daftarAkun[jumlahAkun] = {nama, password, nullptr, nullptr, 0, 0};
+  daftarAkun[jumlahAkun] = {nama, password, list<history>(), list<Bookmark>(), 0, 0};
   jumlahAkun++;
 
   cout << COLOR_GREEN << "\n  Akun berhasil dibuat! Silakan login.\n"
@@ -1744,48 +1704,14 @@ void menuLogin()
 void bersihkanMemori() {
   // 1. Bersihkan riwayat (history) dan favorit (bookmark) di semua akun
   for (int i = 0; i < jumlahAkun; i++) {
-    
-    // Membersihkan Linked List History
-    history *curHist = daftarAkun[i].riwayat;
-    while (curHist != nullptr) {
-      history *tempH = curHist;
-      curHist = curHist->next;
-      delete tempH;
-    }
-    daftarAkun[i].riwayat = nullptr; // Mengembalikan pointer ke null (Best Practice)
+    daftarAkun[i].riwayat.clear();
     daftarAkun[i].jumlahRiwayat = 0;
-
-    // Membersihkan Linked List Bookmark
-    Bookmark *curBook = daftarAkun[i].bookmark;
-    while (curBook != nullptr) {
-      Bookmark *tempB = curBook;
-      curBook = curBook->next;
-      delete tempB;
-    }
-    daftarAkun[i].bookmark = nullptr;
+    daftarAkun[i].bookmark.clear();
     daftarAkun[i].jumlahBookmark = 0;
   }
 
   // 2. Bersihkan daftar cerpen beserta semua komentar di dalamnya
-  Cerpen *curCerpen = headCerpen;
-  while (curCerpen != nullptr) {
-    
-    // Membersihkan Linked List Komentar di dalam cerpen yang sedang ditunjuk
-    Komentar *curKom = curCerpen->komentarHead;
-    while (curKom != nullptr) {
-      Komentar *tempK = curKom;
-      curKom = curKom->next;
-      delete tempK;
-    }
-    curCerpen->komentarHead = nullptr;
-
-    // Setelah komentar bersih, baru hapus node Cerpen itu sendiri
-    Cerpen *tempC = curCerpen;
-    curCerpen = curCerpen->next;
-    delete tempC;
-  }
-  
-  headCerpen = nullptr;
+  daftarCerpen.clear();
   jumlahCerpen = 0;
 }
 
@@ -1793,9 +1719,9 @@ void bersihkanMemori() {
 
 int main()
 {
-  // Data dummy akun
-  daftarAkun[0] = {"hirsya", "123", nullptr, nullptr, 0, 0};
-  daftarAkun[1] = {"ridho", "321", nullptr, nullptr, 0, 0};
+    // Data dummy akun
+  daftarAkun[0] = {"hirsya", "123", list<history>(), list<Bookmark>(), 0, 0};
+  daftarAkun[1] = {"ridho", "321", list<history>(), list<Bookmark>(), 0, 0};
   jumlahAkun = 2;
 
   // Data dummy cerpen
