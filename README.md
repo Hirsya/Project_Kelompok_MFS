@@ -65,7 +65,8 @@
 
 ### ⚙️ Mengcompile Program
 C++ merupakan bahasa pemrograman klasik yang mengharuskan kodenya diproses menjadi file aplikasi (`.exe`) agar dapat dibaca dan dijalankan oleh sistem operasi
-
+1. Pastikan posisi CMD/PowerShell Anda berada di dalam folder tempat file `Project_main.cpp` berada.
+2. Jalankan perintah kompilasi di bawah ini:
 ```bash
 g++ Project_main.cpp -o CerpenKita
 ```
