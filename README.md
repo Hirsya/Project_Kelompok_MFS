@@ -31,20 +31,12 @@
 * 💬 **Komentar & Rating:** Pengguna dapat memberi rating (1-5) dan komentar pada cerpen yang sudah dibaca.
 * 🎨 **Tampilan Terminal Berwarna:** Menggunakan ANSI Color Code untuk mempercantik tampilan menu dan teks di terminal.
 * ⌨️ **Navigasi Arrow Key:** Semua menu menggunakan navigasi panah (↑↓) dan Enter untuk pengalaman yang lebih intuitif.
-* ⌨️ **Navigasi Arrow Key:** Semua menu menggunakan navigasi panah (↑↓) dan Enter untuk pengalaman yang lebih intuitif.
 
 ---
 
 ## 🗂️ 3. Arsitektur Kode
 
-Proyek ini memiliki **2 versi implementasi**:
-
-### **Versi 1: Project_main.cpp** (Backup)
-- Menggunakan **array statis + counter** untuk data utama
-- Menggunakan `vector` STL untuk helper UI navigation
-- Fokus: Simplicity dan rapid development
-
-### **Versi 2: Project_main_pointer.cpp** ⭐ (Rekomendasi)
+### **Project_main.cpp** ⭐
 - **100% pointer dinamis** dengan `new`/`delete`
 - Implementasi penuh **Modul 6 (Heap Memory Management)**
 - Struktur data:
@@ -74,12 +66,6 @@ Proyek ini memiliki **2 versi implementasi**:
 ### ⚙️ Mengcompile Program
 C++ merupakan bahasa pemrograman klasik yang mengharuskan kodenya diproses menjadi file aplikasi (`.exe`) agar dapat dibaca dan dijalankan oleh sistem operasi
 
-**Pilihan 1: Versi Pointer (Rekomendasi - Modul 6)**
-```bash
-g++ Project_main_pointer.cpp -o CerpenKita
-```
-
-**Pilihan 2: Versi Original (Backup)**
 ```bash
 g++ Project_main.cpp -o CerpenKita_backup
 ```
