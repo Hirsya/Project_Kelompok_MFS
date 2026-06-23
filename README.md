@@ -67,7 +67,7 @@
 C++ merupakan bahasa pemrograman klasik yang mengharuskan kodenya diproses menjadi file aplikasi (`.exe`) agar dapat dibaca dan dijalankan oleh sistem operasi
 
 ```bash
-g++ Project_main.cpp -o CerpenKita_backup
+g++ Project_main.cpp -o CerpenKita
 ```
 
 *Keterangan:* Perintah ini menyuruh compiler `g++` untuk membaca file sumber dan membungkusnya menjadi satu file aplikasi.
