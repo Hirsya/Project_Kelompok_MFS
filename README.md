@@ -30,6 +30,7 @@
 * ⭐ **Favorit:** Menyimpan cerpen favorit agar mudah diakses kembali, dengan opsi tambah/hapus.
 * 💬 **Komentar & Rating:** Pengguna dapat memberi rating dan komentar pada cerpen yang sudah dibaca.
 * 🎨 **Tampilan Terminal Berwarna:** Menggunakan ANSI Color Code untuk mempercantik tampilan menu dan teks di terminal.
+* ⌨️ **Navigasi Arrow Key:** Semua menu menggunakan navigasi panah (↑↓) dan Enter untuk pengalaman yang lebih intuitif.
 
 ---
 
@@ -37,8 +38,9 @@
 
 Berbeda dari proyek pada umumnya, **seluruh logika program (struct, fungsi, dan `main()`) berada dalam satu file tunggal**:
 Struktur data yang digunakan:
-* **Linked List** — untuk daftar `Cerpen`, `Komentar` per cerpen, `history` baca, dan `Bookmark`.
-* **Array** — untuk daftar `akun` pengguna (`daftarAkun[MAX_AKUN]`).
+* **Array dengan Counter** — untuk daftar `Cerpen`, `Komentar` per cerpen, `history` baca, dan `Bookmark` menggunakan array statis dengan sistem penghitung.
+* **Array** — untuk daftar `akun` pengguna (`daftarAkun[MAX_AKUN]`), cerpen (`daftarCerpen[MAX_CERPEN_TOTAL]`), dan data lainnya.
+* **Arrow Key Navigation** — Semua menu utama menggunakan navigasi panah atas/bawah untuk pengalaman pengguna yang lebih modern.
 
 **Kontributor Proyek (Kelompok 12 - MFS):**
 
@@ -46,9 +48,9 @@ Struktur data yang digunakan:
 | :--- | :--- |
 | **Malikal Hirsya Alfatory** | Membuat variabel `struct` yang di butuhkan dan membuat struktur awal kode seperti `main()` |
 | **Ade Zulfikar Rajasa** | Membuat blok **Helper Cerpen** yang mengelola fondasi data utama cerpen agar bisa diakses oleh fitur lain. |
-| **Chandrawati Rachmad** | Sistem **History** yang fokus mengelola _Linked List_ riwayat bacaan yang menempel pada `struct` akun |
-| **Tri Salsabila** | Sistem **Favorit** yang fokus mengelola _Linked List_ cerpen yang telah di favorit pada `struct` akun |
-| **Anak Agung Ayu Intan PM** | Sistem **Komentar & Rating** yang mengelola _Linked List_ komentar yang bersarang **(_nested_)** di dalam `struct` Cerpen. |
+| **Chandrawati Rachmad** | Sistem **History** yang fokus mengelola array riwayat bacaan yang menempel pada `struct` akun |
+| **Tri Salsabila** | Sistem **Favorit** yang fokus mengelola array cerpen yang telah di favorit pada `struct` akun |
+| **Anak Agung Ayu Intan PM** | Sistem **Komentar & Rating** yang mengelola array komentar yang bersarang **(_nested_)** di dalam `struct` Cerpen dengan sistem rating 1-5. |
 | **Maulidar Ihlas** | Membuat **Logika String & UI** yang fokus pada manipulasi `string` dan pengalaman membaca agar teks cerpen tidak berantakan di konsol |
 | **Jhosua Jasson Lada** | Membuat **Memory Management** yang merajut semua fitur yang sudah dibuat dan memastikan tidak ada _memory leak_ saat program ditutup |
 
