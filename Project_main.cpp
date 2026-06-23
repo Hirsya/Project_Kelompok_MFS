@@ -271,7 +271,7 @@ Nara menarik napasnya dalam-dalam, membiarkan aroma tanah basah dan dinginnya an
 
 )", "26-08-2016");
 
-  tambahCerpen(2, "Aroma Manis dari Dapur Nara", "Mira", "slice of life",
+  tambahCerpen(2, "Aroma Manis dari Dapur Nara", "Mira", "Slice of Life",
                R"(Pagi itu rumah Nara terasa sunyi, sunyi yang berbeda dari biasaya. Angin yang masuk lewat jendela
  ruang tamu menggerakkan tirai perlahan, seperti seseorang yang menguap panjang karena bosan.  Ayah dan ibunya sudah berangkat sejak pagi untuk menghadiri sebuah acara. Mereka meninggalkan secarik pesan manis di meja makan: “Nara yang manis, jaga rumah baik-baik ya!” Nara tersenyum kecil meski tak ada yang melihat. Walaupun ia mencoba berani, hatinya tetap saja merasa sedikit takut dan kesepian. Jam dinding masih menunjukkan pukul sembilan pagi, dan waktu sekolah enggan berjalan lebih cepat. Tiba-tiba, “ting-tong!” suara bel memecah keheningan. Nara terlonjak kecil lalu berlari menuju pintu, berharap itu bukan tamu tak dikenal. Begitu pintu dibuka, terdengar suara ceria:
 “Naraaaa!! Aku dititip di sini!” Reno sepupunya yang seumuran berdiri dengan tas kecil, rambut acak-acakan, dan senyum selebar pintu. Ia melangkah masuk seperti badai kecil penuh energi, langsung menghapus seluruh sepi di rumah itu. “Yeayy! Aku nggak sendirian!” Nara menepuk tangan bahagia.Tak butuh waktu lama sampai ruang tamu berubah menjadi tempat bermain. Komik berserakan, pensil warna tumpah seperti pelangi, dan kertas gambar menumpuk di sofa. “Reno, coba gambar wajahku!” tantang Nara. Reno menggambar cepat, dan hasilnya adalah wajah bulat seperti bola dengan rambut seperti sapu ijuk. Nara menatap hasilnya. “Ini aku??” 
@@ -1708,7 +1708,7 @@ void menuTambahCerpen(int indexAkun)
        << COLOR_RESET;
 
   cout << "\n  Judul  : ";
-  cin.ignore();
+  cin.sync();
   getline(cin, judul);
 
   if (judul == "0" || judul.empty())
@@ -1764,7 +1764,7 @@ void menuUtama(int indexAkun)
 
         cout << COLOR_GREEN << "\n  Halo, "
              << daftarAkun[indexAkun].nama
-             << "\n" << COLOR_RESET;
+             << " !\n  Selamat Datang di CerpenKita, mau baca apa hari ini?\n" << COLOR_RESET;
 
         // RENDER MENU
         for (int i = 0; i < menu.size(); i++)
