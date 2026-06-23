@@ -28,51 +28,69 @@
 * ✍️ **Tambah Cerpen:** Pengguna dapat menambahkan cerpen baru ke dalam daftar.
 * 🕒 **Riwayat Baca (History):** Mencatat cerpen apa saja yang pernah dibuka oleh pengguna, lengkap dengan waktu baca.
 * ⭐ **Favorit:** Menyimpan cerpen favorit agar mudah diakses kembali, dengan opsi tambah/hapus.
-* 💬 **Komentar & Rating:** Pengguna dapat memberi rating dan komentar pada cerpen yang sudah dibaca.
+* 💬 **Komentar & Rating:** Pengguna dapat memberi rating (1-5) dan komentar pada cerpen yang sudah dibaca.
 * 🎨 **Tampilan Terminal Berwarna:** Menggunakan ANSI Color Code untuk mempercantik tampilan menu dan teks di terminal.
+* ⌨️ **Navigasi Arrow Key:** Semua menu menggunakan navigasi panah (↑↓) dan Enter untuk pengalaman yang lebih intuitif.
 * ⌨️ **Navigasi Arrow Key:** Semua menu menggunakan navigasi panah (↑↓) dan Enter untuk pengalaman yang lebih intuitif.
 
 ---
 
 ## 🗂️ 3. Arsitektur Kode
 
-Berbeda dari proyek pada umumnya, **seluruh logika program (struct, fungsi, dan `main()`) berada dalam satu file tunggal**:
-Struktur data yang digunakan:
-* **Array dengan Counter** — untuk daftar `Cerpen`, `Komentar` per cerpen, `history` baca, dan `Bookmark` menggunakan array statis dengan sistem penghitung.
-* **Array** — untuk daftar `akun` pengguna (`daftarAkun[MAX_AKUN]`), cerpen (`daftarCerpen[MAX_CERPEN_TOTAL]`), dan data lainnya.
-* **Arrow Key Navigation** — Semua menu utama menggunakan navigasi panah atas/bawah untuk pengalaman pengguna yang lebih modern.
+Proyek ini memiliki **2 versi implementasi**:
+
+### **Versi 1: Project_main.cpp** (Backup)
+- Menggunakan **array statis + counter** untuk data utama
+- Menggunakan `vector` STL untuk helper UI navigation
+- Fokus: Simplicity dan rapid development
+
+### **Versi 2: Project_main_pointer.cpp** ⭐ (Rekomendasi)
+- **100% pointer dinamis** dengan `new`/`delete`
+- Implementasi penuh **Modul 6 (Heap Memory Management)**
+- Struktur data:
+  * **Dynamic arrays** untuk semua data (Cerpen, Komentar, History, Bookmark)
+  * **2D pointer arrays** untuk navigation (history**, Bookmark**, Cerpen**)
+  * **Manual memory management** di semua fungsi
+  * **Proper cleanup** di semua exit points
+- **Arrow Key Navigation** — Semua menu menggunakan navigasi panah untuk UX modern
+- **Memory-safe** — No memory leaks, tested dengan multiple scenarios
 
 **Kontributor Proyek (Kelompok 12 - MFS):**
 
 | Nama Kontributor | Tanggung Jawab Utama |
 | :--- | :--- |
-| **Malikal Hirsya Alfatory** | Membuat variabel `struct` yang di butuhkan dan membuat struktur awal kode seperti `main()` |
-| **Ade Zulfikar Rajasa** | Membuat blok **Helper Cerpen** yang mengelola fondasi data utama cerpen agar bisa diakses oleh fitur lain. |
-| **Chandrawati Rachmad** | Sistem **History** yang fokus mengelola array riwayat bacaan yang menempel pada `struct` akun |
-| **Tri Salsabila** | Sistem **Favorit** yang fokus mengelola array cerpen yang telah di favorit pada `struct` akun |
-| **Anak Agung Ayu Intan PM** | Sistem **Komentar & Rating** yang mengelola array komentar yang bersarang **(_nested_)** di dalam `struct` Cerpen dengan sistem rating 1-5. |
-| **Maulidar Ihlas** | Membuat **Logika String & UI** yang fokus pada manipulasi `string` dan pengalaman membaca agar teks cerpen tidak berantakan di konsol |
-| **Jhosua Jasson Lada** | Membuat **Memory Management** yang merajut semua fitur yang sudah dibuat dan memastikan tidak ada _memory leak_ saat program ditutup |
+| **Malikal Hirsya Alfatory** | Membuat variabel `struct` yang dibutuhkan, struktur awal kode, dan koordinasi tim |
+| **Ade Zulfikar Rajasa** | Membuat blok **Helper Cerpen** yang mengelola fondasi data utama cerpen |
+| **Chandrawati Rachmad** | Sistem **History** dengan dynamic array dan pointer management |
+| **Tri Salsabila** | Sistem **Favorit** dengan dynamic array bookmark management |
+| **Anak Agung Ayu Intan PM** | Sistem **Komentar & Rating** (1-5) dengan nested array dan arrow navigation |
+| **Maulidar Ihlas** | **Logika String & UI** dengan text wrapping dan arrow key navigation |
+| **Jhosua Jasson Lada** | **Memory Management** dengan pointer dinamis dan bug fixing memory leaks |
 
 ---
 
 ## 🛠️ 4. Panduan Menggunakan Program
 
-### ⚙️Mengcompile Program
+### ⚙️ Mengcompile Program
 C++ merupakan bahasa pemrograman klasik yang mengharuskan kodenya diproses menjadi file aplikasi (`.exe`) agar dapat dibaca dan dijalankan oleh sistem operasi
 
-1. Pastikan posisi CMD/PowerShell Anda berada di dalam folder tempat file `Project_main.cpp` berada.
-2. Jalankan perintah kompilasi di bawah ini:
+**Pilihan 1: Versi Pointer (Rekomendasi - Modul 6)**
 ```bash
-g++ Project_main.cpp -o CerpenKita
+g++ Project_main_pointer.cpp -o CerpenKita
 ```
-*Keterangan:* Perintah ini menyuruh compiler `g++` untuk membaca file pusat `Project_main.cpp` (yang otomatis akan menarik file `.cpp` modular lainnya) dan membungkusnya menjadi satu file aplikasi utuh bernama `CerpenKita`.
 
-### 🖥️Menjalankan Program
-Apabila tidak ada pesan error setelah kompilasi selesai, Anda sudah bisa menjalankan programnya. Gunakan perintah berikut:
-  ```bash
-  .\CerpenKita.exe
-  ```
+**Pilihan 2: Versi Original (Backup)**
+```bash
+g++ Project_main.cpp -o CerpenKita_backup
+```
+
+*Keterangan:* Perintah ini menyuruh compiler `g++` untuk membaca file sumber dan membungkusnya menjadi satu file aplikasi.
+
+### 🖥️ Menjalankan Program
+Apabila tidak ada pesan error setelah kompilasi selesai, Anda sudah bisa menjalankan programnya:
+```bash
+.\CerpenKita.exe
+```
 
 ## Hal yang tidak penting
 
