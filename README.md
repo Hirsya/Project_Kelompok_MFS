@@ -7,7 +7,7 @@
  
 ![C++](https://img.shields.io/badge/BAHASA-C%2B%2B-blue%3F?style=for-the-badge&color=blue)
 ![Interface](https://img.shields.io/badge/INTERFACE-TERMINAL-black%3F?style=for-the-badge&color=orange)
-![Status](https://img.shields.io/badge/STATUS-COMPLETE-black%3F?style=for-the-badge&color=green)
+![Status](https://img.shields.io/badge/STATUS-REWORK-black%3F?style=for-the-badge&color=red)
   
 </div>
 
@@ -37,7 +37,6 @@
 
 Berbeda dari proyek pada umumnya, **seluruh logika program (struct, fungsi, dan `main()`) berada dalam satu file tunggal**:
 Struktur data yang digunakan:
-* **Linked List** — untuk daftar `Cerpen`, `Komentar` per cerpen, `history` baca, dan `Bookmark`.
 * **Array** — untuk daftar `akun` pengguna (`daftarAkun[MAX_AKUN]`).
 
 **Kontributor Proyek (Kelompok 12 - MFS):**
@@ -46,9 +45,9 @@ Struktur data yang digunakan:
 | :--- | :--- |
 | **Malikal Hirsya Alfatory** | Membuat variabel `struct` yang di butuhkan dan membuat struktur awal kode seperti `main()` |
 | **Ade Zulfikar Rajasa** | Membuat blok **Helper Cerpen** yang mengelola fondasi data utama cerpen agar bisa diakses oleh fitur lain. |
-| **Chandrawati Rachmad** | Sistem **History** yang fokus mengelola _Linked List_ riwayat bacaan yang menempel pada `struct` akun |
-| **Tri Salsabila** | Sistem **Favorit** yang fokus mengelola _Linked List_ cerpen yang telah di favorit pada `struct` akun |
-| **Anak Agung Ayu Intan PM** | Sistem **Komentar & Rating** yang mengelola _Linked List_ komentar yang bersarang **(_nested_)** di dalam `struct` Cerpen. |
+| **Chandrawati Rachmad** | Sistem **History** yang fokus mengelola riwayat bacaan yang menempel pada `struct` akun |
+| **Tri Salsabila** | Sistem **Favorit** yang fokus mengelola cerpen yang telah di favorit pada `struct` akun |
+| **Anak Agung Ayu Intan PM** | Sistem **Komentar & Rating** yang mengelola komentar yang bersarang **(_nested_)** di dalam `struct` Cerpen. |
 | **Maulidar Ihlas** | Membuat **Logika String & UI** yang fokus pada manipulasi `string` dan pengalaman membaca agar teks cerpen tidak berantakan di konsol |
 | **Jhosua Jasson Lada** | Membuat **Memory Management** yang merajut semua fitur yang sudah dibuat dan memastikan tidak ada _memory leak_ saat program ditutup |
 
